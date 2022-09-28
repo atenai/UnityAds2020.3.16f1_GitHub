@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 //参考サイト
 //https://www.youtube.com/watch?v=tzgOTVPXC-I
+//https://www.youtube.com/watch?v=gzTs3WpzhWg
 
 //広告全体の初期化
 public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
