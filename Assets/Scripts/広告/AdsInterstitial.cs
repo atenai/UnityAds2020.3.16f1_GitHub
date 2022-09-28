@@ -29,7 +29,7 @@ public class AdsInterstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
         Advertisement.Show(_adUnitId, this);
     }
 
-    //インターステーショナル広告のロードに成功した場合に実行する
+    //インターステーショナル広告を正常にロードできた場合に実行する
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
 
@@ -50,8 +50,12 @@ public class AdsInterstitial : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void OnUnityAdsShowStart(string adUnitId) { }
     public void OnUnityAdsShowClick(string adUnitId) { }
 
+    //インターステーショナル広告を正常に表示完了後に実行する
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
         Debug.Log("<color=blue>あなたはインターステーショナル広告をゲットしました。</color>");
+
+        //インターステーショナル広告をロード
+        Advertisement.Load(_adUnitId, this);
     }
 }
