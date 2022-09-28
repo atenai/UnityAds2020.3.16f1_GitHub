@@ -494,7 +494,8 @@ MonoBehaviour:
   _androidGameId: 4780860
   _iOSGameId: 4780861
   _testMode: 1
-  adsRewardButton: {fileID: 1608294191}
+  adsRewardedButton: {fileID: 1608294191}
+  adsInterstitialButton: {fileID: 1751809132}
 --- !u!4 &873663742
 Transform:
   m_ObjectHideFlags: 0
@@ -675,19 +676,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1608294189}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: ShowVideoAd
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1608294189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,7 +813,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1751809130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1751809132}
+        m_TargetAssemblyTypeName: AdsInterstitial, Assembly-CSharp
+        m_MethodName: ShowAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1751809130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717620073f2a353448a781f671d50207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _androidAdUnitId: Interstitial_Android
+  _iOSAdUnitId: Interstitial_iOS
 --- !u!1 &2112174268
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] bool _testMode = true;
     private string _gameId;
 
-    [SerializeField] AdsRewarded adsRewardButton;
+    [SerializeField] AdsRewarded adsRewardedButton;
+    [SerializeField] AdsInterstitial adsInterstitialButton;
 
     void Awake()
     {
@@ -33,7 +34,9 @@ public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
     {
         Debug.Log("Unity Ads initialization complete");
         //リワード広告をロードする
-        adsRewardButton.LoadAd();
+        adsRewardedButton.LoadAd();
+        //インターステーショナル広告をロードする
+        adsInterstitialButton.LoadAd();
     }
 
     //初期化処理が失敗した場合に実行する

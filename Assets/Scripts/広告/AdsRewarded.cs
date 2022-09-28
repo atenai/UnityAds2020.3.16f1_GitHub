@@ -7,7 +7,7 @@ using UnityEngine.Advertisements;
 //リワード広告スクリプト
 public class AdsRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    [SerializeField] Button _showAdButton;
+    [SerializeField] Button _showAdButton;//ボタンの変数を作る理由が何かあるみたいこれ
     [SerializeField] string _androidAuUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null;
@@ -63,7 +63,7 @@ public class AdsRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowLi
         {
             Debug.Log("Unity Ads Rewarded Ad Completed");
 
-            Debug.Log("<color=red>あなたは10コインをゲットしました。</color>");
+            Debug.Log("<color=red>あなたはリワード広告をゲットしました。</color>");
 
             //リワード広告をロードする
             Advertisement.Load(_adUnitId, this);
