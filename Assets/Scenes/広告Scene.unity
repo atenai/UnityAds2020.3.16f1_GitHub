@@ -494,7 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _androidGameId: 4780860
   _iOSGameId: 4780861
-  _testMode: 1
+  _testMode: 0
   adsRewardedButton: {fileID: 1608294191}
   adsInterstitialButton: {fileID: 1751809132}
 --- !u!4 &873663742
