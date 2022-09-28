@@ -12,7 +12,7 @@ public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] bool _testMode = true;
     private string _gameId;
 
-    [SerializeField] AdsReward adsRewardButton;
+    [SerializeField] AdsRewarded adsRewardButton;
 
     void Awake()
     {

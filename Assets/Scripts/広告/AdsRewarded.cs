@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 
 //リワード広告スクリプト
-public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
+public class AdsRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] Button _showAdButton;
     [SerializeField] string _androidAuUnitId = "Rewarded_Android";
@@ -56,7 +56,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
         Advertisement.Show(_adUnitId, this);
     }
 
-    //リワード広告を正常に表示できた場合に実行する
+    //リワード広告を正常に表示完了後に実行する
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
         if(adUnitId.Equals(_adUnitId) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED))
