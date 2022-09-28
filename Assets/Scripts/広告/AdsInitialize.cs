@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
+//広告全体の初期化
 public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
 {
 
@@ -11,22 +12,31 @@ public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] bool _testMode = true;
     private string _gameId;
 
+    [SerializeField] AdsReward adsRewardButton;
+
     void Awake()
     {
         InitializeAds();
     }
 
+    //広告の初期化処理
     public void InitializeAds()
     {
+        //iOSかAndroidのどちらのプラットフォームかを取得して広告IDを取得する
         _gameId = (Application.platform == RuntimePlatform.IPhonePlayer) ? _iOSGameId : _androidGameId;
+        //広告の初期化処理(第一引数に広告ID, 第二引数にテストモードかどうか?, 第三引数はわからない)
         Advertisement.Initialize(_gameId, _testMode, this);
     }
 
+    //初期化処理が完了した際に実行する
     public void OnInitializationComplete()
     {
         Debug.Log("Unity Ads initialization complete");
+        //リワード広告をロードする
+        adsRewardButton.LoadAd();
     }
 
+    //初期化処理が失敗した場合に実行する
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
