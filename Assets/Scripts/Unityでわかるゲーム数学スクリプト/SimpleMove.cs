@@ -25,7 +25,8 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove1_1();
         //FixedUpdateSimpleMove1_2();
         //FixedUpdateSimpleMove1_1a();
-        FixedUpdateSimpleMove2_1();
+        //FixedUpdateSimpleMove2_1();
+        FixedUpdateSimpleMove2_2();
     }
 
     void StartSimpleMove1_1or2()
@@ -90,5 +91,33 @@ public class SimpleMove : MonoBehaviour
         {
             transform.position = new Vector3(-5.0f, transform.position.y, transform.position.z);
         }
+    }
+
+    void FixedUpdateSimpleMove2_2()
+    {
+        Vector3 v3Velocity = new Vector3(0.0f, 0.0f, 0.0f);
+        v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
+        v3Velocity.z = Input.GetAxis("Vertical") * fVelocity;
+
+        v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ð‘«‚·
+
+        if (v3Position.x > 5.0f)
+        {
+            v3Position.x = 5.0f;
+        }
+        if (v3Position.x < -5.0f)
+        {
+            v3Position.x = -5.0f;
+        }
+        if (v3Position.z > 5.0f)
+        {
+            v3Position.z = 5.0f;
+        }
+        if (v3Position.z < -5.0f)
+        {
+            v3Position.z = -5.0f;
+        }
+
+        transform.position = v3Position;
     }
 }
