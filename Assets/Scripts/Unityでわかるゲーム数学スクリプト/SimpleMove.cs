@@ -15,7 +15,8 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove1_1or2();
         //StartSimpleMove1_1a();
         //StartSimpleMove2_1();
-        StartSimpleMove3_1();
+        //StartSimpleMove3_1();
+        StartSimpleMove3_2();
     }
 
     void Update()
@@ -31,7 +32,8 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove2_1();
         //FixedUpdateSimpleMove2_2();
         //FixedUpdateSimpleMove2_3();
-        FixedUpdateSimpleMove3_1();
+        //FixedUpdateSimpleMove3_1();
+        FixedUpdateSimpleMove3_2();
     }
 
     void StartSimpleMove1_1or2()
@@ -175,6 +177,30 @@ public class SimpleMove : MonoBehaviour
         if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//地面から出ているか
         {
             v3Position = new Vector3(0.0f, 0.5f, 0.0f);//位置を初期化する
+        }
+
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove3_2()
+    {
+        transform.position = v3Position;
+    }
+
+    void FixedUpdateSimpleMove3_2()
+    {
+        v3Position += v3Velocity;//位置に速度を足す
+
+        if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//地面から出ているか
+        {
+            v3Position = new Vector3(0.0f, 0.5f, 0.0f);//位置を初期化する
+            fAngle += 2.0f * Mathf.PI / 10.0f;//方向回転
+            if (fAngle > (2.0f * Mathf.PI))//Mathf.PIはπ
+            {
+                fAngle -= 2.0f * Mathf.PI;
+            }
+            v3Velocity.x = fVelocity * Mathf.Cos(fAngle);
+            v3Velocity.z = fVelocity * Mathf.Sin(fAngle);
         }
 
         transform.position = v3Position;
