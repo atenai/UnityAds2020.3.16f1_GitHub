@@ -224,7 +224,7 @@ public class SimpleMove : MonoBehaviour
     void FixedUpdateSimpleMove4_1()
     {
         v3Position += v3Velocity;//位置に速度を足す
-        v3Velocity.y += fGravity;//位置に加速度を足す
+        v3Velocity.y += fGravity;//速度に加速度を足す
 
         if (v3Position.y < 0.0f)//地面に落ちたか
         {
