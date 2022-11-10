@@ -10,8 +10,10 @@ public class SimpleMove : MonoBehaviour
     //private float fVelocity = 0.1f;
     //private float fAngle = Mathf.PI / 6.0f;
 
-    private Vector3 v3BasePosition = new Vector3(0.0f, 6.0f, 0.0f);
-    private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.0f, 0.0f);
+    //private Vector3 v3BasePosition = new Vector3(0.0f, 6.0f, 0.0f);
+    //private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.0f, 0.0f);
+    private Vector3 v3BasePosition = new Vector3(-5.0f, 0.5f, 0.0f);
+    private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.2f, 0.0f);
     private Vector3 v3Position;
     private Vector3 v3Velocity;
     private float fGravity = -0.003f;
@@ -23,7 +25,8 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove2_1();
         //StartSimpleMove3_1();
         //StartSimpleMove3_2();
-        StartSimpleMove4_1();
+        //StartSimpleMove4_1();
+        StartSimpleMove4_2();
     }
 
     void Update()
@@ -41,7 +44,8 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove2_3();
         //FixedUpdateSimpleMove3_1();
         //FixedUpdateSimpleMove3_2();
-        FixedUpdateSimpleMove4_1();
+        //FixedUpdateSimpleMove4_1();
+        FixedUpdateSimpleMove4_2();
     }
 
     //void StartSimpleMove1_1or2()
@@ -222,6 +226,27 @@ public class SimpleMove : MonoBehaviour
     }
 
     void FixedUpdateSimpleMove4_1()
+    {
+        v3Position += v3Velocity;//位置に速度を足す
+        v3Velocity.y += fGravity;//速度に加速度を足す
+
+        if (v3Position.y < 0.0f)//地面に落ちたか
+        {
+            v3Position = v3BasePosition;//位置を初期化
+            v3Velocity = v3BaseVelocity;//速度を初期化
+        }
+
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove4_2()
+    {
+        v3Position = v3BasePosition;//位置を初期化
+        v3Velocity = v3BaseVelocity;//速度を初期化
+        transform.position = v3Position;
+    }
+
+    void FixedUpdateSimpleMove4_2()
     {
         v3Position += v3Velocity;//位置に速度を足す
         v3Velocity.y += fGravity;//速度に加速度を足す
