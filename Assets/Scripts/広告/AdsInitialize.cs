@@ -5,6 +5,8 @@ using UnityEngine.Advertisements;
 //https://www.youtube.com/watch?v=tzgOTVPXC-I
 //https://www.youtube.com/watch?v=gzTs3WpzhWg
 
+//必ずADSのバージョンを4.3.0にすること！！
+
 //広告全体の初期化
 public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
 {
@@ -34,6 +36,7 @@ public class AdsInitialize : MonoBehaviour, IUnityAdsInitializationListener
     //初期化処理が完了した際に実行する
     public void OnInitializationComplete()
     {
+        Debug.Log("<color=blue>UnityAdsが初期化の成功</color>");
         Debug.Log("Unity Ads initialization complete");
         //リワード広告をロードする
         adsRewardedButton.LoadAd();
