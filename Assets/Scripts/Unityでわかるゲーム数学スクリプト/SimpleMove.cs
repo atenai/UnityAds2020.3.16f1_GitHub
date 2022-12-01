@@ -17,6 +17,7 @@ public class SimpleMove : MonoBehaviour
     private Vector3 v3Position;
     private Vector3 v3Velocity;
     private float fGravity = -0.003f;
+    private float t = 0.0f;//æ™‚åˆ»
 
     void Start()
     {
@@ -26,7 +27,8 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove3_1();
         //StartSimpleMove3_2();
         //StartSimpleMove4_1();
-        StartSimpleMove4_2();
+        //StartSimpleMove4_2();
+        StartSimpleMove4_3();
     }
 
     void Update()
@@ -46,6 +48,7 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove3_2();
         //FixedUpdateSimpleMove4_1();
         FixedUpdateSimpleMove4_2();
+        FixedUpdateSimpleMove4_3();
     }
 
     //void StartSimpleMove1_1or2()
@@ -98,7 +101,7 @@ public class SimpleMove : MonoBehaviour
     //    Vector3 v3Velocity = new Vector3(0.0f, 0.0f, 0.0f);
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
 
-    //    v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
+    //    v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
     //    transform.position = v3Position;
 
@@ -118,7 +121,7 @@ public class SimpleMove : MonoBehaviour
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
     //    v3Velocity.z = Input.GetAxis("Vertical") * fVelocity;
 
-    //    v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
+    //    v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
     //    if (v3Position.x > 5.0f)
     //    {
@@ -146,14 +149,14 @@ public class SimpleMove : MonoBehaviour
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
     //    v3Velocity.z = Input.GetAxis("Vertical") * fVelocity;
 
-    //    float fInputVel = Mathf.Sqrt(v3Velocity.x * v3Velocity.x + v3Velocity.z * v3Velocity.z);//‘¬‚³
+    //    float fInputVel = Mathf.Sqrt(v3Velocity.x * v3Velocity.x + v3Velocity.z * v3Velocity.z);//ï¿½ï¿½ï¿½ï¿½
 
     //    if (fInputVel > fVelocity)
     //    {
-    //        v3Velocity = v3Velocity / fInputVel * fVelocity;//‘¬‚³’²®
+    //        v3Velocity = v3Velocity / fInputVel * fVelocity;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //    }
 
-    //    v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
+    //    v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
     //    if (v3Position.x > 5.0f)
     //    {
@@ -178,17 +181,17 @@ public class SimpleMove : MonoBehaviour
     //void StartSimpleMove3_1()
     //{
     //    transform.position = v3Position;
-    //    v3Velocity.x = fVelocity * Mathf.Cos(fAngle);//‰‘¬‚Ìİ’è
+    //    v3Velocity.x = fVelocity * Mathf.Cos(fAngle);//ï¿½ï¿½ï¿½ï¿½ï¿½Ìİ’ï¿½
     //    v3Velocity.y = fVelocity * Mathf.Sin(fAngle);
     //}
 
     //void FixedUpdateSimpleMove3_1()
     //{
-    //    v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
+    //    v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
-    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//’n–Ê‚©‚ço‚Ä‚¢‚é‚©
+    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//ï¿½nï¿½Ê‚ï¿½ï¿½ï¿½oï¿½Ä‚ï¿½ï¿½é‚©
     //    {
-    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//ˆÊ’u‚ğ‰Šú‰»‚·‚é
+    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //    }
 
     //    transform.position = v3Position;
@@ -201,13 +204,13 @@ public class SimpleMove : MonoBehaviour
 
     //void FixedUpdateSimpleMove3_2()
     //{
-    //    v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
+    //    v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
-    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//’n–Ê‚©‚ço‚Ä‚¢‚é‚©
+    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//ï¿½nï¿½Ê‚ï¿½ï¿½ï¿½oï¿½Ä‚ï¿½ï¿½é‚©
     //    {
-    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//ˆÊ’u‚ğ‰Šú‰»‚·‚é
-    //        fAngle += 2.0f * Mathf.PI / 10.0f;//•ûŒü‰ñ“]
-    //        if (fAngle > (2.0f * Mathf.PI))//Mathf.PI‚ÍƒÎ //‚±‚Ìif‚Æ’†g‚ÍAŠp“x‚ª1ü•ª‚æ‚è‘å‚«‚­‚È‚Á‚½‚çAŠp“x‚ğ1ü•ª‚¾‚¯Œ¸‚ç‚·‚Æ‚¢‚¤ˆ—‚ğ‚µ‚Ä‚¢‚é
+    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //        fAngle += 2.0f * Mathf.PI / 10.0f;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]
+    //        if (fAngle > (2.0f * Mathf.PI))//Mathf.PIï¿½Íƒï¿½ //ï¿½ï¿½ï¿½ï¿½ifï¿½Æ’ï¿½ï¿½gï¿½ÍAï¿½pï¿½xï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å‚«ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½pï¿½xï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç‚·ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
     //        {
     //            fAngle -= 2.0f * Mathf.PI;
     //        }
@@ -220,20 +223,20 @@ public class SimpleMove : MonoBehaviour
 
     void StartSimpleMove4_1()
     {
-        v3Position = v3BasePosition;//ˆÊ’u‚ğ‰Šú‰»
-        v3Velocity = v3BaseVelocity;//‘¬“x‚ğ‰Šú‰»
+        v3Position = v3BasePosition;//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        v3Velocity = v3BaseVelocity;//ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         transform.position = v3Position;
     }
 
     void FixedUpdateSimpleMove4_1()
     {
-        v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
-        v3Velocity.y += fGravity;//‘¬“x‚É‰Á‘¬“x‚ğ‘«‚·
+        v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
+        v3Velocity.y += fGravity;//ï¿½ï¿½ï¿½xï¿½É‰ï¿½ï¿½ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
-        if (v3Position.y < 0.0f)//’n–Ê‚É—‚¿‚½‚©
+        if (v3Position.y < 0.0f)//ï¿½nï¿½Ê‚É—ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            v3Position = v3BasePosition;//ˆÊ’u‚ğ‰Šú‰»
-            v3Velocity = v3BaseVelocity;//‘¬“x‚ğ‰Šú‰»
+            v3Position = v3BasePosition;//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            v3Velocity = v3BaseVelocity;//ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
 
         transform.position = v3Position;
@@ -241,20 +244,41 @@ public class SimpleMove : MonoBehaviour
 
     void StartSimpleMove4_2()
     {
-        v3Position = v3BasePosition;//ˆÊ’u‚ğ‰Šú‰»
-        v3Velocity = v3BaseVelocity;//‘¬“x‚ğ‰Šú‰»
+        v3Position = v3BasePosition;//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        v3Velocity = v3BaseVelocity;//ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         transform.position = v3Position;
     }
 
     void FixedUpdateSimpleMove4_2()
     {
-        v3Position += v3Velocity;//ˆÊ’u‚É‘¬“x‚ğ‘«‚·
-        v3Velocity.y += fGravity;//‘¬“x‚É‰Á‘¬“x‚ğ‘«‚·
+        v3Position += v3Velocity;//ï¿½Ê’uï¿½É‘ï¿½ï¿½xï¿½ğ‘«‚ï¿½
+        v3Velocity.y += fGravity;//ï¿½ï¿½ï¿½xï¿½É‰ï¿½ï¿½ï¿½ï¿½xï¿½ğ‘«‚ï¿½
 
-        if (v3Position.y < 0.0f)//’n–Ê‚É—‚¿‚½‚©
+        if (v3Position.y < 0.0f)//ï¿½nï¿½Ê‚É—ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            v3Position = v3BasePosition;//ˆÊ’u‚ğ‰Šú‰»
-            v3Velocity = v3BaseVelocity;//‘¬“x‚ğ‰Šú‰»
+            v3Position = v3BasePosition;//ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            v3Velocity = v3BaseVelocity;//ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        }
+
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove4_3()
+    {
+        v3Position = v3BasePosition;//ä½ç½®ã‚’åˆæœŸåŒ–
+        t = 0.0f;//æ™‚åˆ»ã‚’åˆæœŸåŒ–
+        transform.position = v3Position;
+    }
+
+    void FixedUpdateSimpleMove4_3()
+    {
+        v3Position.x = v3BaseVelocity.x * t + v3BasePosition.x;//ä½ç½®ã«åŠ é€Ÿåº¦ã‚’è¶³ã™
+        v3Position.y = 0.5f * fGravity * t * t + v3BaseVelocity.y * t + v3BasePosition.y;//é€Ÿåº¦ã«åŠ é€Ÿåº¦ã‚’è¶³ã™
+        t++;
+
+        if (v3Position.y < 0.0f)//åœ°é¢ã«è½ã¡ãŸã‹
+        {
+            t = 0.0f;//æ™‚åˆ»ã‚’åˆæœŸåŒ–
         }
 
         transform.position = v3Position;
