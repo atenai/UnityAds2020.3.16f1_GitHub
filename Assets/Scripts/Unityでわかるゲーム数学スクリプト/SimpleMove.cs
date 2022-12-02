@@ -12,7 +12,8 @@ public class SimpleMove : MonoBehaviour
 
     //private Vector3 v3BasePosition = new Vector3(0.0f, 6.0f, 0.0f);
     //private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.0f, 0.0f);
-    private Vector3 v3BasePosition = new Vector3(-5.0f, 0.5f, 0.0f);
+    //private Vector3 v3BasePosition = new Vector3(-5.0f, 0.5f, 0.0f);
+    private Vector3 v3BasePosition = new Vector3(0.0f, 0.5f, 0.0f);
     private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.2f, 0.0f);
     private Vector3 v3Position;
     private Vector3 v3Velocity;
@@ -28,7 +29,8 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove3_2();
         //StartSimpleMove4_1();
         //StartSimpleMove4_2();
-        StartSimpleMove4_3();
+        //StartSimpleMove4_3();
+        StartSimpleMove5_1();
     }
 
     void Update()
@@ -47,8 +49,9 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove3_1();
         //FixedUpdateSimpleMove3_2();
         //FixedUpdateSimpleMove4_1();
-        FixedUpdateSimpleMove4_2();
-        FixedUpdateSimpleMove4_3();
+        //FixedUpdateSimpleMove4_2();
+        //FixedUpdateSimpleMove4_3();
+        FixedUpdateSimpleMove5_1();
     }
 
     //void StartSimpleMove1_1or2()
@@ -279,6 +282,26 @@ public class SimpleMove : MonoBehaviour
         if (v3Position.y < 0.0f)//地面に落ちたか
         {
             t = 0.0f;//時刻を初期化
+        }
+
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove5_1()
+    {
+        v3Position = v3BasePosition;//位置を初期化
+        v3Velocity = new Vector3(Random.Range(-0.2f, 0.2f), 0.2f, Random.Range(-0.2f, 0.2f));//速度を初期化
+        transform.position = v3Position;
+    }
+
+    void FixedUpdateSimpleMove5_1()
+    {
+        v3Position += v3Velocity;//位置に速度を足す
+        v3Velocity.y += fGravity;//速度に加速度を足す
+
+        if (v3Position.y < 0.0f)
+        {
+            Destroy(gameObject);//地面に落ちたか
         }
 
         transform.position = v3Position;
