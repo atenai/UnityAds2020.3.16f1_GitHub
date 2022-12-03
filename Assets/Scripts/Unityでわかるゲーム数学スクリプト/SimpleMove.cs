@@ -30,7 +30,8 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove4_1();
         //StartSimpleMove4_2();
         //StartSimpleMove4_3();
-        StartSimpleMove5_1();
+        //StartSimpleMove5_1();
+        StartSimpleMove5_1a();
     }
 
     void Update()
@@ -304,6 +305,16 @@ public class SimpleMove : MonoBehaviour
             Destroy(gameObject);//地面に落ちたか
         }
 
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove5_1a()
+    {
+        float fRadius, fAngle;
+        v3Position = v3BasePosition;//位置を初期化
+        fRadius = Random.Range(0.0f, 0.2f);
+        fAngle = Random.Range(0.0f, 2.0f * Mathf.PI);
+        v3Velocity = new Vector3(fRadius * Mathf.Cos(fAngle), 0.2f, fRadius * Mathf.Sin(fAngle));//速度を初期化
         transform.position = v3Position;
     }
 }
