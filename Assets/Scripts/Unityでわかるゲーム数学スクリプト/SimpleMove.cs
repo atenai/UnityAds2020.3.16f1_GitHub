@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//https://kan-kikuchi.hatenablog.com/entry/Mathf
+
 public class SimpleMove : MonoBehaviour
 {
     //private Vector3 v3Position = new Vector3(0.0f, 0.5f, 0.0f);
@@ -15,10 +17,15 @@ public class SimpleMove : MonoBehaviour
     //private Vector3 v3BasePosition = new Vector3(-5.0f, 0.5f, 0.0f);
     private Vector3 v3BasePosition = new Vector3(0.0f, 0.5f, 0.0f);
     private Vector3 v3BaseVelocity = new Vector3(0.1f, 0.2f, 0.0f);
-    private Vector3 v3Position;
+    //private Vector3 v3Position;
     private Vector3 v3Velocity;
     private float fGravity = -0.003f;
     private float t = 0.0f;//時刻
+
+
+    private const float fRot_r = 5.0f;//回転半径
+    private Vector3 v3Position = new Vector3(fRot_r, 0.5f, 0.0f);//位置
+    private float fAngle = 0.0f;//角度
 
     void Start()
     {
@@ -31,7 +38,9 @@ public class SimpleMove : MonoBehaviour
         //StartSimpleMove4_2();
         //StartSimpleMove4_3();
         //StartSimpleMove5_1();
-        StartSimpleMove5_1a();
+        //StartSimpleMove5_1a();
+        //StartSimpleMove5_2();
+        StartSimpleMove6_1();
     }
 
     void Update()
@@ -52,7 +61,8 @@ public class SimpleMove : MonoBehaviour
         //FixedUpdateSimpleMove4_1();
         //FixedUpdateSimpleMove4_2();
         //FixedUpdateSimpleMove4_3();
-        FixedUpdateSimpleMove5_1();
+        //FixedUpdateSimpleMove5_1();
+        FixedUpdateSimpleMove6_1();
     }
 
     //void StartSimpleMove1_1or2()
@@ -315,6 +325,28 @@ public class SimpleMove : MonoBehaviour
         fRadius = Random.Range(0.0f, 0.2f);
         fAngle = Random.Range(0.0f, 2.0f * Mathf.PI);
         v3Velocity = new Vector3(fRadius * Mathf.Cos(fAngle), 0.2f, fRadius * Mathf.Sin(fAngle));//速度を初期化
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove5_2()
+    {
+        float fRand_r, fRand_Angle;
+        v3Position = v3BasePosition;//位置を初期化
+        fRand_r = Mathf.Sqrt(-2.0f * Mathf.Log(Random.Range(0.0f, 1.0f)));// √-2ln(a)
+        fRand_Angle = Random.Range(0.0f, 2.0f * Mathf.PI);
+        v3Velocity = new Vector3(0.2f * fRand_r * Mathf.Cos(fRand_Angle), 0.2f, 0.2f * fRand_r * Mathf.Sin(fRand_Angle));//速度を初期化
+        transform.position = v3Position;
+    }
+
+    void StartSimpleMove6_1()
+    {
+        transform.position = v3Position;
+    }
+
+    void FixedUpdateSimpleMove6_1()
+    {
+        v3Position = new Vector3(fRot_r * Mathf.Cos(fAngle), 0.5f, fRot_r * Mathf.Sin(fAngle));//回転
+        fAngle += 2.0f * Mathf.PI / 50.0f;//角度を進める
         transform.position = v3Position;
     }
 }
