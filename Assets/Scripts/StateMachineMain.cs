@@ -4,47 +4,46 @@ using UnityEngine;
 
 public class StateMachineMain : MonoBehaviour
 {
-    EngineBox pEBox;//EngineBox型のpEBox変数を定義
+    EngineBox engineBox;
 
-    bool b_test = true;
-    int i_num = 0;
+    bool isTest = true;
+    int num = 0;
 
     void Start()
     {
-        pEBox = new EngineBox();//EngineBoxをインスタンス
+        engineBox = new EngineBox();
     }
 
     void Update()
     {
-        if(b_test == true)
+        if (isTest == true)
         {
-            i_num++;
-            if(i_num < 100)
+            num++;
+            if (num < 100)
             {
-                //up(),down()をランダムに繰り返す
-                pEBox.EngineBoxUp();//up関数を使用
-                //Debug.Log(pEBox.EngineBoxState);//状態を表示
+                engineBox.EngineBoxUp();
+                //Debug.Log(pEBox.EngineBoxState);
             }
             else
             {
-                b_test = false;
-                i_num = 0;
+                isTest = false;
+                num = 0;
             }
         }
-        else if(b_test == false)
+        else if (isTest == false)
         {
-            i_num++;
-            if(i_num < 100)
+            num++;
+            if (num < 100)
             {
-                pEBox.EngineBoxDown();//down関数を使用
-                //Debug.Log(pEBox.EngineBoxState);//状態を表示
+                engineBox.EngineBoxDown();
+                //Debug.Log(pEBox.EngineBoxState);
             }
             else
             {
-                b_test = true;
-                i_num = 0;
+                isTest = true;
+                num = 0;
             }
         }
- 
+
     }
 }

@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class EngineIdle : EngineState
 {
-    public override void up(EngineBox pEBox)
+    public override void Up(EngineBox engineBox)
     {
-        Debug.Log("Idle ÅÀ Low");
-        pEBox.changeState(new EngineRunningLow());
+        Debug.Log("Idle ‚Üí Low");
+        engineBox.ChangeState(new EngineRunningLow());
     }
-    public override void down(EngineBox pEBox)
+
+    public override void Down(EngineBox engineBox)
     {
         Debug.Log("No Change");
-        pEBox.changeState(new EngineIdle());
+        engineBox.ChangeState(new EngineIdle());
     }
-    public override void showCurrentState()
+
+    public override void ShowCurrentState()
     {
         Debug.Log("State:Idle");
     }

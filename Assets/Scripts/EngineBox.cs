@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class EngineBox
 {
-    //コンストラクタ
+    EngineState engineState;
+
     public EngineBox()
     {
-        EngineBoxState = new EngineIdle();//最初はIdleの状態
+        engineState = new EngineIdle();
     }
+
     public void EngineBoxUp()
     {
-        EngineBoxState.up(this);
+        engineState.Up(this);
     }
+
     public void EngineBoxDown()
     {
-        EngineBoxState.down(this);
+        engineState.Down(this);
     }
-    public void changeState(EngineState newState)
+
+    public void ChangeState(EngineState newState)
     {
-        EngineBoxState = newState;//新しい状態を入れる（EngineState型のクラスを入れる）
+        engineState = newState;
     }
-    public void nowState()
+
+    public void NowState()
     {
-        Debug.Log(EngineBoxState);
+        Debug.Log(engineState);
     }
-    public EngineState EngineBoxState;
 }

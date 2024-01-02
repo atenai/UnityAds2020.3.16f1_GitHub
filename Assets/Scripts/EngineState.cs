@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EngineState
 {
-    public abstract void up(EngineBox pEBox);
-    public abstract void down(EngineBox pEBox);
-    public abstract void showCurrentState();
+    public abstract void Up(EngineBox engineBox);
+    public abstract void Down(EngineBox engineBox);
+    public abstract void ShowCurrentState();
 }
