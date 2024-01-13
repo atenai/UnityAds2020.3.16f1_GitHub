@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class ChildScriptableObject : ScriptableObject
 {
     //何もないとインスペクターが寂しいので変数を追加
@@ -11,6 +12,6 @@ public class ChildScriptableObject : ScriptableObject
     public ChildScriptableObject()
     {
         //初期アセット名を設定
-        name = "NewChildScriptableObject";
+        //name = "NewChildScriptableObject";
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+[CreateAssetMenu]//CreateAssetMenu属性を使用することでメニューに「Assets > Create > ParentScriptableObject」が表示される、ParentScriptableObjectを押すとアセットが作成される
 public class ParentScriptableObject : ScriptableObject
 {
     const string PATH = "Assets/Editor/NewParentScriptableObject.asset";
@@ -10,7 +11,7 @@ public class ParentScriptableObject : ScriptableObject
     [SerializeField]
     ChildScriptableObject child;
 
-    [MenuItem("Assets/CreateScriptableObject")]
+    [MenuItem("Kashiwabara/CreateScriptableObject")]
     static void CreateScriptableObject()
     {
         //親をインスタンス化

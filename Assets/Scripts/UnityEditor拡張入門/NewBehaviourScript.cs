@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -101,19 +105,44 @@ public class NewBehaviourScript : Base
 
     void Awake()
     {
+        //Debug.Log("Awake");
         animator = GetComponent<Animator>();
-        Debug.Log("Awake");
     }
 
     void Start()
     {
         Debug.Log("Start");
+
+        Debug.Log(JsonUtility.ToJson(new Example(), true));
+
+        var list = new List<Example>
+        {
+            new Example(),
+            new Example()
+        };
+
+        Debug.Log(JsonUtility.ToJson(list));
+
+        var SerializedList = new SerializableList<Example>
+        {
+            new Example(),
+            new Example()
+        };
+
+        Debug.Log(JsonUtility.ToJson(SerializedList));
+
+        Debug.Log(SerializedList.ToJson());
+
+        var json = SerializedList.ToJson();
+        var serializableList = SerializableList<Example>.FromJson(json);
+        //Exampleオブジェクトが2つ取得できている
+        Debug.Log(serializableList.Count == 2);
     }
 
     public override void Update()
     {
         base.Update();
-        Debug.Log("Update");
+        //Debug.Log("Update");
     }
 
     [InitializeOnLoadMethod]//UnityEditor起動直後や、スクリプトコンパイル直後にクラスを呼び出すことが出来ます。

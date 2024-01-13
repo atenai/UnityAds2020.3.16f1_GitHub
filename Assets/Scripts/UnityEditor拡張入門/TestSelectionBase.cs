@@ -5,13 +5,5 @@ using UnityEngine;
 [SelectionBase]
 public class TestSelectionBase : MonoBehaviour
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

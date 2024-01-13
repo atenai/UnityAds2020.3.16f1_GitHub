@@ -8,6 +8,6 @@ public class Base : MonoBehaviour
 {
     public virtual void Update()
     {
-        Debug.Log("Base.Update");
+        //Debug.Log("Base.Update");
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using TMPro;
 
-[CreateAssetMenu(menuName = "Example/Create ExampleAssetInstance")]
+[CreateAssetMenu(menuName = "Example/CreateExampleAssetInstance")]
 public class ExampleAsset : ScriptableObject
 {
     [SerializeField]
@@ -13,7 +13,7 @@ public class ExampleAsset : ScriptableObject
     [SerializeField, Range(0, 10)]
     int number;
 
-    [MenuItem("Example/CreateExampleAssetInstance")]
+    [MenuItem("Example/CreateExampleAssetInstance")]//メニューのExampleの項目にCreateExampleAssetInstanceが追加される
     static void CreateExampleAssetInstance()
     {
         var exampleAsset = CreateInstance<ExampleAsset>();

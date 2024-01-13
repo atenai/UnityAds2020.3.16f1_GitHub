@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
 
 public class ResouceLoad : MonoBehaviour
 {
