@@ -20,6 +20,9 @@ public class ParentScriptableObject : ScriptableObject
         //子をインスタンス化
         parent.child = ScriptableObject.CreateInstance<ChildScriptableObject>();
 
+        //親にchildオブジェクトを追加
+        AssetDatabase.AddObjectToAsset(parent.child, PATH);
+
         //親のアセットとして保存
         AssetDatabase.CreateAsset(parent, PATH);
 
