@@ -20,6 +20,9 @@ public class ParentScriptableObject : ScriptableObject
         //子をインスタンス化
         parent.child = ScriptableObject.CreateInstance<ChildScriptableObject>();
 
+        //サブアセットとなるchildを非表示にする
+        parent.child.hideFlags = HideFlags.HideInHierarchy;
+
         //親にchildオブジェクトを追加
         AssetDatabase.AddObjectToAsset(parent.child, PATH);
 

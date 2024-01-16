@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c225f421b05cae41964b5d65ce83676, type: 3}
   m_Name: NewParentScriptableObject
   m_EditorClassIdentifier: 
-  child: {fileID: -2228782813067003266, guid: c7a1a21fb6e3e6849a7de426fa4d9263, type: 2}
+  child: {fileID: 691929473586949468, guid: c7a1a21fb6e3e6849a7de426fa4d9263, type: 2}
