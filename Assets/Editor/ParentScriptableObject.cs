@@ -32,4 +32,21 @@ public class ParentScriptableObject : ScriptableObject
         //インポート処理を走らせて最新の状態にする
         AssetDatabase.ImportAsset(PATH);
     }
+
+    [MenuItem("Kashiwabara/Set to HideFlags.None")]
+    static void SetHideFlags()
+    {
+        //AnimatorControllerを選択した状態でメニューを実行
+        var path = AssetDatabase.GetAssetPath(Selection.activeObject);
+
+        //サブアセット含めすべて取得
+        foreach (var item in AssetDatabase.LoadAllAssetsAtPath(path))
+        {
+            //フラグを全てNoneにして非表示設定を解除
+            item.hideFlags = HideFlags.None;
+        }
+
+        //再インポートして最新にする
+        AssetDatabase.ImportAsset(path);
+    }
 }
