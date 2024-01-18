@@ -49,4 +49,16 @@ public class ParentScriptableObject : ScriptableObject
         //再インポートして最新にする
         AssetDatabase.ImportAsset(path);
     }
+
+    [MenuItem("Kashiwabara/RemoveChildScriptableObject")]
+    static void Remove()
+    {
+        var parent = AssetDatabase.LoadAssetAtPath<ParentScriptableObject>(PATH);
+
+        //アセットのCarentScriptableObjectを破棄
+        Object.DestroyImmediate(parent.child, true);
+
+        //破棄したらMissing状態になるのでnullを代入
+        parent.child = null;
+    }
 }
