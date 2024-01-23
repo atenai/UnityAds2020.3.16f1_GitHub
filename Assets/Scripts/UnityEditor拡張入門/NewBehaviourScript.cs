@@ -155,6 +155,19 @@ public class NewBehaviourScript : Base
         //Debug.Log(value);
     }
 
+    [InitializeOnLoadMethod]
+    static void CheckPropertyPaths()
+    {
+        var so = new SerializedObject(Texture2D.whiteTexture);
+
+        var pop = so.GetIterator();
+
+        while (pop.NextVisible(true))
+        {
+            Debug.Log(pop.propertyPath);
+        }
+    }
+
     void OnEnable()
     {
 #if UNITY_EDITOR
