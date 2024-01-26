@@ -91,6 +91,20 @@ public class NewBehaviourScript : Base
     [Range(0, 10)]
     public int number2;
 
+    [SerializeField]
+    private string m_str;
+    public string str
+    {
+        get
+        {
+            return m_str;
+        }
+        set
+        {
+            m_str = value;
+        }
+    }
+
     [ContextMenu("RandomNumber2")]
     void RandomNumber2()
     {
