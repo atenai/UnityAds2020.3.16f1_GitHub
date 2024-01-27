@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 480600410}
   - component: {fileID: 480600411}
   - component: {fileID: 480600409}
+  - component: {fileID: 480600412}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480600408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dabeccca65ee3404bb21e67fd68fa693, type: 3}
   m_Name: 
@@ -364,6 +365,7 @@ MonoBehaviour:
   str2_2: 
   fuga: 
   number2: 0
+  m_str: 
 --- !u!4 &480600410
 Transform:
   m_ObjectHideFlags: 0
@@ -397,6 +399,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &480600412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480600408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a7654f149e9650468bb0320a341dffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0, z: 0}
+  fuga:
+    bar: aaaaa
+  names:
+  - a0
+  - b1
+  - c2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

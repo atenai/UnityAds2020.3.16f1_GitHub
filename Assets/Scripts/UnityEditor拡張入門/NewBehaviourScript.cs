@@ -151,6 +151,16 @@ public class NewBehaviourScript : Base
         var serializableList = SerializableList<Example>.FromJson(json);
         //Exampleオブジェクトが2つ取得できている
         Debug.Log(serializableList.Count == 2);
+
+        /* さまざまな方法でHogeコンポーネントを取得 */
+        var hoge = this.gameObject.GetComponent<Hoge>();
+        var serializedObject = new SerializedObject(hoge);
+        var test1 = serializedObject.FindProperty("position").vector3Value;
+        Debug.Log("<color=red>" + test1 + "</color>");
+        var test2 = serializedObject.FindProperty("fuga.bar").stringValue;
+        Debug.Log("<color=red>" + test2 + "</color>");
+        string test3 = serializedObject.FindProperty("names").GetArrayElementAtIndex(1).stringValue;
+        Debug.Log("<color=red>" + test3 + "</color>");
     }
 
     public override void Update()
