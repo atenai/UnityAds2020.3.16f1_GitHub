@@ -161,6 +161,12 @@ public class NewBehaviourScript : Base
         Debug.Log("<color=red>" + test2 + "</color>");
         string test3 = serializedObject.FindProperty("names").GetArrayElementAtIndex(1).stringValue;
         Debug.Log("<color=red>" + test3 + "</color>");
+
+        //複数のリジッドボディ
+        /* さまざまな方法でRigidbodyコンポーネントを取得 */
+        // Rigidbody[] rigidbodies = ;
+        // var serializedObject2 = new SerializedObject(rigidbodies);
+        // serializedObject2.FindProperty("m_UseGravity").boolValue = true;
     }
 
     public override void Update()
