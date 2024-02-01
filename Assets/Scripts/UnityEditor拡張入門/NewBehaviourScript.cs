@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using UnityEditorInternal;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -167,6 +169,9 @@ public class NewBehaviourScript : Base
         // Rigidbody[] rigidbodies = ;
         // var serializedObject2 = new SerializedObject(rigidbodies);
         // serializedObject2.FindProperty("m_UseGravity").boolValue = true;
+
+        var rigidbody = this.GetComponent<Rigidbody>();
+        InternalEditorUtility.SaveToSerializedFileAndForget(new UnityEngine.Object[] { rigidbody }, "Rigidbody.yml", true);
     }
 
     public override void Update()
