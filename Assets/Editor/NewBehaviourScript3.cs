@@ -17,22 +17,7 @@ public class NewBehaviourScript3 : EditorWindow
 
     void OnGUI()
     {
-        EditorGUILayout.LabelField("Example Label");
-
-        EditorGUI.BeginChangeCheck();
-
-        //toggleをマウスでクリックして値を変更する
-        toggleValue = EditorGUILayout.ToggleLeft("Toggle", toggleValue);
-
-        //toggleValueの値が変更されるたびにtrueになる
-        if (EditorGUI.EndChangeCheck())
-        {
-            if (toggleValue == true)
-            {
-                Debug.Log("toggleValueがtrueになった瞬間呼び出される");
-            }
-        }
-
+        ///(3)
         //BeginChangeCheckの役割
         //{
         //先頭に値をpush
@@ -55,5 +40,6 @@ public class NewBehaviourScript3 : EditorWindow
         {
             Debug.Log("toggleValueがtrueになった瞬間呼び出される");
         }
+        ///(3)
     }
 }

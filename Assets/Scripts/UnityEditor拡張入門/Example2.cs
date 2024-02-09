@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class NewBehaviourScript2 : Editor
+public class Example2 : Editor
 {
     public override void OnInspectorGUI()
     {

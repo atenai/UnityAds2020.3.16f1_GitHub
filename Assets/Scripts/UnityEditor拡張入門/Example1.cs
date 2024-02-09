@@ -13,7 +13,7 @@ using UnityEditor;
 
 [ExecuteAlways]
 [RequireComponent(typeof(Animator))]
-public class NewBehaviourScript : Base
+public class Example1 : Base
 {
     [Range(1, 10)]
     public int num1 = 1;
