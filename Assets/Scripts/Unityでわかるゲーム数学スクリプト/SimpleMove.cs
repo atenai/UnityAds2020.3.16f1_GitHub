@@ -119,7 +119,7 @@ public class SimpleMove : MonoBehaviour
     //    Vector3 v3Velocity = new Vector3(0.0f, 0.0f, 0.0f);
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
 
-    //    v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
+    //    v3Position += v3Velocity;
 
     //    transform.position = v3Position;
 
@@ -139,7 +139,7 @@ public class SimpleMove : MonoBehaviour
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
     //    v3Velocity.z = Input.GetAxis("Vertical") * fVelocity;
 
-    //    v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
+    //    v3Position += v3Velocity;
 
     //    if (v3Position.x > 5.0f)
     //    {
@@ -167,14 +167,14 @@ public class SimpleMove : MonoBehaviour
     //    v3Velocity.x = Input.GetAxis("Horizontal") * fVelocity;
     //    v3Velocity.z = Input.GetAxis("Vertical") * fVelocity;
 
-    //    float fInputVel = Mathf.Sqrt(v3Velocity.x * v3Velocity.x + v3Velocity.z * v3Velocity.z);//����
+    //    float fInputVel = Mathf.Sqrt(v3Velocity.x * v3Velocity.x + v3Velocity.z * v3Velocity.z);
 
     //    if (fInputVel > fVelocity)
     //    {
-    //        v3Velocity = v3Velocity / fInputVel * fVelocity;//��������
+    //        v3Velocity = v3Velocity / fInputVel * fVelocity;
     //    }
 
-    //    v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
+    //    v3Position += v3Velocity;
 
     //    if (v3Position.x > 5.0f)
     //    {
@@ -199,17 +199,17 @@ public class SimpleMove : MonoBehaviour
     //void StartSimpleMove3_1()
     //{
     //    transform.position = v3Position;
-    //    v3Velocity.x = fVelocity * Mathf.Cos(fAngle);//�����̐ݒ�
+    //    v3Velocity.x = fVelocity * Mathf.Cos(fAngle);
     //    v3Velocity.y = fVelocity * Mathf.Sin(fAngle);
     //}
 
     //void FixedUpdateSimpleMove3_1()
     //{
-    //    v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
+    //    v3Position += v3Velocity;
 
-    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//�n�ʂ���o�Ă��邩
+    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))
     //    {
-    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//�ʒu������������
+    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);
     //    }
 
     //    transform.position = v3Position;
@@ -222,13 +222,13 @@ public class SimpleMove : MonoBehaviour
 
     //void FixedUpdateSimpleMove3_2()
     //{
-    //    v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
+    //    v3Position += v3Velocity;
 
-    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))//�n�ʂ���o�Ă��邩
+    //    if ((v3Position.x > 5.0f) || (v3Position.x < -5.0f) || (v3Position.z > 5.0f) || (v3Position.z < -5.0f))
     //    {
-    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);//�ʒu������������
-    //        fAngle += 2.0f * Mathf.PI / 10.0f;//������]
-    //        if (fAngle > (2.0f * Mathf.PI))//Mathf.PI�̓� //����if�ƒ��g�́A�p�x��1�������傫���Ȃ�����A�p�x��1�����������炷�Ƃ������������Ă���
+    //        v3Position = new Vector3(0.0f, 0.5f, 0.0f);
+    //        fAngle += 2.0f * Mathf.PI / 10.0f;
+    //        if (fAngle > (2.0f * Mathf.PI))
     //        {
     //            fAngle -= 2.0f * Mathf.PI;
     //        }
@@ -241,20 +241,20 @@ public class SimpleMove : MonoBehaviour
 
     void StartSimpleMove4_1()
     {
-        v3Position = v3BasePosition;//�ʒu��������
-        v3Velocity = v3BaseVelocity;//���x��������
+        v3Position = v3BasePosition;
+        v3Velocity = v3BaseVelocity;
         transform.position = v3Position;
     }
 
     void FixedUpdateSimpleMove4_1()
     {
-        v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
-        v3Velocity.y += fGravity;//���x�ɉ����x�𑫂�
+        v3Position += v3Velocity;
+        v3Velocity.y += fGravity;
 
-        if (v3Position.y < 0.0f)//�n�ʂɗ�������
+        if (v3Position.y < 0.0f)
         {
-            v3Position = v3BasePosition;//�ʒu��������
-            v3Velocity = v3BaseVelocity;//���x��������
+            v3Position = v3BasePosition;
+            v3Velocity = v3BaseVelocity;
         }
 
         transform.position = v3Position;
@@ -262,20 +262,20 @@ public class SimpleMove : MonoBehaviour
 
     void StartSimpleMove4_2()
     {
-        v3Position = v3BasePosition;//�ʒu��������
-        v3Velocity = v3BaseVelocity;//���x��������
+        v3Position = v3BasePosition;
+        v3Velocity = v3BaseVelocity;
         transform.position = v3Position;
     }
 
     void FixedUpdateSimpleMove4_2()
     {
-        v3Position += v3Velocity;//�ʒu�ɑ��x�𑫂�
-        v3Velocity.y += fGravity;//���x�ɉ����x�𑫂�
+        v3Position += v3Velocity;
+        v3Velocity.y += fGravity;
 
-        if (v3Position.y < 0.0f)//�n�ʂɗ�������
+        if (v3Position.y < 0.0f)
         {
-            v3Position = v3BasePosition;//�ʒu��������
-            v3Velocity = v3BaseVelocity;//���x��������
+            v3Position = v3BasePosition;
+            v3Velocity = v3BaseVelocity;
         }
 
         transform.position = v3Position;
