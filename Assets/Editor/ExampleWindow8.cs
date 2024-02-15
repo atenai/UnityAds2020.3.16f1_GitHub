@@ -5,12 +5,12 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine.Events;
 
-public class NewBehaviourScript8 : EditorWindow
+public class ExampleWindow8 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example8")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript8>();
+        GetWindow<ExampleWindow8>();
     }
 
     float[] numbers = new float[] { 0, 1, 2 };

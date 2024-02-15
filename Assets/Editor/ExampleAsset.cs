@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using TMPro;
 
-[CreateAssetMenu(menuName = "Example/CreateExampleAssetInstance")]
+[CreateAssetMenu(menuName = "Kashiwabara/ExampleAsset")]
 public class ExampleAsset : ScriptableObject
 {
     [SerializeField]

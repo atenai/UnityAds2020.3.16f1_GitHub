@@ -5,12 +5,12 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine.Events;
 
-public class NewBehaviourScript9 : EditorWindow
+public class ExampleWindow9 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example9")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript9>();
+        GetWindow<ExampleWindow9>();
     }
 
     void OnGUI()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class ExampleWindow : EditorWindow
+public class ExampleWindow0 : EditorWindow
 {
     int intervalTime = 60;
 
@@ -11,10 +11,10 @@ public class ExampleWindow : EditorWindow
     const string SIZE_WIDTH_KEY = "ExampleWindow size width";
     const string SIZE_HEIGHT_KEY = "ExampleWindow size height";
 
-    [MenuItem("Window/Example")]//Unityエディタの上にあるWindowメニューに追加される
+    [MenuItem("Kashiwabara/Example0")]//Unityエディタの上にあるWindowメニューに追加される
     static void Open()
     {
-        GetWindow<ExampleWindow>();
+        GetWindow<ExampleWindow0>();
     }
 
     void OnEnable()

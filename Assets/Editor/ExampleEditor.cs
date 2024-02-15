@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CreateAssetMenu]// CreateAssetMenu属性を使用することでメニューに「Assets > Create > ExampleEditor」が表示される、ExampleEditorを押すとアセットが作成される
+[CreateAssetMenu(menuName = "Kashiwabara/ExampleEditor")]// CreateAssetMenu属性を使用することでメニューに「Assets > Create > Kashiwabara > ExampleEditor」が表示される、ExampleEditorを押すとアセットが作成される
 public class ExampleEditor : ScriptableObject
 {
     [Range(0, 10)]

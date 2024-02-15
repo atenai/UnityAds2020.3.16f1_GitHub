@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class NewBehaviourScript3 : EditorWindow
+public class ExampleWindow3 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example3")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript3>();
+        GetWindow<ExampleWindow3>();
     }
 
     bool toggleValue;

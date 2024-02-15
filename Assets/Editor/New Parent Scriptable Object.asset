@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 371cd3975929e074b827925d42d28f91, type: 3}
-  m_Name: New ChildScriptableObject
+  m_Script: {fileID: 11500000, guid: 2c225f421b05cae41964b5d65ce83676, type: 3}
+  m_Name: New Parent Scriptable Object
   m_EditorClassIdentifier: 
-  str: 
+  child: {fileID: 11400000, guid: adc2a8d1319c77644b684fe5af938a9b, type: 2}

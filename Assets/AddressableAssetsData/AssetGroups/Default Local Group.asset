@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5acedf904a0520d4bbf8c634d3a04f2c
-  m_SerializeEntries:
-  - m_GUID: 865544bdfd0477c40bce8f96ef72bf57
-    m_Address: Assets/Texture/K.png
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: dc30eaadc6d9c604f929d345d14a3db1, type: 2}
   m_SchemaSet:

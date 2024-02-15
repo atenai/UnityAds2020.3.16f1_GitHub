@@ -5,12 +5,12 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine.Events;
 
-public class NewBehaviourScript10 : EditorWindow
+public class ExampleWindow10 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example10")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript10>();
+        GetWindow<ExampleWindow10>();
     }
 
     float angle = 0.0f;

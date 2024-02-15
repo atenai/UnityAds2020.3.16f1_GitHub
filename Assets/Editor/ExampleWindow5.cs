@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class NewBehaviourScript5 : EditorWindow
+public class ExampleWindow5 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example5")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript5>();
+        GetWindow<ExampleWindow5>();
     }
 
     void OnGUI()

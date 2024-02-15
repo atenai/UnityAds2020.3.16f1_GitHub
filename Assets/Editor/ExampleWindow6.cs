@@ -5,12 +5,12 @@ using UnityEditor;
 using UnityEditor.AnimatedValues;
 using UnityEngine.Events;
 
-public class NewBehaviourScript6 : EditorWindow
+public class ExampleWindow6 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example6")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript6>();
+        GetWindow<ExampleWindow6>();
     }
 
     //初期値が0だとフェードを行わないと判断されるため0.0001fというような0に近い値にする

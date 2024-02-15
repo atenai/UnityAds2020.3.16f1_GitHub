@@ -6,12 +6,12 @@ using UnityEditor.AnimatedValues;
 using UnityEngine.Events;
 
 
-public class NewBehaviourScript11 : EditorWindow
+public class ExampleWindow11 : EditorWindow
 {
     [MenuItem("Kashiwabara/Example11")]
     static void Open()
     {
-        GetWindow<NewBehaviourScript11>();
+        GetWindow<ExampleWindow11>();
     }
 
     void OnGUI()
