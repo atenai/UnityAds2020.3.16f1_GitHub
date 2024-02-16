@@ -14,6 +14,8 @@ public class ExampleWindow11 : EditorWindow
         GetWindow<ExampleWindow11>();
     }
 
+    bool on;
+
     void OnGUI()
     {
         using (new EditorGUILayout.HorizontalScope())
@@ -24,8 +26,17 @@ public class ExampleWindow11 : EditorWindow
 
         using (new BackgroundColorScope(Color.green))
         {
+            //緑色のボタン
             GUILayout.Button("Button3");
+        }
+
+        using (new BackgroundColorScope(Color.yellow))
+        {
+            //黄色のボタン
             GUILayout.Button("Button4");
         }
+
+        //GUIStyleは文字列で指定することも出来る
+        on = GUILayout.Toggle(on, on ? "on" : "off", "button");
     }
 }
