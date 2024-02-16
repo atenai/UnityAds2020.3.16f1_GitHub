@@ -21,5 +21,11 @@ public class ExampleWindow11 : EditorWindow
             GUILayout.Button("Button1");
             GUILayout.Button("Button2");
         }
+
+        using (new BackgroundColorScope(Color.green))
+        {
+            GUILayout.Button("Button3");
+            GUILayout.Button("Button4");
+        }
     }
 }
