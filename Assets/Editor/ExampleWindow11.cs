@@ -16,6 +16,11 @@ public class ExampleWindow11 : EditorWindow
 
     bool on;
 
+    bool one, two, three;
+
+    int selected1;
+    int selected2;
+
     void OnGUI()
     {
         using (new EditorGUILayout.HorizontalScope())
@@ -38,5 +43,15 @@ public class ExampleWindow11 : EditorWindow
 
         //GUIStyleは文字列で指定することも出来る
         on = GUILayout.Toggle(on, on ? "on" : "off", "button");
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            one = GUILayout.Toggle(one, "1", EditorStyles.miniButtonLeft);
+            two = GUILayout.Toggle(two, "2", EditorStyles.miniButtonMid);
+            three = GUILayout.Toggle(three, "3", EditorStyles.miniButtonRight);
+        }
+
+        selected1 = GUILayout.Toolbar(selected1, new string[] { "1", "2", "3" });
+        selected2 = GUILayout.Toolbar(selected2, new string[] { "1", "2", "3" }, EditorStyles.toolbarButton);
     }
 }
