@@ -20,6 +20,7 @@ public class ExampleWindow11 : EditorWindow
 
     int selected1;
     int selected2;
+    int selected3;
 
     void OnGUI()
     {
@@ -53,5 +54,7 @@ public class ExampleWindow11 : EditorWindow
 
         selected1 = GUILayout.Toolbar(selected1, new string[] { "1", "2", "3" });
         selected2 = GUILayout.Toolbar(selected2, new string[] { "1", "2", "3" }, EditorStyles.toolbarButton);
+
+        selected3 = GUILayout.SelectionGrid(selected3, new string[] { "1", "2", "3" }, 1, "PreferencesKeysElement");
     }
 }
