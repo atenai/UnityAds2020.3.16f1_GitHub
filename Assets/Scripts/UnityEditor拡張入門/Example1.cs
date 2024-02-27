@@ -199,7 +199,7 @@ public class Example1 : Base
 
         while (pop.NextVisible(true))
         {
-            Debug.Log(pop.propertyPath);
+            //Debug.Log(pop.propertyPath);
         }
     }
 
