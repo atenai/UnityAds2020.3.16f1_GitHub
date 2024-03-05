@@ -52,7 +52,7 @@ public class ShotManager : MonoBehaviour
     }
 
     //ObjectPoolコンストラクタ4つ目の引数の関数
-    //MAXサイズより多くなったときに自動で破棄する
+    //MAXサイズ（ObjectPoolコンストラクタの7つ目の引数の数）より多くなったときに自動で破棄する
     void OnDestroyPoolObject(GameObject gameObject)
     {
         Destroy(gameObject);
