@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform2_1 : MonoBehaviour {
+public class Transform2_1 : MonoBehaviour
+{
     Vector3 v3Position;
     Matrix4x4 matTransform;
     public Renderer rend;
     public Color colorCube = Color.red;
-    GameObject target; 
+    GameObject target;
 
     // Use this for initialization
     void Start()
@@ -46,7 +47,7 @@ public class Transform2_1 : MonoBehaviour {
     {
         Vector3 v3Side, v3Up, v3Forward;
 
-        v3Forward = Vector3.Normalize( target.transform.position );
+        v3Forward = Vector3.Normalize(target.transform.position);
         v3Up = new Vector3(0.0f, 0.0f, 1.0f);
         v3Side = Vector3.Cross(v3Up, v3Forward);
         v3Side = Vector3.Normalize(v3Side);
