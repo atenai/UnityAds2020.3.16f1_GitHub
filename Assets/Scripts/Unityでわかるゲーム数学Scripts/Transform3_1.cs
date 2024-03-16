@@ -13,7 +13,8 @@ public class Transform3_1 : MonoBehaviour
     private float fAngle = Mathf.PI / 2.0f;
 
     // 頂点
-    public Vector3[] positions = new Vector3[]{
+    public Vector3[] positions = new Vector3[]
+    {
         new Vector3(-fFloorSize / 2.0f, 0.0f, fFloorSize / 2.0f),
         new Vector3( fFloorSize / 2.0f, 0.0f, fFloorSize / 2.0f),
         new Vector3(-fFloorSize / 2.0f, 0.0f,-fFloorSize / 2.0f),
@@ -21,7 +22,8 @@ public class Transform3_1 : MonoBehaviour
     };
 
     // 法線ベクトル
-    private Vector3[] normals = new Vector3[]{
+    private Vector3[] normals = new Vector3[]
+    {
         new Vector3(0.0f, 1.0f, 0.0f),
         new Vector3(0.0f, 1.0f, 0.0f),
         new Vector3(0.0f, 1.0f, 0.0f),
