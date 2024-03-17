@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenCubeScript3 : MonoBehaviour {
+public class GenCubeScript3 : MonoBehaviour
+{
     public GameObject cube;
     private const int nBaseObje = 10;
     private const int nBranchObje = 10;
     private const float fInterval = 0.5f;
-    private Vector3 v3Interval1 = new Vector3(0.5f,  0.5f, 0.0f);
+    private Vector3 v3Interval1 = new Vector3(0.5f, 0.5f, 0.0f);
     private Vector3 v3Interval2 = new Vector3(0.5f, -0.5f, 0.0f);
     public Renderer rend;
 

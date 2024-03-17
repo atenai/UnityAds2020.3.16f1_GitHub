@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -6471293608286165194}
   - component: {fileID: 4935404706752474784}
   - component: {fileID: 6205673160133191428}
+  - component: {fileID: 6568336314778344162}
+  - component: {fileID: 3019334210380496289}
   m_Layer: 0
   m_Name: GenCube
   m_TagString: Untagged
@@ -188,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617311168916040}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7294747591673054ea169a07b4efeb8b, type: 3}
   m_Name: 
@@ -198,3 +200,30 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 5}
   - {x: -5, y: 0, z: -5}
   - {x: 5, y: 0, z: -5}
+--- !u!114 &6568336314778344162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617311168916040}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2251070904bde4f4b8c00b00f6c969da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nDepth: 0
+--- !u!114 &3019334210380496289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617311168916040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3afcc17028fb049a94d69216c7c21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nDepth: 0
+  v3BasePos: {x: 2, y: 0, z: 0}

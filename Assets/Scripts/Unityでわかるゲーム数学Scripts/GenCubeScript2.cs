@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenCubeScript2 : MonoBehaviour {
+public class GenCubeScript2 : MonoBehaviour
+{
     public GameObject cube;
     private const int nObjCount = 20;
     private const float fInterval = 0.5f;
