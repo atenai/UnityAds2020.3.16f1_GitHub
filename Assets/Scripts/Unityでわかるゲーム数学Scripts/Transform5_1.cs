@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform5_1 : MonoBehaviour {
+public class Transform5_1 : MonoBehaviour 
+{
     public Renderer rend;
     public Color colorCube = Color.red;
     private float fAngle = 0.0f;
