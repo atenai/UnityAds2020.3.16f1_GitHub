@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform5_2 : MonoBehaviour {
+public class Transform5_2 : MonoBehaviour
+{
     public Renderer rend;
     public Color colorCube = Color.red;
     private float fAngle = 0.0f;
@@ -62,7 +63,7 @@ public class Transform5_2 : MonoBehaviour {
         v3Pos.y = qPos.y;
         v3Pos.z = qPos.z;
         transform.position = v3Pos;     // 変換
-//        transform.position = qRot * transform.position;     // 変換
+                                        //        transform.position = qRot * transform.position;     // 変換
         transform.rotation = qRot * transform.rotation;             // 回転
         rend.material.color = colorCube;
     }
