@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform5_3 : MonoBehaviour {
+public class Transform5_3 : MonoBehaviour
+{
     Matrix4x4 matTransform;
     public Renderer rend;
     public Color colorCube = Color.red;
