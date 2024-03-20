@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform6_1 : MonoBehaviour {
+public class Transform6_1 : MonoBehaviour
+{
     public Renderer rend;
     public Color colorCube = Color.red;
     Vector3 v3InitialPos;                       // 初期位置
@@ -49,7 +50,7 @@ public class Transform6_1 : MonoBehaviour {
         float fPhaseTime;
 
         fAngle = Mathf.PI / 3.0f;                                   // 角度
-//        fAngle = Mathf.PI / 1.5f;                                   // 角度
+                                                                    //        fAngle = Mathf.PI / 1.5f;                                   // 角度
 
         qRot1 = Quaternion.AngleAxis(fAngle * 360.0f / (2.0f * Mathf.PI), v3Axis1); // クォータニオン1
         qRot2 = Quaternion.AngleAxis(fAngle * 360.0f / (2.0f * Mathf.PI), v3Axis2); // クォータニオン2
