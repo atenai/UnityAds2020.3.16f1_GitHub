@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 6181642003510197426}
   - component: {fileID: 477146117955305856}
   - component: {fileID: -6428081537302736496}
+  - component: {fileID: 1876094793550442482}
   m_Layer: 0
   m_Name: GenCube
   m_TagString: Untagged
@@ -280,9 +281,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617311168916040}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e69764a1444a3dd44b5ced01101dc0c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 0}
+  colorCube: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &1876094793550442482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617311168916040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c781833ec628441abbdb03d72df6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 0}

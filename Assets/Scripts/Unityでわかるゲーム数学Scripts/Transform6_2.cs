@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transform6_2 : MonoBehaviour {
+public class Transform6_2 : MonoBehaviour
+{
     public Renderer rend;
     public Color colorCube = Color.red;
     Vector3 v3InitialPos;                       // 初期位置
@@ -51,7 +52,7 @@ public class Transform6_2 : MonoBehaviour {
         float t;
         float fPhaseTime;
 
-//        fAngle = Mathf.PI / 2.1f;                                   // 角度
+        //        fAngle = Mathf.PI / 2.1f;                                   // 角度
         fAngle = Mathf.PI / 1.5f;                                   // 角度
 
         qRot1 = Quaternion.AngleAxis(fAngle * 360.0f / (2.0f * Mathf.PI), v3Axis1); // クォータニオン1
@@ -61,11 +62,10 @@ public class Transform6_2 : MonoBehaviour {
         t = Mathf.Abs(fPhaseTime - Mathf.Floor(fPhaseTime) - 0.5f) * 2.0f;  // 三角波
 
         // 時前でのSlerp
-        fDotProduct = qRot1.x * qRot2.x + qRot1.y * qRot2.y + qRot1.z * qRot2.z +
-                      qRot1.w * qRot2.w;      // 内積計算
+        fDotProduct = qRot1.x * qRot2.x + qRot1.y * qRot2.y + qRot1.z * qRot2.z + qRot1.w * qRot2.w;      // 内積計算
         if (fDotProduct < 0.0f)
         {                   // 内積を＋に収める
-            qRot1 = new Quaternion( -qRot1.x, -qRot1.y, -qRot1.z, -qRot1.w );
+            qRot1 = new Quaternion(-qRot1.x, -qRot1.y, -qRot1.z, -qRot1.w);
             fDotProduct = -fDotProduct;
         }
         if (fDotProduct > 1.0f)                 // 内積の計算誤差対策
