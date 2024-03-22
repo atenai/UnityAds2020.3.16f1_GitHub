@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU1_5_3 : MonoBehaviour
+public class MARU1_2_5_2 : MonoBehaviour
 {
     void Start()
     {
         Debug.Log("Start");
 
         int a = 10;
-        int b = 100;
 
-        b = ++a;
-        //↓これと同じ
-        //a = a + 1;
-        //b = a;
-
+        a++;
         Debug.Log(a);
-        Debug.Log(b);
+
+        ++a;
+        Debug.Log(a);
+
+        a--;
+        Debug.Log(a);
+
+        --a;
+        Debug.Log(a);
     }
 
     void Update()

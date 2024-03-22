@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU1_5_2 : MonoBehaviour
+public class MARU1_2_5_1 : MonoBehaviour
 {
     void Start()
     {
@@ -11,16 +11,12 @@ public class MARU1_5_2 : MonoBehaviour
 
         int a = 10;
 
-        a++;
+        //aに3をプラス
+        a += 3;
         Debug.Log(a);
 
-        ++a;
-        Debug.Log(a);
-
-        a--;
-        Debug.Log(a);
-
-        --a;
+        //aから2をマイナス
+        a -= 2;
         Debug.Log(a);
     }
 

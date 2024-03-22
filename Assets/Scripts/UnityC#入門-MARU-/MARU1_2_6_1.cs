@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU1_5_1 : MonoBehaviour
+public class MARU1_2_6_1 : MonoBehaviour
 {
     void Start()
     {
         Debug.Log("Start");
 
-        int a = 10;
-
-        //aに3をプラス
-        a += 3;
-        Debug.Log(a);
-
-        //aから2をマイナス
-        a -= 2;
-        Debug.Log(a);
+        Debug.Log("Aさん" + "は" + "りんご" + "が好きです。");
     }
 
     void Update()
