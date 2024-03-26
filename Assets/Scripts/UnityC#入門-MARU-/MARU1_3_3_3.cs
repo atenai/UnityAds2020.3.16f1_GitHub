@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU1_3_2_5 : MonoBehaviour
+public class MARU1_3_3_3 : MonoBehaviour
 {
     void Start()
     {
         Debug.Log("Start");
 
-        bool a = true;
-        bool b = true;
-        bool c = false;
-
-        Debug.Log(a && b);
-        Debug.Log(a && c);
+        Debug.Log(true && true);
+        Debug.Log(true && false);
+        Debug.Log(false && true);
+        Debug.Log(false && false);
     }
 
     void Update()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU1_3_2_7 : MonoBehaviour
+public class MARU1_3_3_4 : MonoBehaviour
 {
     void Start()
     {
@@ -13,9 +13,8 @@ public class MARU1_3_2_7 : MonoBehaviour
         bool b = true;
         bool c = false;
 
-        Debug.Log(a || b);
-        Debug.Log(a || c);
-        Debug.Log(b || c);
+        Debug.Log(a && b);
+        Debug.Log(a && c);
     }
 
     void Update()
