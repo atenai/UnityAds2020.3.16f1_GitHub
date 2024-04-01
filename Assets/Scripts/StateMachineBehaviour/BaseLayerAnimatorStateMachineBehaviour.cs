@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyStateMachineBehaviour : StateMachineBehaviour
+/// <summary>
+/// アニメーションコントローラーのベースレイヤーに付けるステートマシンビヘイビア
+/// </summary>
+public class BaseLayerAnimatorStateMachineBehaviour : StateMachineBehaviour
 {
     //AnimatorStateInfoは、アニメーターコンポーネントが現在再生中のアニメーションステートに関する情報を提供します。
     //1.normalizedTime: アニメーションの正規化された再生時間（0から1の範囲）。この値を使用すると、アニメーションが再生されている特定の位置を把握できます。
@@ -10,23 +13,27 @@ public class MyStateMachineBehaviour : StateMachineBehaviour
     //3.speed: アニメーションの再生速度。この値を変更することで、アニメーションの再生速度を調整できます。
     //4.loop: アニメーションがループするかどうかを示すブール値。trueの場合、アニメーションはループ再生されます。
 
+    /// <summary>
+    /// ステートに入ったときの処理
+    /// </summary>
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // ステートに入ったときの処理
-        Debug.Log("Entered state: " + stateInfo.shortNameHash);
+        Debug.Log("<color=red>" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : アニメーション開始</color>");
     }
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        // ステートから出たときの処理
-        Debug.Log("Exited state: " + stateInfo.shortNameHash);
-    }
-
+    /// <summary>
+    /// ステートの更新時の処理
+    /// </summary>
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // ステートの更新時の処理
-        Debug.Log("State update: " + stateInfo.shortNameHash);
+
     }
 
-    // 他のイベントハンドラやメソッドを追加することもできます
+    /// <summary>
+    /// ステートから出たときの処理
+    /// </summary>
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Debug.Log("<color=blue>" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : アニメーション終了</color>");
+    }
 }

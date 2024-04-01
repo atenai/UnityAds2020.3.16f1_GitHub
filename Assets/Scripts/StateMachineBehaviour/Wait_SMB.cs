@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idel_SMB : StateMachineBehaviour
+/// <summary>
+/// アニメーションクリップに付けるステートマシンビヘイビア
+/// </summary>
+public class Wait_SMB : StateMachineBehaviour
 {
     //Enemy_Behaviourクラスの実体
     Enemy_Behaviour behavior;
@@ -12,7 +15,7 @@ public class Idel_SMB : StateMachineBehaviour
     {
         //Enemy_Behaviourを取得
         behavior = animator.GetComponent<Enemy_Behaviour>();
-        Debug.Log("Idel_SMB_OnStateEnter");
+        Debug.Log("Wait_SMB_スタート");
     }
 
     //Update関数です。
@@ -20,14 +23,14 @@ public class Idel_SMB : StateMachineBehaviour
     {
         //捜索関数を呼び出す
         behavior.Serch();
-        Debug.Log("Idel_SMB_OnStateUpdate");
+        //Debug.Log("Wait_SMB_OnStateUpdate");
     }
 
     // stateが終了、ほかのstateに移動するとき一回だけ呼ばれます。
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //IdleStateが抜けた時に処理を書きたい場合ここに書いてください
-        Debug.Log("Idel_SMB_OnStateExit");
+        Debug.Log("Wait_SMB_エンド");
     }
 
     // RootMotionに関する処理を書く関数です

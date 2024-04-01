@@ -20,12 +20,12 @@ public class Enemy_Behaviour : MonoBehaviour
         //一定距離以内でCubeを探す
         if (vec.sqrMagnitude < SerchArea * SerchArea)
         {
-            Debug.Log("Cubeを発見!!");
+            //Debug.Log("Cubeを発見!!");
             animator.SetBool("b_Kick", true);
         }
         else
         {
-            Debug.Log("Cubeが居ない!!");
+            //Debug.Log("Cubeが居ない!!");
             animator.SetBool("b_Kick", false);
         }
     }
