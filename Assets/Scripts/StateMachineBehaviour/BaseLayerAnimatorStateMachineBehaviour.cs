@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public struct EventInfo
+{
+    public Animator _animator;
+    public AnimatorStateInfo _stateInfo;
+    public int _layerIndex;
+}
 
 /// <summary>
 /// アニメーションコントローラーのベースレイヤーに付けるステートマシンビヘイビア
@@ -13,12 +21,36 @@ public class BaseLayerAnimatorStateMachineBehaviour : StateMachineBehaviour
     //3.speed: アニメーションの再生速度。この値を変更することで、アニメーションの再生速度を調整できます。
     //4.loop: アニメーションがループするかどうかを示すブール値。trueの場合、アニメーションはループ再生されます。
 
+    UnityEvent<EventInfo> onStateEnterEvent = new UnityEvent<EventInfo>();
+    UnityEvent<EventInfo> onStateExitEvent = new UnityEvent<EventInfo>();
+
+    /// <summary>
+    /// ステートに入ったときのイベントを登録
+    /// </summary>
+    /// <param name="listener"></param>
+    public void AddStateEnterEvent(UnityAction<EventInfo> listener)
+    {
+        Debug.Log("<color=red>ステート開始イベントにアニメーション情報を登録</color>");
+        onStateEnterEvent.AddListener(listener);
+    }
+
+    /// <summary>
+    /// ステートから出たときのイベントを登録
+    /// </summary>
+    /// <param name="listener"></param>
+    public void AddStateExitEvent(UnityAction<EventInfo> listener)
+    {
+        Debug.Log("<color=blue>ステート終了イベントにアニメーション情報を登録</color>");
+        onStateExitEvent.AddListener(listener);
+    }
+
     /// <summary>
     /// ステートに入ったときの処理
     /// </summary>
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("<color=red>" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : アニメーション開始</color>");
+        onStateEnterEvent.Invoke(new EventInfo() { _animator = animator, _stateInfo = stateInfo, _layerIndex = layerIndex });
     }
 
     /// <summary>
@@ -35,5 +67,11 @@ public class BaseLayerAnimatorStateMachineBehaviour : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("<color=blue>" + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name + " : アニメーション終了</color>");
+        onStateExitEvent.Invoke(new EventInfo() { _animator = animator, _stateInfo = stateInfo, _layerIndex = layerIndex });
+    }
+
+    public void Test()
+    {
+        Debug.Log("<color=green>テスト</color>");
     }
 }
