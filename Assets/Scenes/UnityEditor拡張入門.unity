@@ -455,9 +455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd7f5b288a178347955dd14196da036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u57FA\u672C\u653B\u6483\u529B": 0
-  "\u5263\u306E\u5F37\u3055": 0
-  "\u3061\u304B\u3089": 0
+  "\u57FA\u672C\u653B\u6483\u529B": 99
+  "\u5263\u306E\u5F37\u3055": 59
+  "\u3061\u304B\u3089": 72
 --- !u!54 &480600414
 Rigidbody:
   m_ObjectHideFlags: 0
