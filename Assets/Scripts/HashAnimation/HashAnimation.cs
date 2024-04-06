@@ -30,7 +30,7 @@ public class HashAnimation : MonoBehaviour
             //Debug.Log("Cubeを発見!!");
 
             //いくらアニメーションクリップのLoopTimeにチェックが入っていようが、
-            // Has Exit Timeのチェックがついていないとアニメーションがループする
+            //Has Exit Timeのチェックがついていないとアニメーションがループする
             animator.Play(LOSE00Hash);
 
             //いくらアニメーションクリップのLoopTimeにチェックが入っていようが、
