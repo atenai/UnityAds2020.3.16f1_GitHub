@@ -10,4 +10,9 @@ public class PreviewExampleInspector : Editor
     {
         return true;
     }
+
+    public override GUIContent GetPreviewTitle()
+    {
+        return new GUIContent("プレビュー名");
+    }
 }
