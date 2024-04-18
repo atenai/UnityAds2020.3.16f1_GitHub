@@ -15,4 +15,13 @@ public class PreviewExampleInspector : Editor
     {
         return new GUIContent("プレビュー名");
     }
+
+    public override void OnPreviewSettings()
+    {
+        GUIStyle preLabel = new GUIStyle("preLabel");
+        GUIStyle preButton = new GUIStyle("preButton");
+
+        GUILayout.Label("ラベル", preLabel);
+        GUILayout.Button("ボタン", preButton);
+    }
 }
