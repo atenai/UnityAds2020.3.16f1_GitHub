@@ -24,4 +24,9 @@ public class PreviewExampleInspector : Editor
         GUILayout.Label("ラベル", preLabel);
         GUILayout.Button("ボタン", preButton);
     }
+
+    public override void OnPreviewGUI(Rect r, GUIStyle background)
+    {
+        GUI.Box(r, "Preview");
+    }
 }
