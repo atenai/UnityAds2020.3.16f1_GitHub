@@ -18,36 +18,11 @@ public class PreviewExampleInspector2 : Editor
         previewObject.SetActive(false);
 
         var flags = BindingFlags.Static | BindingFlags.NonPublic;
+        var propInfo = typeof(Camera).GetProperty("PreviewCullingLayer", flags);
+        int previewLayer = (int)propInfo.GetValue(null, new object[0]);
+
+        previewRenderUtility = new PreviewRenderUtility(true);
+        //previewLayerのみを表示する
+        previewRenderUtility.camera.cullingMask = 1 << previewLayer;
     }
-
-    // void OnDisabale()
-    // {
-    //     previewRenderUtility.Cleanup();
-    //     previewRenderUtility = null;
-    //     previewObject = null;
-    // }
-
-    // public override bool HasPreviewGUI()
-    // {
-    //     return true;
-    // }
-
-    // public override void OnPreviewGUI(Rect r, GUIStyle background)
-    // {
-    //     previewRenderUtility.BeginPreview(r, background);
-
-    //     var previewCamera = previewRenderUtility.m_Camera;
-
-    //     previewCamera.transform.position = previewObject.transform.position + new Vector3(0, 2.5f, -5);
-
-    //     previewCamera.transform.LookAt(previewObject.transform);
-
-    //     previewCamera.Render();
-
-    //     previewRenderUtility.EndAndDrawPreview(r);
-
-    //     //描画タイミングが少ないことによって
-    //     //カクつきがきになる時はRepaintを呼び出す（高負荷）
-    //     //Repaint();
-    // }
 }
