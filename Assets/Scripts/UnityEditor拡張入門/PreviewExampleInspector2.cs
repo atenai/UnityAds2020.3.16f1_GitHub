@@ -24,5 +24,34 @@ public class PreviewExampleInspector2 : Editor
         previewRenderUtility = new PreviewRenderUtility(true);
         //previewLayerのみを表示する
         previewRenderUtility.camera.cullingMask = 1 << previewLayer;
+
+        previewObject.layer = previewLayer;
+        foreach (Transform transform in previewObject.transform)
+        {
+            transform.gameObject.layer = previewLayer;
+        }
+
+        Bounds bounds = new Bounds(component.transform.position, Vector3.zero);
+        //階層下のRendererコンポーネントをすべて取得
+        foreach (var renderer in previewObject.GetComponentsInChildren<Renderer>())
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+
+        //一番大きいBoundsの中心位置
+        var centerPosition = bounds.center;
+    }
+
+    public override void OnInteractivePreviewGUI(Rect r, GUIStyle background)
+    {
+        previewRenderUtility.BeginPreview(r, background);
+
+        previewObject.SetActive(true);
+
+        previewRenderUtility.camera.Render();
+
+        previewObject.SetActive(false);
+
+        previewRenderUtility.EndAndDrawPreview(r);
     }
 }
