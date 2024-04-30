@@ -55,9 +55,34 @@ public class PreviewExampleInspector2 : Editor
         return new GUIContent(target.name + " Preview");
     }
 
+    void OnDisable()
+    {
+        DestroyImmediate(previewObject);
+        previewRenderUtility.Cleanup();
+        previewRenderUtility = null;
+    }
+
+    public override bool HasPreviewGUI()
+    {
+        return true;
+    }
+
     public override void OnInteractivePreviewGUI(Rect r, GUIStyle background)
     {
         previewRenderUtility.BeginPreview(r, background);
+
+        var drag = Vector2.zero;
+        //ドラッグ時のマウスの移動量を取得
+        if (Event.current.type == EventType.MouseDrag)
+        {
+            drag = Event.current.delta;
+        }
+
+        //中心位置から一定の距離離れたところにカメラを設置
+        previewRenderUtility.camera.transform.position = centerPosition + Vector3.forward * -5;
+
+        //マウスの移動量をオブジェクトの角度に適用
+        RotatePreviewObject(drag);
 
         previewObject.SetActive(true);
 
@@ -67,11 +92,11 @@ public class PreviewExampleInspector2 : Editor
 
         previewRenderUtility.EndAndDrawPreview(r);
 
-        var drag = Vector2.zero;
-
-        if (Event.current.type == EventType.MouseDrag)
+        //ドラッグした時は再描画を行う
+        //これを行わないとカクカクした動きになってしまう
+        if (drag != Vector2.zero)
         {
-            drag = Event.current.delta;
+            Repaint();
         }
     }
 
