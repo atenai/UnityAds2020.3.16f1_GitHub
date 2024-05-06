@@ -1632,6 +1632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  character5:
+    name: 
+    hp: 0
 --- !u!4 &2071084539
 Transform:
   m_ObjectHideFlags: 0

@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-public class Example4 : MonoBehaviour
+[Serializable]
+public class Character5
 {
     [SerializeField]
-    public int hp;
+    string name;
 
     [SerializeField]
-    Character5 character5;
+    int hp;
 }
