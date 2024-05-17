@@ -1615,6 +1615,7 @@ GameObject:
   - component: {fileID: 2071084540}
   - component: {fileID: 2071084541}
   - component: {fileID: 2071084542}
+  - component: {fileID: 2071084543}
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Untagged
@@ -1693,6 +1694,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   str: aaa
+--- !u!114 &2071084543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071084537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61499e27c5a933d409de69a3fc38f824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoge: hoge
+  fuga: 1
+  audioType: 1
 --- !u!1 &2129772524
 GameObject:
   m_ObjectHideFlags: 0
