@@ -35,7 +35,7 @@ public class DoCreateScriptAsset : EndNameEditAction
         ProjectWindowUtil.ShowCreatedAsset(asset);
     }
 
-    [MenuItem("Assets/Create ExampleAssets")]
+    [MenuItem("Assets/CreateExampleAssets_なんかスクリプトを作っている?")]
     static void CreateExampleAssets()
     {
         var resourceFile = Path.Combine(EditorApplication.applicationContentsPath, "Resources/ScriptTemplates/81-C# Script-NewBehaviourScript.cs.txt");
