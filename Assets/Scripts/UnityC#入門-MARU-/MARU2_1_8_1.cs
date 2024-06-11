@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_8_1_1 : MonoBehaviour
+public class MARU2_1_8_1 : MonoBehaviour
 {
     //int[] scoreArray = new int[5];
     int[] scoreArray = { 10, 20, 30, 40, 50 };

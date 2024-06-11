@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_8_1_4 : MonoBehaviour
+public class MARU2_1_8_5 : MonoBehaviour
 {
     void Start()
     {
@@ -14,7 +14,7 @@ public class MARU2_8_1_4 : MonoBehaviour
         List<int> scoreList = new List<int>() { 10, 20, 30, 40, 50 };
 
         //挿入
-        scoreList.Insert(1, 100);
+        scoreList.RemoveAt(2);
 
         //List 全要素の確認
         for (int i = 0; i < scoreList.Count; i++)

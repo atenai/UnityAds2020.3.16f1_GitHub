@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_11_1_2 : MonoBehaviour
+public class MARU2_1_11_2 : MonoBehaviour
 {
     void Start()
     {

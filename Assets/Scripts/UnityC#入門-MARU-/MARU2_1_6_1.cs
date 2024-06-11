@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU2_6_1_1 : MonoBehaviour
+public class MARU2_1_6_1 : MonoBehaviour
 {
     void Start()
     {

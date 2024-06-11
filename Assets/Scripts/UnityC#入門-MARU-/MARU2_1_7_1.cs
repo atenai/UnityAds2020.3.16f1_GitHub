@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_7_1_1 : MonoBehaviour
+public class MARU2_1_7_1 : MonoBehaviour
 {
     public enum ACTION_TYPE
     {

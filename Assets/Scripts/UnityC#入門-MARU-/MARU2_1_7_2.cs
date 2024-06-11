@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_7_1_2 : MonoBehaviour
+public class MARU2_1_7_2 : MonoBehaviour
 {
     //ACTION_TYPEという名前の列挙型を定義
     public enum ACTION_TYPE

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU2_4_1_3 : MonoBehaviour
+public class MARU2_1_4_1 : MonoBehaviour
 {
-    public int a = 1000;
+    int a = 1000;
 
-    public void Start()
+    void Start()
     {
         //Debug.Log("Start");
 
@@ -24,7 +24,7 @@ public class MARU2_4_1_3 : MonoBehaviour
         //Debug.Log("Update");
     }
 
-    public void C()
+    void C()
     {
         Debug.Log("テスト");
     }

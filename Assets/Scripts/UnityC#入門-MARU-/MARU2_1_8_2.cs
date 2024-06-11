@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
 
-public class MARU2_8_1_2 : MonoBehaviour
+public class MARU2_1_8_2 : MonoBehaviour
 {
 
     //配列

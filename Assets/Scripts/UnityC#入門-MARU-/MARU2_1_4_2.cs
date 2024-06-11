@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class MARU2_3_1_1 : MonoBehaviour
+public class MARU2_1_4_2 : MonoBehaviour
 {
-    // int a = default;
-    // string b = default;
-    // bool c = default;
+    private int a = 1000;
 
-    int a;
-    string b;
-    bool c;
-
-    void Start()
+    private void Start()
     {
         //Debug.Log("Start");
 
+        int b = 100;
+
         Debug.Log(a);
         Debug.Log(b);
-        Debug.Log(c);
+
+        C();
     }
 
     void Update()
     {
         //Debug.Log("Update");
+    }
+
+    private void C()
+    {
+        Debug.Log("テスト");
     }
 }
