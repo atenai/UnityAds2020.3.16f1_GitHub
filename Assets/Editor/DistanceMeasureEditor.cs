@@ -31,8 +31,8 @@ public class DistanceMeasureEditor : EditorWindow//エディタウィンドウ�
         {
             if (object1 != null && object2 != null)
             {
-                Vector3 position1 = object1.transform.position;
-                Vector3 position2 = object2.transform.position;
+                Vector3 position1 = object1.transform.localPosition;
+                Vector3 position2 = object2.transform.localPosition;
 
                 distanceX = Mathf.Abs(position1.x - position2.x);
                 Debug.Log("X座標の長さ : " + distanceX);
@@ -52,9 +52,21 @@ public class DistanceMeasureEditor : EditorWindow//エディタウィンドウ�
 
         if (object1 != null && object2 != null)
         {
-            GUILayout.Label("X座標の長さ : " + distanceX.ToString());//ラベル(文字)を追加する
-            GUILayout.Label("Y座標の長さ : " + distanceY.ToString());//ラベル(文字)を追加する
-            GUILayout.Label("Z座標の長さ : " + distanceZ.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("X座標のローカルの長さ : " + distanceX.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のローカル座標X : " + object1.transform.localPosition.x.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のローカル座標X : " + object2.transform.localPosition.x.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のグローバル座標X : " + object1.transform.position.x.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のグローバル座標X : " + object2.transform.position.x.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("Y座標のローカルの長さ : " + distanceY.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のローカル座標Y : " + object1.transform.localPosition.y.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のローカル座標Y : " + object2.transform.localPosition.y.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のグローバル座標Y : " + object1.transform.position.y.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のグローバル座標Y : " + object2.transform.position.y.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("Z座標のローカルの長さ : " + distanceZ.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のローカル座標Z : " + object1.transform.localPosition.z.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のローカル座標Z : " + object2.transform.localPosition.z.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト1のグローバル座標Z : " + object1.transform.position.z.ToString());//ラベル(文字)を追加する
+            GUILayout.Label("ゲームオブジェクト2のグローバル座標Z : " + object2.transform.position.z.ToString());//ラベル(文字)を追加する
             GUILayout.Label("2つのゲームオブジェクトの距離 : " + totalDistance.ToString());//ラベル(文字)を追加する
         }
     }
