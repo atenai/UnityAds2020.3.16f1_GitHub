@@ -7,6 +7,6 @@ namespace EditorExtensions
     public class Player : MonoBehaviour
     {
         [SerializeField]
-        PlayerInfo playerInfo;
+        public PlayerInfo info;
     }
 }

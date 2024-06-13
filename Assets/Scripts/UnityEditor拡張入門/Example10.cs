@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Example10
 {
-    [MenuItem("Example10/Random Rotate")]//上のメニューに項目の追加をする
+    [MenuItem("UndoExample/Example10/Random Rotate")]//上のメニューに項目の追加をする
     static void RandomRotate()//必ずstatic型
     {
         var transform = Selection.activeTransform;

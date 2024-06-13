@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class Example8
 {
-    [MenuItem("Example8/Create Cube")]//上のメニューに項目の追加をする
+    [MenuItem("UndoExample/Example8/Create Cube")]//上のメニューに項目の追加をする
     static void CreateCube()//必ずstatic型
     {
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);//キューブを生成
