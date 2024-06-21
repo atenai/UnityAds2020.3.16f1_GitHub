@@ -11,7 +11,8 @@
                     "id": "2bf3eae6-f7c2-49c5-afa0-381a03e2fd50",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
@@ -19,7 +20,8 @@
                     "id": "91a192de-b84c-40aa-8516-09579d3cbebc",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire",
@@ -27,7 +29,8 @@
                     "id": "dabd2115-4207-4e9b-bd7c-0bfb97c969a7",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -263,7 +266,8 @@
                     "id": "f216f625-ca14-45e4-8587-179efbe13447",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -271,7 +275,8 @@
                     "id": "77b3595a-bac5-471f-b02b-4eda744af8a9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -279,7 +284,8 @@
                     "id": "2043ec51-699f-4fc8-b835-850b921c6035",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Point",
@@ -287,7 +293,8 @@
                     "id": "2c794f3f-6a1b-4717-a8d1-a7cc59c44180",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Click",
@@ -295,7 +302,8 @@
                     "id": "a39cc441-2153-4074-8c67-150ae958169d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ScrollWheel",
@@ -303,7 +311,8 @@
                     "id": "ef6e1216-8495-4528-b050-1f5322d19f75",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MiddleClick",
@@ -311,7 +320,8 @@
                     "id": "248af210-05ef-4532-b0b0-42c2e2d359fd",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightClick",
@@ -319,7 +329,8 @@
                     "id": "62554003-8251-4e8d-9d1f-4b36f5762e2b",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TrackedDevicePosition",
@@ -327,7 +338,8 @@
                     "id": "065c872c-627f-4018-8dcb-05acaf399150",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TrackedDeviceOrientation",
@@ -335,7 +347,8 @@
                     "id": "1f37b308-a6e7-4820-81f3-2498a79629ba",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -754,6 +767,105 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PS4",
+            "id": "46b133b1-a9fa-4756-8699-688be39f6055",
+            "actions": [
+                {
+                    "name": "East",
+                    "type": "Button",
+                    "id": "a73ce1de-cd41-46e7-9c8d-e93473b5c856",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "West",
+                    "type": "Button",
+                    "id": "f609108a-c769-4189-bdec-a30c047d622e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "North",
+                    "type": "Button",
+                    "id": "d59e084b-c13c-49fe-b363-a300114fb472",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "South",
+                    "type": "Button",
+                    "id": "4b9d208a-def5-4ce6-92af-7a9203ed7a43",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1ae16a94-8f79-4e83-a5ef-2d0a7deaa425",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "East",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "029037a8-27bf-404a-9b2c-3e3973ccda0e",
+                    "path": "<DualShockGamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "West",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e58b369-340f-46f3-ba06-35fc1d66b072",
+                    "path": "<DualShockGamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "North",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab4eae1f-2597-4ca6-8cd8-ee9f8ed2cdf5",
+                    "path": "<Keyboard>/n",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "North",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28a4f8d4-9930-4489-b095-0cf29f2b028c",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "South",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
