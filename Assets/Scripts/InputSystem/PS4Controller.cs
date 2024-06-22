@@ -40,4 +40,14 @@ public class PS4Controller : MonoBehaviour
             Debug.Log("<color=purple>currentButtonName : " + currentButtonName + "</color>");
         }
     }
+
+    void PS4Input()
+    {
+        Debug.Log(playerInput.actions.FindAction("North"));
+        InputAction inputAction = playerInput.actions.FindAction("North");
+        if (inputAction.GetBindingDisplayString() == "Circle")
+        {
+
+        }
+    }
 }
