@@ -23,6 +23,5 @@ public class HandIK : MonoBehaviour
 
         animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
         animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
-
     }
 }
