@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 941
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 980
+  controlID: 115
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 981
+  controlID: 116
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -188,8 +188,8 @@ MonoBehaviour:
     y: 0
     width: 900
     height: 501
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 16}
@@ -245,8 +245,8 @@ MonoBehaviour:
     y: 0
     width: 181
     height: 390
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -299,15 +299,15 @@ MonoBehaviour:
     y: 0
     width: 636
     height: 891
-  m_MinSize: {x: 276, y: 71}
+  m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 25}
+  m_ActualView: {fileID: 27}
   m_Panes:
   - {fileID: 26}
   - {fileID: 25}
   - {fileID: 14}
   - {fileID: 27}
-  m_Selected: 1
+  m_Selected: 3
   m_LastSelected: 1
 --- !u!114 &13
 MonoBehaviour:
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: 0, y: 0.00000014044014, z: 0, w: 1}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
     m_Target: 9.748245
     speed: 2
@@ -1859,9 +1859,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 3a610000
-      m_LastClickedID: 24890
-      m_ExpandedIDs: daf3ffffd0f9ffff28fbffff
+      m_SelectedIDs: 08630000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 4ef5ffff28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1930,7 +1930,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - "Assets/Scripts/UnityC#\u5165\u9580-MARU-"
+    - "Assets/Scripts/UnityEditor\u62E1\u5F35\u5165\u9580"
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1938,16 +1938,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - "Assets/Scripts/UnityC#\u5165\u9580-MARU-"
+  - "Assets/Scripts/UnityEditor\u62E1\u5F35\u5165\u9580"
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\alfam\Desktop\StudyGameProgramming\UnityAds2020.3.16f1_Git
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 240.50189}
-    m_SelectedIDs: 54600000
-    m_LastClickedID: 24660
-    m_ExpandedIDs: 00000000d05f0000d25f0000d45f0000d65f0000d85f0000da5f0000dc5f000042600000
+    scrollPos: {x: 0, y: 163.49976}
+    m_SelectedIDs: 9c600000
+    m_LastClickedID: 24732
+    m_ExpandedIDs: 0000000010600000126000001460000016600000186000001a6000001c6000001e600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1975,7 +1975,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d05f0000d25f0000d45f0000d65f0000d85f0000da5f0000dc5f0000
+    m_ExpandedIDs: 0000000010600000126000001460000016600000186000001a6000001c6000001e600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2006,15 +2006,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000f2610100f6820100e8eb00004eeb0000b0ae000020e90000f86e0000026f0000eed200006e730100069c0000669f0000849400003ead00001ebc00003c78000082810000be8400005489000006900000688f0000f2510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MARU2_2_7_1
-      m_OriginalName: MARU2_2_7_1
+      m_Name: NewBehaviourScript12
+      m_OriginalName: NewBehaviourScript12
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 25082
+      m_UserData: 25352
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -2027,7 +2027,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 974}
+    m_ScrollPosition: {x: 0, y: 735}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 259
@@ -2229,8 +2229,8 @@ MonoBehaviour:
     m_CachedPref: -278
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1118
+  m_LastInspectedObjectInstanceID: 25352
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
