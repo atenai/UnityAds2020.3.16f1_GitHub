@@ -7,4 +7,5 @@ public class HomePageEntity
     public readonly string URL_UnityTimeDeltaTime = "https://xr-hub.com/archives/14465";
     public readonly string URL_BingAI = "https://www.bing.com/search?q=Bing+AI&showconv=1&FORM=hpcodx";
     public readonly string URL_ChatGPT = "https://chatgpt.com/";
+    public readonly string URL_ProductName = "https://fall-and-fall.hatenablog.com/entry/unity/build/change-exe-name";
 }
