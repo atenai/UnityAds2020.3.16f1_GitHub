@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Reflection;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-public class URL : MonoBehaviour
+public class HomePageManager : MonoBehaviour
 {
     bool isStart = false;
-    float time = 0.0f;
+
+    float timeLimit = 0.0f;
     [UnityEngine.Tooltip("時間を表示するText型の変数")]
     [SerializeField] TextMeshProUGUI timeText;
     int minute = 0;
@@ -18,18 +21,14 @@ public class URL : MonoBehaviour
     [SerializeField] int minTimeMinute = 5;
     [SerializeField] int maxTimeMinute = 30;
 
-
-    readonly string deepl = "https://www.deepl.com/ja/translator";
-    readonly string unityEditor_exe = "http://kagring.blog.fc2.com/blog-entry-13.html";
-    readonly string yahoo = "https://www.yahoo.co.jp/";
-    readonly string window = "https://www.fast-system.jp/unity-fullscreen-windowed-fixed-resizable/";
-    readonly string unityDocumentation = "https://docs.unity3d.com/ja/2023.2/ScriptReference/index.html";
-    readonly string unityTimeDeltaTime = "https://xr-hub.com/archives/14465";
+    [SerializeField] List<string> urlList = new List<string>();
 
     void Start()
     {
         isStart = false;
-        time = 0.0f;
+        timeLimit = 0.0f;
+        HomePageEntity homePageEntity = new HomePageEntity();
+        GetURLs(homePageEntity);
     }
 
     void Update()
@@ -44,17 +43,17 @@ public class URL : MonoBehaviour
 
         if (isStart == true)
         {
-            time = (minute * 60) + seconds;
-            time = time - Time.deltaTime;
+            timeLimit = (minute * 60) + seconds;
+            timeLimit = timeLimit - Time.deltaTime;
 
-            minute = (int)time / 60;
-            seconds = time - (minute * 60);
+            minute = (int)timeLimit / 60;
+            seconds = timeLimit - (minute * 60);
 
             if (minute <= 0 && seconds <= 0.0f)
             {
-                Application.OpenURL(unityEditor_exe);
+                Application.OpenURL(urlList[0]);
                 //ランダムな時間代入
-                minute = (int)Random.Range(1f, 2f);
+                minute = (int)UnityEngine.Random.Range(1f, 2f);
             }
             else
             {
@@ -72,6 +71,26 @@ public class URL : MonoBehaviour
     {
         isStart = false;
     }
+
+    /// <summary>
+    /// weak_pointの名前がついた変数のみを抽出する関数
+    /// </summary>
+    void GetURLs(object obj)
+    {
+        Type type = obj.GetType();
+        FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+        foreach (FieldInfo field in fields)
+        {
+            if (field.Name.StartsWith("URL"))
+            {
+                object value = field.GetValue(obj);
+                Debug.Log($"Field Name : {field.Name}, Field Value : {value}");
+                urlList.Add((string)value);
+            }
+        }
+    }
+
 
     void Quit()
     {
