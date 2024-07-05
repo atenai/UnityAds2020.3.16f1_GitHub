@@ -15,19 +15,22 @@ public class HomePageManager : MonoBehaviour
 
     float timeLimit = 0.0f;
     [UnityEngine.Tooltip("時間を表示するText型の変数")]
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI timeLimitText;
     int minute = 0;
     float seconds = 0.0f;
-    [SerializeField] int minTimeMinute = 5;
-    [SerializeField] int maxTimeMinute = 30;
+    [UnityEngine.Tooltip("最小時間（分）")]
+    [SerializeField] int minTimeMinute = 4;
+    [UnityEngine.Tooltip("最大時間（分）")]
+    [SerializeField] int maxTimeMinute = 12;
 
     [SerializeField] List<string> urlList = new List<string>();
+    HomePageEntity homePageEntity = new HomePageEntity();
+    readonly string URL_Yahoo = "https://www.yahoo.co.jp/";
 
     void Start()
     {
         isStart = false;
         timeLimit = 0.0f;
-        HomePageEntity homePageEntity = new HomePageEntity();
         GetURLs(homePageEntity);
     }
 
@@ -51,13 +54,13 @@ public class HomePageManager : MonoBehaviour
 
             if (minute <= 0 && seconds <= 0.0f)
             {
-                Application.OpenURL(urlList[0]);
+                RandomOpenURL();
                 //ランダムな時間代入
                 minute = (int)UnityEngine.Random.Range(1f, 2f);
             }
             else
             {
-                timeText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+                timeLimitText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
             }
         }
     }
@@ -73,7 +76,7 @@ public class HomePageManager : MonoBehaviour
     }
 
     /// <summary>
-    /// weak_pointの名前がついた変数のみを抽出する関数
+    /// URLの名前がついた変数のみを抽出する関数
     /// </summary>
     void GetURLs(object obj)
     {
@@ -88,6 +91,29 @@ public class HomePageManager : MonoBehaviour
                 Debug.Log($"Field Name : {field.Name}, Field Value : {value}");
                 urlList.Add((string)value);
             }
+        }
+    }
+
+    /// <summary>
+    /// ランダムでホームページを開く関数
+    /// </summary>
+    void RandomOpenURL()
+    {
+        if (0 < urlList.Count)
+        {
+            int randomIndex = (int)UnityEngine.Random.Range(0, urlList.Count);
+
+            string randomString = urlList[randomIndex];
+
+            Application.OpenURL(randomString);
+
+            urlList.RemoveAt(randomIndex);
+        }
+        else
+        {
+            Debug.Log("<color=red>URLリストが空になりました。</color>");
+            GetURLs(homePageEntity);
+            Application.OpenURL(URL_Yahoo);
         }
     }
 
