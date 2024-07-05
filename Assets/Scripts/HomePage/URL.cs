@@ -13,10 +13,11 @@ public class URL : MonoBehaviour
     float time = 0.0f;
     [UnityEngine.Tooltip("時間を表示するText型の変数")]
     [SerializeField] TextMeshProUGUI timeText;
-    [UnityEngine.Tooltip("最小時間")]
-    [SerializeField] float minTime = 300.0f;//300秒 = 5分 (1分60秒 * 5 = 300f)
-    [UnityEngine.Tooltip("最大時間")]
-    [SerializeField] float maxTime = 1800.0f;//1800秒 = 30分
+    int minute = 0;
+    float seconds = 0.0f;
+    [SerializeField] int minTimeMinute = 5;
+    [SerializeField] int maxTimeMinute = 30;
+
 
     readonly string deepl = "https://www.deepl.com/ja/translator";
     readonly string unityEditor_exe = "http://kagring.blog.fc2.com/blog-entry-13.html";
@@ -43,18 +44,23 @@ public class URL : MonoBehaviour
 
         if (isStart == true)
         {
-            // タイマーを更新
+            time = (minute * 60) + seconds;
             time = time - Time.deltaTime;
-            if (time <= 0)
+
+            minute = (int)time / 60;
+            seconds = time - (minute * 60);
+
+            if (minute <= 0 && seconds <= 0.0f)
             {
                 Application.OpenURL(unityEditor_exe);
-                //ランダムな時間を選択
-                time = Random.Range(60f, 180f);
+                //ランダムな時間代入
+                minute = (int)Random.Range(1f, 2f);
+            }
+            else
+            {
+                timeText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
             }
         }
-
-        //時間を表示する
-        timeText.text = time.ToString("f1") + "秒";
     }
 
     public void OnClickURLStart()
