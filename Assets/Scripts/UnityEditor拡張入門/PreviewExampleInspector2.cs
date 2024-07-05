@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -107,3 +108,4 @@ public class PreviewExampleInspector2 : Editor
         previewObject.transform.RotateAround(centerPosition, Vector3.right, -drag.y);
     }
 }
+#endif

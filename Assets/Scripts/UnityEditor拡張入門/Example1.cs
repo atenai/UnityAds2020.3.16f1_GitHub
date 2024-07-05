@@ -1,15 +1,9 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using UnityEditorInternal;
-
-
-#if UNITY_EDITOR
 using UnityEditor;
-#endif
 
 [ExecuteAlways]
 [RequireComponent(typeof(Animator))]
@@ -210,3 +204,4 @@ public class Example1 : Base
 #endif
     }
 }
+#endif

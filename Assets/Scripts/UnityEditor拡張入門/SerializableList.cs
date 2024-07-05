@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -74,3 +75,4 @@ public class SerializableList<T> : Collection<T>, ISerializationCallbackReceiver
         return JsonUtility.FromJson<SerializableList<T>>(json);
     }
 }
+#endif

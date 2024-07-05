@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,3 +13,4 @@ public class ZipInspector : Editor
         GUILayout.Label("例: zip の中身をプレビューとして階層表示");
     }
 }
+#endif

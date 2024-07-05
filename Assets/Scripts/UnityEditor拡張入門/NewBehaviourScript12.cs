@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,3 +22,4 @@ public class NewBehaviourScript12
         Debug.Log("起動時に呼び出される");
     }
 }
+#endif

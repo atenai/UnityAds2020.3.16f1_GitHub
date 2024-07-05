@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,3 +13,4 @@ public class Example8
         Undo.RegisterCreatedObjectUndo(cube, "Create Cube");//キューブを削除する（元に戻す）
     }
 }
+#endif

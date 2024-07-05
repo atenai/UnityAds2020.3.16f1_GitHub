@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,3 +19,4 @@ public class NewBehaviourScript6
         Undo.DestroyObjectImmediate(go);
     }
 }
+#endif

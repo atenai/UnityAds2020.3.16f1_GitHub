@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,3 +13,4 @@ public class ExcelInspector : Editor
         GUILayout.Button("例: ScriptableObject に変換するボタンを追加");
     }
 }
+#endif

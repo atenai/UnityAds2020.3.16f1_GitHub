@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,3 +50,4 @@ public class DoCreateScriptAsset : EndNameEditAction
         ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0, endNameEditAction, "NewBehaviourScript.cs", csIcon, resourceFile);
     }
 }
+#endif

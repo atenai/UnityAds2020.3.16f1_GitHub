@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,3 +23,4 @@ public class NewBehaviourScript5
         Undo.SetTransformParent(transform, root, "Main Cameraオブジェクトの子要素にする");
     }
 }
+#endif

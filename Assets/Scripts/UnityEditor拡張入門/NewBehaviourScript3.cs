@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,3 +16,4 @@ public class NewBehaviourScript3
         //この後、Undoを実行すればコンポーネントが削除される
     }
 }
+#endif

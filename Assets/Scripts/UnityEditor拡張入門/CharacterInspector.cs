@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,3 +24,4 @@ public class CharacterInspector : Editor
 		EditorGUILayout.LabelField("攻撃力(エディタから追加)", character.攻撃力.ToString());
 	}
 }
+#endif

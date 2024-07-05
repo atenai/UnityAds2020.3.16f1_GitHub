@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_EDITOR 
 using UnityEngine;
 using UnityEditor.ProjectWindowCallback;
 using UnityEditor;
@@ -18,3 +17,4 @@ public class DoCreateMaterialAsset : EndNameEditAction
         ProjectWindowUtil.ShowCreatedAsset(mat);
     }
 }
+#endif

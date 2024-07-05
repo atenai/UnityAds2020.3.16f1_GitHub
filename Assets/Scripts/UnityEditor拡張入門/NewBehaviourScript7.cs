@@ -1,9 +1,9 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.AI;
-
 
 public class NewBehaviourScript7
 {
@@ -30,3 +30,4 @@ public class NewBehaviourScript7
         }
     }
 }
+#endif

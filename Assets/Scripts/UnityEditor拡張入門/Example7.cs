@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,3 +12,4 @@ public class Example7
         GameObject.CreatePrimitive(PrimitiveType.Cube);//キューブを生成
     }
 }
+#endif
