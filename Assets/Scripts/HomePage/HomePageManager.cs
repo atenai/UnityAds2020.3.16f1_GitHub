@@ -56,7 +56,7 @@ public class HomePageManager : MonoBehaviour
             {
                 RandomOpenURL();
                 //ランダムな時間代入
-                minute = (int)UnityEngine.Random.Range(1f, 2f);
+                minute = (int)UnityEngine.Random.Range(minTimeMinute, maxTimeMinute);
             }
             else
             {
