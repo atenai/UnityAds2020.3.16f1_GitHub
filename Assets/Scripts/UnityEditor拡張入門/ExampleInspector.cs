@@ -25,6 +25,8 @@ public class ExampleInspector : Editor
             rect.y += 2;
             EditorGUI.PropertyField(rect, element);
         };
+
+        reorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, prop.displayName);
     }
 
     public override void OnInspectorGUI()

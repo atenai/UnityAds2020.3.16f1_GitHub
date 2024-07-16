@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 941
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 47
+  controlID: 70
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1859,9 +1859,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 265e0000
-      m_LastClickedID: 24102
-      m_ExpandedIDs: 28fbffff
+      m_SelectedIDs: f2610000
+      m_LastClickedID: 25074
+      m_ExpandedIDs: 88e6ffff16e9ffff1cfaffff28fbfffff2610000b8620000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1944,10 +1944,10 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 195.99976}
-    m_SelectedIDs: e8600000
-    m_LastClickedID: 24808
-    m_ExpandedIDs: 000000006460000066600000686000006a6000006c600000
+    scrollPos: {x: 0, y: 230.49951}
+    m_SelectedIDs: ee600000
+    m_LastClickedID: 24814
+    m_ExpandedIDs: 000000006a6000006c6000006e6000007060000072600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1975,7 +1975,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006460000066600000686000006a6000006c600000
+    m_ExpandedIDs: 000000006a6000006c6000006e6000007060000072600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2006,15 +2006,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000f2610100f6820100e8eb00004eeb0000b0ae000020e90000f86e0000026f0000eed200006e730100069c0000669f0000849400003ead00001ebc00003c78000082810000be8400005489000006900000688f0000f2510000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: MARU2_2_14_2
-      m_OriginalName: MARU2_2_14_2
+      m_Name: MARU2_2_15_1
+      m_OriginalName: MARU2_2_15_1
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 24868
+      m_UserData: 25296
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -2027,7 +2027,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1166}
+    m_ScrollPosition: {x: 0, y: 1182}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 299
@@ -2067,7 +2067,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 25126
+  m_LastSelectedObjectID: -6316
 --- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
