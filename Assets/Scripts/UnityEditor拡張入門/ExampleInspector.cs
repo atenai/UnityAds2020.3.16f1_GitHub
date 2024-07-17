@@ -27,6 +27,11 @@ public class ExampleInspector : Editor
         };
 
         reorderableList.drawHeaderCallback = (rect) => EditorGUI.LabelField(rect, prop.displayName);
+
+        reorderableList.drawElementBackgroundCallback = (rect, index, isActive, isFocused) =>
+        {
+            GUI.backgroundColor = Color.yellow;
+        };
     }
 
     public override void OnInspectorGUI()
