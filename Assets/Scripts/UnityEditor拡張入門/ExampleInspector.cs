@@ -32,6 +32,14 @@ public class ExampleInspector : Editor
         {
             GUI.backgroundColor = Color.yellow;
         };
+
+        reorderableList.drawElementBackgroundCallback = (rect, index, isActive, isFocused) =>
+        {
+            if (Event.current.type == EventType.Repaint)
+            {
+                EditorStyles.miniButton.Draw(rect, false, isActive, isFocused, false);
+            }
+        };
     }
 
     public override void OnInspectorGUI()
