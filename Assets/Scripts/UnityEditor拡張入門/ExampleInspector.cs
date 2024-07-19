@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using System.Reflection.Emit;
 
 [CustomEditor(typeof(Example13))]
 public class ExampleInspector : Editor
@@ -52,6 +53,28 @@ public class ExampleInspector : Editor
             //追加した要素に文字列を追加する（配列がstring[]前提）
             var element = prop.GetArrayElementAtIndex(list.index);
             element.stringValue = "New String" + list.index;
+        };
+
+        reorderableList.onAddDropdownCallback = (Rect buttonRect, ReorderableList list) =>
+        {
+            var menu = new GenericMenu();
+
+            menu.AddItem(new GUIContent("Example 1"), false, () =>
+            {
+
+            });
+
+            menu.AddSeparator("");
+
+            menu.AddDisabledItem(new GUIContent("Example 2"));
+
+            menu.DropDown(buttonRect);
+        };
+
+        reorderableList.onReorderCallback = (list) =>
+        {
+            //何かしら配列プロパティーに絡んだ要素の更新
+            Debug.Log("onReorderCallback");
         };
     }
 
