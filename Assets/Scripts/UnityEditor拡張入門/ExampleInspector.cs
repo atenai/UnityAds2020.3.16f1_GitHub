@@ -40,6 +40,19 @@ public class ExampleInspector : Editor
                 EditorStyles.miniButton.Draw(rect, false, isActive, isFocused, false);
             }
         };
+
+        reorderableList.onAddCallback += (list) =>
+        {
+            //要素の追加
+            prop.arraySize++;
+
+            //最後の要素を選択状態にする
+            list.index = prop.arraySize - 1;
+
+            //追加した要素に文字列を追加する（配列がstring[]前提）
+            var element = prop.GetArrayElementAtIndex(list.index);
+            element.stringValue = "New String" + list.index;
+        };
     }
 
     public override void OnInspectorGUI()
