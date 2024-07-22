@@ -19,9 +19,9 @@ public class HomePageManager : MonoBehaviour
     int minute = 0;
     float seconds = 0.0f;
     [UnityEngine.Tooltip("最小時間（分）")]
-    [SerializeField] int minTimeMinute = 4;
+    [SerializeField] int minTimeMinute = 3;
     [UnityEngine.Tooltip("最大時間（分）")]
-    [SerializeField] int maxTimeMinute = 12;
+    [SerializeField] int maxTimeMinute = 7;
 
     [SerializeField] List<string> urlList = new List<string>();
     HomePageEntity homePageEntity = new HomePageEntity();

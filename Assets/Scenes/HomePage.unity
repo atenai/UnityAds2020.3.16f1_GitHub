@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimitText: {fileID: 1697604903}
   minTimeMinute: 3
-  maxTimeMinute: 12
+  maxTimeMinute: 6
   urlList: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
