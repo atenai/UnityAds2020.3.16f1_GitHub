@@ -6,6 +6,7 @@ using UnityEditor;
 
 /// <summary>
 /// Character6.csと紐づいているクラス
+/// CharacterDrawe1.csと紐づいているクラス 
 /// </summary> 
 public class Example14 : MonoBehaviour
 {

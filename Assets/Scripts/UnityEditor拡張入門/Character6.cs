@@ -5,6 +5,7 @@ using UnityEngine;
 
 /// <summary>
 /// Example14.csと紐づいているクラス
+/// CharacterDrawe1.csと紐づいているクラス  
 /// </summary>
 [Serializable]
 public class Character6
