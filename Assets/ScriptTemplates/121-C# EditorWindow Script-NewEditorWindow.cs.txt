@@ -1,0 +1,18 @@
+using UnityEngine; 
+using UnityEditor;
+
+public class #SCRIPTNAME# : EditorWindow 
+{ 
+
+	[MenuItem("Kashiwabara/#SCRIPTNAME#")] 
+	static void Open() 
+	{ 
+		GetWindow <#SCRIPTNAME#> (); 
+	} 
+
+	void OnGUI () 
+	{
+ 
+	} 
+
+}
