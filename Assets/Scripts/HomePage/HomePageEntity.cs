@@ -26,5 +26,6 @@ public class HomePageEntity
     public readonly string URL_ShortcutKey = "https://santerabyte.com/unity-play-pause-step-shortcut/";
     public readonly string URL_ScriptExecutionOrder = "https://ekulabo.com/execution-order";
     public readonly string URL_GomaFrontier = "https://gomafrontier.com/";
+    public readonly string URL_LossyScale = "https://qiita.com/masamin/items/f452c8f85a69b10ac2b9";
 
 }
