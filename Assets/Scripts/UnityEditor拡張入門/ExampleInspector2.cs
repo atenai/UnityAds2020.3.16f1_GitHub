@@ -12,26 +12,13 @@ public class ExampleInspecto2 : Editor
 {
     void OnSceneGUI()
     {
-        /*
-            Tools.current = Tool.None;
-             var component = target as Example17;
 
-             var transform = component.transform;
-             transform.position = Handles.PositionHandle(transform.position, transform.rotation);
-        */
-
+        Tools.current = Tool.None;
         var component = target as Example17;
 
         var transform = component.transform;
+        transform.position = Handles.PositionHandle(transform.position, transform.rotation);
 
-        if (Tools.current == Tool.Move)
-        {
-            transform.rotation = Handles.RotationHandle(transform.rotation, transform.position);
-        }
-        else if (Tools.current == Tool.Rotate)
-        {
-            transform.position = Handles.PositionHandle(transform.position, transform.rotation);
-        }
     }
 }
 #endif
