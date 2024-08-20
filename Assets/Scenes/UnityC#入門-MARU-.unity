@@ -663,7 +663,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 557838892}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1141201178}
+        m_TargetAssemblyTypeName: MARU2_4_7_1, Assembly-CSharp
+        m_MethodName: A
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &557838892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,6 +903,7 @@ GameObject:
   - component: {fileID: 1141201175}
   - component: {fileID: 1141201176}
   - component: {fileID: 1141201177}
+  - component: {fileID: 1141201178}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -2372,13 +2385,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141201063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e649793e520f9f34cb6baf525c8895da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   A: {fileID: 1141201175}
   B: {fileID: 8300000, guid: 38db892898ad12e45a376c1cdac858a2, type: 3}
+--- !u!114 &1141201178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141201063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9523bb99efcd1da4ea35809e2e97b5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1246130383
 GameObject:
   m_ObjectHideFlags: 0
