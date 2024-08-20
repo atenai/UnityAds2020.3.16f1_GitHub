@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 941
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 19
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 21
+  controlID: 20
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 22
+  controlID: 21
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -188,9 +188,9 @@ MonoBehaviour:
     y: 0
     width: 841
     height: 501
-  m_MinSize: {x: 201, y: 221}
+  m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
@@ -199,8 +199,8 @@ MonoBehaviour:
   - {fileID: 20}
   - {fileID: 19}
   - {fileID: 14}
-  m_Selected: 5
-  m_LastSelected: 6
+  m_Selected: 6
+  m_LastSelected: 5
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 57
+  controlID: 71
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,8 +299,8 @@ MonoBehaviour:
     y: 0
     width: 695
     height: 891
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 26}
   m_Panes:
   - {fileID: 25}
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 80, y: 15, z: 0}
     speed: 2
-    m_Value: {x: 79.99999, y: 14.999999, z: 0}
+    m_Value: {x: 80, y: 15, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 126.40257
     speed: 2
-    m_Value: 120.9594
+    m_Value: 126.40257
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1312,9 +1312,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6ae9ffff
-      m_LastClickedID: -5782
-      m_ExpandedIDs: ace9ffff28fbffff50650000
+      m_SelectedIDs: 1a650000
+      m_LastClickedID: 25882
+      m_ExpandedIDs: 1afaffff28fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1383,7 +1383,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - "Assets/Scripts/UnityC#\u5165\u9580-MARU-"
+    - "Assets/Scripts/UnityEditor\u62E1\u5F35\u5165\u9580"
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1391,16 +1391,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - "Assets/Scripts/UnityC#\u5165\u9580-MARU-"
+  - "Assets/Scripts/UnityEditor\u62E1\u5F35\u5165\u9580"
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\alfam\Desktop\StudyGameProgramming\UnityAds2020.3.16f1_Git
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 115}
-    m_SelectedIDs: 8a630000
-    m_LastClickedID: 25482
-    m_ExpandedIDs: 000000003a6300003c6300003e6300004063000068630000
+    m_SelectedIDs: 54640000
+    m_LastClickedID: 25684
+    m_ExpandedIDs: 000000000264000004640000066400000864000030640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1428,7 +1428,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003a6300003c6300003e63000040630000
+    m_ExpandedIDs: 0000000002640000046400000664000008640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1455,22 +1455,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000f2610100f6820100e8eb00004eeb0000b0ae000020e90000f86e0000026f0000eed200006e730100069c0000669f0000849400003ead00001ebc00003c78000082810000be8400005489000006900000688f0000f25100005c640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: HandleGUIScope
+      m_OriginalName: HandleGUIScope
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 25926
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -1480,7 +1480,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 1518}
+    m_ScrollPosition: {x: 0, y: 751}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 299
