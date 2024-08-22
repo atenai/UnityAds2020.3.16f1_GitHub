@@ -18,6 +18,6 @@ public class MARU2_4_7_1 : MonoBehaviour
 
     public void A()
     {
-        Debug.Log("ボタンが押されました");
+        Debug.Log("ボタンが押されました0");
     }
 }
