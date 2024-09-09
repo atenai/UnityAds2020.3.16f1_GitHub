@@ -24,6 +24,12 @@ public class Overwriter : AssetPostprocessor
             Debug.Log(path);
         }
 
+        //スクリプトの編集によるインポート時はEvent.currentはnullなので、nullチェックをする
+        if (Event.current == null || Event.current.type != EventType.DragPerform)
+        {
+            return;
+        }
+
         foreach (var assetPath in importedAssets)
         {
             //インポートされたアセットを監視
