@@ -30,6 +30,17 @@ public class Overwriter : AssetPostprocessor
             return;
         }
 
+        // var result = EditorUtility.DisplayDialogComplex(asset.originalAssetPath, overwriteMessage, "置き換える", "両方とも残す", "中止");
+
+        // if (result == 0)
+        // {
+        //     asset.Overwrite();
+        // }
+        // else if (result == 2)
+        // {
+        //     asset.Delete();
+        // }
+
         foreach (var assetPath in importedAssets)
         {
             //インポートされたアセットを監視
