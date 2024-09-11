@@ -46,5 +46,17 @@ public class Overwriter : AssetPostprocessor
             //インポートされたアセットを監視
         }
     }
+
+    // public void Overwrite()
+    // {
+    //     FileUtil.ReplaceFile(assetPath, originalAssetPath);
+    //     Delete();
+    //     AssetDatabase.ImportAsset(originalAssetPath);
+    // }
+
+    // public void Delete()
+    // {
+    //     AssetDatabase.DeleteAsset(assetPath);
+    // }
 }
 #endif
