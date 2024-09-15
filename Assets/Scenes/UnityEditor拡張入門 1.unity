@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -709,7 +709,6 @@ GameObject:
   - component: {fileID: 1025036034}
   - component: {fileID: 1025036036}
   - component: {fileID: 1025036037}
-  - component: {fileID: 1025036038}
   m_Layer: 0
   m_Name: GameObject (1)
   m_TagString: Untagged
@@ -781,18 +780,6 @@ MonoBehaviour:
     name: Atenai
     hp: 70
     power: 5
---- !u!114 &1025036038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025036033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c43afba60148e940b4d9e046361334c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1140281259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +1946,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1276c82495453ff4083b06c299e6391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &654770114884847128
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5801620678729343609, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_Name
+      value: GameObject_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185339424023619783, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: lengthInSec
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329658424151852841, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b20b7116b01d644b9fd91ecc6ccd9c1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1979,3 +2027,4 @@ SceneRoots:
   - {fileID: 1720532834}
   - {fileID: 1140281264}
   - {fileID: 2026948869}
+  - {fileID: 654770114884847128}
