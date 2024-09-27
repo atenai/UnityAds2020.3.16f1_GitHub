@@ -10,6 +10,20 @@ public class SpritePreview : ObjectPreview
 {
     private GUIContent previewTitle = new GUIContent("Sprites");
 
+    public override void Initialize(Object[] targets)
+    {
+        base.Initialize(targets);
+
+        var sprites = new Object[0];
+
+        foreach (AnimationClip animationClip in targets)
+        {
+            ArrayUtility.AddRange(ref sprites, GetSprites(animationClip));
+        }
+
+        m_Targets = sprites;
+    }
+
     public override bool HasPreviewGUI()
     {
         return true;
@@ -29,6 +43,10 @@ public class SpritePreview : ObjectPreview
         var guiContents = sprites.Select(s => new GUIContent(s.name, AssetPreview.GetAssetPreview(s))).ToArray();
 
         GUI.SelectionGrid(r, -1, guiContents, 2, EditorStyles.whiteBoldLabel);
+
+        var previewTexture = AssetPreview.GetAssetPreview(target);
+
+        EditorGUI.DrawTextureTransparent(r, previewTexture);
     }
 
     private Sprite[] GetSprites(AnimationClip animationClip)
