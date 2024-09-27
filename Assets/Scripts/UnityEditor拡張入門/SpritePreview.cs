@@ -23,6 +23,12 @@ public class SpritePreview : ObjectPreview
     public override void OnPreviewGUI(Rect r, GUIStyle background)
     {
         GUI.Box(r, "表示領域");
+
+        var sprites = GetSprites(target as AnimationClip);
+
+        var guiContents = sprites.Select(s => new GUIContent(s.name, AssetPreview.GetAssetPreview(s))).ToArray();
+
+        GUI.SelectionGrid(r, -1, guiContents, 2, EditorStyles.whiteBoldLabel);
     }
 
     private Sprite[] GetSprites(AnimationClip animationClip)
