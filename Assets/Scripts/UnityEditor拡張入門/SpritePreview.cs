@@ -21,6 +21,12 @@ public class SpritePreview : ObjectPreview
             ArrayUtility.AddRange(ref sprites, GetSprites(animationClip));
         }
 
+        //ここでスプライトのプレビュー用テクスチャを生成＆キャッシュさせる
+        foreach (var sprite in sprites)
+        {
+            AssetPreview.GetAssetPreview(sprite);
+        }
+
         m_Targets = sprites;
     }
 
