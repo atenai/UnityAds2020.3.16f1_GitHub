@@ -58,6 +58,20 @@ public class SpriteAnimationClipEditor : OverrideEditor
 		{
 			baseEditor.OnInteractivePreviewGUI(r, background);
 		}
+	}
 
+	private bool isPlaying = false;
+
+	public override void OnPreviewSettings()
+	{
+		var playButtonContent = EditorGUIUtility.IconContent("PlayButton");
+
+		var pauseButtonContent = EditorGUIUtility.IconContent("PauseButton");
+
+		var previewButtonSettingsStyle = new GUIStyle("preButton");
+
+		var buttonContent = isPlaying ? pauseButtonContent : playButtonContent;
+
+		isPlaying = GUILayout.Toggle(isPlaying, buttonContent, previewButtonSettingsStyle);
 	}
 }
