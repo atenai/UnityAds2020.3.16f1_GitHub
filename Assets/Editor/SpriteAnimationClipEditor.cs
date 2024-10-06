@@ -8,6 +8,8 @@ using System.Linq;
 [CustomEditor(typeof(AnimationClip))]
 public class SpriteAnimationClipEditor : OverrideEditor
 {
+	Sprite[] sprites = new Sprite[0];
+
 	protected override Editor GetBaseEditor()
 	{
 		Editor editor = null;
@@ -20,8 +22,6 @@ public class SpriteAnimationClipEditor : OverrideEditor
 
 	private Sprite[] GetSprites(AnimationClip animationClip)
 	{
-		var sprites = new Sprite[0];
-
 		if (animationClip != null)
 		{
 			var editorCurveBinding = EditorCurveBinding.PPtrCurve("", typeof(SpriteRenderer), "m_Sprite");
@@ -38,5 +38,26 @@ public class SpriteAnimationClipEditor : OverrideEditor
 		}
 
 		return sprites;
+	}
+
+	public override bool HasPreviewGUI()
+	{
+		return true;
+	}
+
+	public override void OnInteractivePreviewGUI(Rect r, GUIStyle background)
+	{
+		//スプライトがなければ通常（3D）のプレビュー画面にする
+		if (sprites.Length != 0)
+		{
+			var texture = AssetPreview.GetAssetPreview(sprites[0]);
+
+			EditorGUI.DrawTextureTransparent(r, texture, ScaleMode.ScaleToFit);
+		}
+		else
+		{
+			baseEditor.OnInteractivePreviewGUI(r, background);
+		}
+
 	}
 }
