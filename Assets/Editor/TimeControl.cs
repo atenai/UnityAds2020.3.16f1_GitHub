@@ -43,4 +43,27 @@ public class TimeControl : MonoBehaviour
     {
         isPlaying = false;
     }
+
+    TimeControl timeControl = new TimeControl();
+    private void DrawPlayButton()
+    {
+        var playButtonContent = EditorGUIUtility.IconContent("PlayButton");
+        var pauseButtonContent = EditorGUIUtility.IconContent("PauseButton");
+        var previewButtonSettingsStyle = new GUIStyle("preButton");
+        var buttonContent = timeControl.isPlaying ? pauseButtonContent : playButtonContent;
+
+        EditorGUI.BeginChangeCheck();
+        var isPlaying = GUILayout.Toggle(timeControl.isPlaying, buttonContent, previewButtonSettingsStyle);
+        if (EditorGUI.EndChangeCheck())
+        {
+            if (isPlaying)
+            {
+                timeControl.Play();
+            }
+            else
+            {
+                timeControl.Pause();
+            }
+        }
+    }
 }
