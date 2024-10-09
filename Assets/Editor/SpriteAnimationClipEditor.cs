@@ -58,6 +58,21 @@ public class SpriteAnimationClipEditor : OverrideEditor
 		{
 			baseEditor.OnInteractivePreviewGUI(r, background);
 		}
+
+		// SpriteAnimationSetting setting;
+		// if(dic.TryGetValue(target, out setting))
+		// {
+		// 	var currentSpriteNum = Mathf.FloorToInt(TimeControl.GetCurrentTime(setting.stopTime * setting.frameRate));
+		// 	var sprite = setting.sprites[currentSpriteNum];
+		// 	var texture = AssetPreview.GetAssetPreview(sprite);
+
+		// 	if(texture != null)
+		// 	{
+		// 		EditorGUI.DrawTextureTransparent(r, texture, ScaleMode.ScaleToFit);
+		// 	}else{
+		// 		baseEditor.OnInteractivePreviewGUI(r, background);
+		// 	}
+		// }
 	}
 
 	private bool isPlaying = false;
