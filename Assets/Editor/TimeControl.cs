@@ -66,4 +66,16 @@ public class TimeControl : MonoBehaviour
             }
         }
     }
+
+    private void DrawSpeedSlider()
+    {
+        var preSlider = new GUIStyle("preSlider");
+        var preSliderThumb = new GUIStyle("preSliderThumb");
+        var preLabel = new GUIStyle("preLabel");
+        var speedScale = EditorGUIUtility.IconContent("SpeedScale");
+
+        GUILayout.Box(speedScale, preLabel);
+        timeControl.speed = GUILayout.HorizontalSlider(timeControl.speed, 0, 10, preSlider, preSliderThumb);
+        GUILayout.Label(timeControl.speed.ToString("0.00"), preLabel, GUILayout.Width(40));
+    }
 }
