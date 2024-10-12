@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -78,4 +79,30 @@ public class TimeControl : MonoBehaviour
         timeControl.speed = GUILayout.HorizontalSlider(timeControl.speed, 0, 10, preSlider, preSliderThumb);
         GUILayout.Label(timeControl.speed.ToString("0.00"), preLabel, GUILayout.Width(40));
     }
+
+    // private List<Editor> GetSpriteEditors(params Sprite[] sprites)
+    // {
+    //     var type = Types.GetType("UnityEditor.SpriteInspector", "UnityEditor.dll");
+    //     var editors = new List<Editor>();
+
+    //     foreach (var sprite in sprites)
+    //     {
+    //         Editor _editor = Editor.CreateEditor(sprite, type);
+
+    //         if (_editor != null)
+    //         {
+    //             editors.Add(_editor);
+    //         }
+    //     }
+
+    //     return editors;
+    // }
+
+    // public void OnDisable()
+    // {
+    //     foreach (var spriteEditor in spriteEditors)
+    //     {
+    //         Object.DestroyImmediate(spriteEditor);
+    //     }
+    // }
 }
