@@ -25,11 +25,18 @@ public class SceneInspector : Editor
         }
 
         InitActiveEditors();
+
+        //Undoによって変更された状態を初期化
+        Undo.undoRedoPerformed += InitActiveEditors;
     }
 
     void OnDisable()
     {
         ClearActiveEditors();
+
+        Undo.undoRedoPerformed -= InitActiveEditors;
+
+        AssetDatabase.SaveAssets();
     }
 
     //生成したEditorオブジェクトの破棄
@@ -89,6 +96,47 @@ public class SceneInspector : Editor
             InitActiveEditors();
             Repaint();
         }
+
+        //OnInspectorGUIの最後に実装
+
+        //残りの余った領域を取得
+        var dragAndDropRect = GUILayoutUtility.GetRect(GUIContent.none, GUIStyle.none, GUILayout.ExpandHeight(true), GUILayout.MinHeight(200));
+
+        switch (Event.current.type)
+        {
+            //ドラッグ中 or ドロップ実行
+            case EventType.DragUpdated:
+            case EventType.DragPerform:
+                //マウス位置が指定の範囲外であれば無視
+                if (dragAndDropRect.Contains(Event.current.mousePosition) == false)
+                {
+                    break;
+                }
+
+                //カーソルをコピー表示する
+                DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+
+                //ドロップ実行
+                if (Event.current.type == EventType.DragPerform)
+                {
+                    DragAndDrop.AcceptDrag();
+
+                    //ドロップしたオブジェクトがスクリプトアセットかどうか
+                    var components = DragAndDrop.objectReferences.Where(x => x.GetType() == typeof(MonoScript)).OfType<MonoScript>().Select(m => m.GetClass());
+
+                    //コンポーネントをプレハブにアタッチ
+                    foreach (var component in components)
+                    {
+                        Undo.AddComponent(scenePrefab, component);
+                    }
+
+                    InitActiveEditors();
+                }
+                break;
+        }
+
+        //ドロップできる領域を確保
+        GUI.Label(dragAndDropRect, "");
     }
 
     void DrawInspectorTitlebar(Editor editor)
