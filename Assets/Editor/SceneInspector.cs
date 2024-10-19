@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using System.IO;
+using UnityEditor.Callbacks;
 
 [CustomEditor(typeof(SceneAsset))]
 public class SceneInspector : Editor

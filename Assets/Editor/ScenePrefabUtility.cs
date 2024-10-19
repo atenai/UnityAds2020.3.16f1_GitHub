@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using UnityEditor.Callbacks;
 
 public class ScenePrefabUtility
 {
@@ -45,5 +46,26 @@ public class ScenePrefabUtility
     private static string ScenePathToGUID(string scenePath)
     {
         return AssetDatabase.AssetPathToGUID(scenePath);
+    }
+
+    [PostProcessScene]
+    static void OnPostProcessScene()
+    {
+        //現在開いているシーンからシーン端を取得
+        var scenePath = EditorBuildSettings.scenes[Application.loadedLevel].path;
+
+        if (string.IsNullOrEmpty(scenePath))
+        {
+            return;
+        }
+
+        //自動で生成しているプレハブを取得
+        var prefab = GetScenePrefab(scenePath);
+
+        //インスタンス化
+        if (prefab == true)
+        {
+            GameObject.Instantiate(prefab).name = "ScenePrefab";
+        }
     }
 }
