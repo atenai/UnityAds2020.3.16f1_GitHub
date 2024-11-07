@@ -11,4 +11,9 @@ public sealed class MARU3_3_1_2 : MARU3_3_1_1
 	{
 		Debug.Log("火炎体当たり");
 	}
+
+	public override void Magic()
+	{
+		Debug.Log("火炎魔法攻撃");
+	}
 }

@@ -11,4 +11,9 @@ public class MARU3_3_1_1
 	{
 		Debug.Log("体当たり");
 	}
+
+	public virtual void Magic()
+	{
+		Debug.Log("魔法攻撃");
+	}
 }
