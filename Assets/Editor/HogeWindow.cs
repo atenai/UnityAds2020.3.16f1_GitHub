@@ -19,12 +19,15 @@ public class HogeWindow : EditorWindow
     void OnEnable()
     {
         hoge = ScriptableObject.CreateInstance<Hoge3>();
-        hoge.hideFlags = HideFlags.DontSaveInEditor;
+        //hoge.hideFlags = HideFlags.DontSaveInEditor;
+
+        var hoges = Resources.FindObjectsOfTypeAll<Hoge3>();
+        Debug.Log(hoges.Length);
     }
 
     void Update()
     {
-        Debug.Log(hoge);
+        //Debug.Log(hoge);
     }
 }
 #endif
