@@ -171,6 +171,10 @@ GameObject:
   - component: {fileID: 396645987}
   - component: {fileID: 396645988}
   - component: {fileID: 396645989}
+  - component: {fileID: 396645990}
+  - component: {fileID: 396645991}
+  - component: {fileID: 396645992}
+  - component: {fileID: 396645993}
   m_Layer: 0
   m_Name: GameObject_MARU
   m_TagString: Untagged
@@ -658,9 +662,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396645949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8096e32b4c18614c9d240bc5244ec4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &396645990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396645949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae315370e739f0c4f8f2c72c7864cfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &396645991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396645949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: accafc6197b4e6742a5014927565efe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &396645992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396645949}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5987fa22493f11648984f23bc7f04f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &396645993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396645949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e634ebfd1ffd41843f32e1c54d45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1085538483
