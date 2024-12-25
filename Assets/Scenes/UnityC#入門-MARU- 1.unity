@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 396646015}
   - component: {fileID: 396646016}
   - component: {fileID: 396646017}
+  - component: {fileID: 396646018}
   m_Layer: 0
   m_Name: GameObject_MARU
   m_TagString: Untagged
@@ -1022,9 +1023,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396645949}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7574fe071c44a6144a4a13d31888ccb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &396646018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396645949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca984e9e85a236f4699ac2af4571fcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1085538483
