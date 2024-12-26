@@ -14,7 +14,7 @@ using JetBrains.Annotations;
 using System.Linq;
 using BehaviorDesigner.Runtime.Tasks.Unity.UnityPlayerPrefs;
 
-public class MARU4_4_9_1 : MonoBehaviour
+public class MARU4_4_9_2 : MonoBehaviour
 {
 	private void Start()
 	{
@@ -24,15 +24,15 @@ public class MARU4_4_9_1 : MonoBehaviour
 		Debug.Log($"① aの値は{a}です。");
 
 		//引数に変数aを渡し実行
-		Test(a);
+		RefTest(ref a);
 
 		Debug.Log($"③ aの値は{a}です。");
 
 		Debug.Log("スタート関数終了");
 	}
 
-	//値型の値渡し
-	private void Test(int abc)
+	//値型の参照渡し
+	private void RefTest(ref int abc)
 	{
 		Debug.Log($"? abcの値は{abc}です。");
 		abc = 100;
