@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI1_5_4 : MonoBehaviour
+public class UI1_5_4_1 : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;//回転速度を設定するフィールド
 
