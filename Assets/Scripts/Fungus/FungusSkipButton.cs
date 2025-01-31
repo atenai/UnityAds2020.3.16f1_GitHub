@@ -5,12 +5,55 @@ using Fungus;
 
 public class FungusSkipButton : MonoBehaviour
 {
-    [SerializeField] Writer writer;
-    public void OnSkipButtonClicked()
+    [SerializeField] DialogInput dialogInput;
+
+    bool isSkip = false;
+
+    void Start()
     {
-        if (writer != null)
+        Init();
+    }
+
+    void Update()
+    {
+        if (isSkip == true)
+        {
+            dialogInput.SetNextLineFlag();
+        }
+        else
         {
 
         }
+    }
+
+    void OnEnable()
+    {
+        Init();
+    }
+
+    void OnDisable()
+    {
+        Init();
+    }
+
+    void Init()
+    {
+        isSkip = false;
+    }
+
+    /// <summary>
+    /// イベントトリガーの押した際に行う関数
+    /// </summary> 
+    public void OnEventTriggerPointerDown()
+    {
+        isSkip = true;
+    }
+
+    /// <summary>
+    /// イベントトリガーの離した際に行う関数
+    /// </summary>
+    public void OnEventTriggerPointerUp()
+    {
+        isSkip = false;
     }
 }
