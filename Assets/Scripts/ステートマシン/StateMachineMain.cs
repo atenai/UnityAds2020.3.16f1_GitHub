@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// メイン関数
+/// </summary>
 public class StateMachineMain : MonoBehaviour
 {
     EngineBox engineBox;
-
-    bool isTest = true;
-    int num = 0;
 
     void Start()
     {
@@ -16,34 +16,16 @@ public class StateMachineMain : MonoBehaviour
 
     void Update()
     {
-        if (isTest == true)
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            num++;
-            if (num < 100)
-            {
-                engineBox.EngineBoxUp();
-                //Debug.Log(pEBox.EngineBoxState);
-            }
-            else
-            {
-                isTest = false;
-                num = 0;
-            }
-        }
-        else if (isTest == false)
-        {
-            num++;
-            if (num < 100)
-            {
-                engineBox.EngineBoxDown();
-                //Debug.Log(pEBox.EngineBoxState);
-            }
-            else
-            {
-                isTest = true;
-                num = 0;
-            }
+            engineBox.EngineBoxUp();
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            engineBox.EngineBoxDown();
+        }
+
+        engineBox.NowState();
     }
 }
