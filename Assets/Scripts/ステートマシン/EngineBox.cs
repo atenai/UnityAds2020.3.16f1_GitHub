@@ -2,32 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ステートマシンを制御するクラス
+/// </summary>
 public class EngineBox
 {
-    EngineState engineState;
+    [Tooltip("現在のステート")]
+    EngineState currentState;
 
+    /// <summary>
+    /// コンストラクタ
+    /// </summary> 
     public EngineBox()
     {
-        engineState = new EngineIdle();
+        //現在のステートをインスタンスしてIdleにステートする
+        currentState = new EngineIdle();
     }
 
     public void EngineBoxUp()
     {
-        engineState.Up(this);
+        //現在のステートにこのクラスの全てを入れる
+        currentState.Up(this);
     }
 
     public void EngineBoxDown()
     {
-        engineState.Down(this);
+        //現在のステートにこのクラスの全てを入れる
+        currentState.Down(this);
     }
 
-    public void ChangeState(EngineState newState)
+    public void ChangeState(EngineState nextState)
     {
-        engineState = newState;
+        currentState = nextState;
     }
 
     public void NowState()
     {
-        Debug.Log(engineState);
+        Debug.Log("<color=orange>現在のステート :" + currentState + "</color>");
+        currentState.ShowCurrentState();
     }
 }
