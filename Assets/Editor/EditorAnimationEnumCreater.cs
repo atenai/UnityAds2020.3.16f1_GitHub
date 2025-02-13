@@ -3,32 +3,41 @@ using UnityEngine;
 using System.IO;
 using System.Text;
 using System.Linq;
+using UnityEditor;
 
 /// <summary>
 /// 配列からEnumを生成するスクリプト
 /// こちらはスクリプトファイルを直にフォルダー内に作成するから一度Unityエディタを読み込み直さないといけない！
 /// </summary>
-public class EnumCreaterSample : MonoBehaviour
+public class EditorAnimationEnumCreater : EditorWindow
 {
-    // 動物の名前（Enumに変換する配列）
-    string[] animals = new string[]
+    [MenuItem("Kashiwabara/EditorAnimationEnumCreater", false, 1)]//上のウィンドウメニュー欄に追加される
+    private static void ShowWindow()
     {
-        "Cat",
-        "Dog",
-        "Elephant",
-        "Cow",
-    };
+        //指定したクラス（このクラス）がウィンドウメニューの内容になる
+        EditorAnimationEnumCreater window = GetWindow<EditorAnimationEnumCreater>();
+        window.titleContent = new GUIContent("Enum生成Window");
+    }
+
+    void OnGUI()
+    {
+        if (GUILayout.Button("Enum生成ボタン"))
+        {
+            Debug.Log("Enum生成");
+            EnumCreater();
+        }
+    }
 
     // Enumの名前
-    string enumName = "AnimalType";
+    string enumName = "AnimationType";
 
     // Enumを挿入するファイルのパス
-    string insertFilePath = "Assets/Scripts/EnumAutoCreate/AnimalEnum.cs";
+    string insertFilePath = "Assets/Scripts/EnumAutoCreate/AnimationEnum.cs";
 
     // Enumを挿入するスクリプトの行番号
     int insertLineNumber = 0;
 
-    void Start()
+    void EnumCreater()
     {
         // 行番号は１からだが配列の要素番号は０からなので合わせる
         int InsertLineNumber = insertLineNumber - 1;
@@ -56,14 +65,29 @@ public class EnumCreaterSample : MonoBehaviour
         // Enumのカッコを挿入する
         readedLines.Insert(InsertLineNumber + 1, "\t" + "{");
 
-        // Enumのメンバーを挿入する
-        for (int i = 0; i < animals.Length; i++)
+        List<string> nameList = new List<string>();
+
+        GameObject unitychan = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/unity-chan!/Unity-chan! Model/Prefabs/unitychan.prefab");
+        Animator animator = unitychan.gameObject.GetComponent<Animator>();
+
+        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+        int animationClipLength = clips.Length;
+        for (int i = 0; i < animationClipLength; i++)
         {
-            readedLines.Insert(InsertLineNumber + 2 + i, "\t\t" + animals[i] + ",");
+            Debug.Log("<color=green>clip.name :" + clips[i].name + "</color>");
+            nameList.Add(clips[i].name);
+        }
+
+        int nameListCount = nameList.Count;
+
+        // Enumのメンバーを挿入する
+        for (int i = 0; i < nameListCount; i++)
+        {
+            readedLines.Insert(InsertLineNumber + 2 + i, "\t\t" + nameList[i] + ",");
         }
 
         // Enumの閉じカッコを挿入する
-        readedLines.Insert(InsertLineNumber + animals.Length + 2, "\t" + "}");
+        readedLines.Insert(InsertLineNumber + nameListCount + 2, "\t" + "}");
 
         // Enumを挿入した状態のコードをファイルに書き込む
         File.WriteAllLines(insertFilePath, readedLines, Encoding.UTF8);
