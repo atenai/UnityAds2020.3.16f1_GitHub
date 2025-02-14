@@ -4,4 +4,6 @@
 	Dog,
 	Elephant,
 	Cow,
+	Poti,
+	Pato,
 }

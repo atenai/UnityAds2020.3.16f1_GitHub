@@ -5,8 +5,28 @@ using System.Text;
 using System.Linq;
 using UnityEditor;
 
-public class EnumAdd : MonoBehaviour
+/// <summary>
+/// 既存のEnumを指定しているファイルに同じ物を除いた差分のEnumを追加するエディター拡張クラス
+/// </summary>
+public class EnumAdd : EditorWindow
 {
+    [MenuItem("Kashiwabara/EnumAdd", false, 1)]//上のウィンドウメニュー欄に追加される
+    private static void ShowWindow()
+    {
+        //指定したクラス（このクラス）がウィンドウメニューの内容になる
+        EnumAdd window = GetWindow<EnumAdd>();
+        window.titleContent = new GUIContent("Enum追加Window");
+    }
+
+    void OnGUI()
+    {
+        if (GUILayout.Button("Enum追加ボタン"))
+        {
+            Debug.Log("Enum追加");
+            AddEnum();
+        }
+    }
+
     // 動物の名前（Enumに変換する配列）
     string[] animals = new string[]
     {
@@ -19,7 +39,7 @@ public class EnumAdd : MonoBehaviour
     // Enumを挿入するファイルのパス
     string insertFilePath = "Assets/Scripts/EnumAutoCreate/AnimalEnum.cs";
 
-    void Start()
+    void AddEnum()
     {
         List<string> cacheList = File.ReadAllLines(insertFilePath, Encoding.UTF8).ToList();
 
