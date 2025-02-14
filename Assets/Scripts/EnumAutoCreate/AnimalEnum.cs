@@ -1,7 +1,7 @@
-﻿	public enum AnimalType
-	{
-		Cat,
-		Dog,
-		Elephant,
-		Cow,
-	}
+﻿public enum AnimalType
+{
+	Cat,
+	Dog,
+	Elephant,
+	Cow,
+}

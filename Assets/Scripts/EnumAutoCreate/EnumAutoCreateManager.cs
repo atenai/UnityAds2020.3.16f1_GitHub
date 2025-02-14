@@ -24,9 +24,4 @@ public class EnumAutoCreateManager : MonoBehaviour
           isFlags: true                 //Flag属性を付けるあどうか
         );
     }
-
-    void Update()
-    {
-
-    }
 }
