@@ -1,1 +1,4 @@
-﻿
+﻿public enum AnimationType
+{
+
+}

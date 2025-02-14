@@ -7,7 +7,6 @@ using UnityEditor;
 
 /// <summary>
 /// 配列からEnumを生成するスクリプト
-/// こちらはスクリプトファイルを直にフォルダー内に作成するから一度Unityエディタを読み込み直さないといけない！
 /// </summary>
 public class EditorAnimationEnumCreater : EditorWindow
 {
@@ -91,5 +90,6 @@ public class EditorAnimationEnumCreater : EditorWindow
 
         // Enumを挿入した状態のコードをファイルに書き込む
         File.WriteAllLines(insertFilePath, readedLines, Encoding.UTF8);
+        AssetDatabase.Refresh(ImportAssetOptions.ImportRecursive);
     }
 }
