@@ -15,14 +15,14 @@ public class EnumAdd : EditorWindow
     {
         //指定したクラス（このクラス）がウィンドウメニューの内容になる
         EnumAdd window = GetWindow<EnumAdd>();
-        window.titleContent = new GUIContent("Enum追加Window");
+        window.titleContent = new GUIContent("差分Enum追加Window");
     }
 
     void OnGUI()
     {
-        if (GUILayout.Button("Enum追加ボタン"))
+        if (GUILayout.Button("差分Enum追加ボタン"))
         {
-            Debug.Log("Enum追加");
+            Debug.Log("差分Enum追加");
             AddEnum();
         }
     }

@@ -6,10 +6,27 @@ using System.Linq;
 using UnityEditor;
 
 /// <summary>
-/// 配列からEnumを生成するスクリプト
+/// 配列からアニマルEnumを生成するスクリプト
 /// </summary>
-public class EnumCreaterSample : MonoBehaviour
+public class EnumCreaterAnimal : EditorWindow
 {
+    [MenuItem("Kashiwabara/EnumCreaterAnimal", false, 1)]//上のウィンドウメニュー欄に追加される
+    private static void ShowWindow()
+    {
+        //指定したクラス（このクラス）がウィンドウメニューの内容になる
+        EnumCreaterAnimal window = GetWindow<EnumCreaterAnimal>();
+        window.titleContent = new GUIContent("アニマルEnum作成Window");
+    }
+
+    void OnGUI()
+    {
+        if (GUILayout.Button("アニマルEnum作成ボタン"))
+        {
+            Debug.Log("アニマルEnum作成");
+            CreateEnum();
+        }
+    }
+
     // 動物の名前（Enumに変換する配列）
     string[] animals = new string[]
     {
@@ -28,7 +45,7 @@ public class EnumCreaterSample : MonoBehaviour
     // Enumを挿入するスクリプトの行番号
     int insertLineNumber = 0;
 
-    void Start()
+    void CreateEnum()
     {
         // 行番号は１からだが配列の要素番号は０からなので合わせる
         int InsertLineNumber = insertLineNumber - 1;
@@ -39,9 +56,6 @@ public class EnumCreaterSample : MonoBehaviour
             InsertLineNumber = 0;
         }
 
-        // 行ごとにファイルのコードを読み込んで配列に格納する
-        //（"Linq"の"ToList()"を使用して配列を"List<string>"に変換）
-        //List<string> readedLines = File.ReadAllLines(insertFilePath, Encoding.UTF8).ToList();
         List<string> readedLines = new List<string>();
 
         // 読み込んだファイルの行数が挿入する行よりも小さければ
@@ -52,18 +66,18 @@ public class EnumCreaterSample : MonoBehaviour
         }
 
         // Enumの名前の部分を挿入する
-        readedLines.Insert(InsertLineNumber, "\t" + "public enum " + enumName);
+        readedLines.Insert(InsertLineNumber, "public enum " + enumName);
         // Enumのカッコを挿入する
-        readedLines.Insert(InsertLineNumber + 1, "\t" + "{");
+        readedLines.Insert(InsertLineNumber + 1, "{");
 
         // Enumのメンバーを挿入する
         for (int i = 0; i < animals.Length; i++)
         {
-            readedLines.Insert(InsertLineNumber + 2 + i, "\t\t" + animals[i] + ",");
+            readedLines.Insert(InsertLineNumber + 2 + i, "\t" + animals[i] + ",");
         }
 
         // Enumの閉じカッコを挿入する
-        readedLines.Insert(InsertLineNumber + animals.Length + 2, "\t" + "}");
+        readedLines.Insert(InsertLineNumber + animals.Length + 2, "}");
 
         // Enumを挿入した状態のコードをファイルに書き込む
         File.WriteAllLines(insertFilePath, readedLines, Encoding.UTF8);

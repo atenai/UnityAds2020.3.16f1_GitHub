@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEditor;
 
 /// <summary>
-/// 配列からEnumを生成するスクリプト
+/// アニメーターからアニメーションクリップEnumを生成するスクリプト
 /// </summary>
 public class EditorAnimationEnumCreater : EditorWindow
 {
@@ -15,14 +15,14 @@ public class EditorAnimationEnumCreater : EditorWindow
     {
         //指定したクラス（このクラス）がウィンドウメニューの内容になる
         EditorAnimationEnumCreater window = GetWindow<EditorAnimationEnumCreater>();
-        window.titleContent = new GUIContent("Enum生成Window");
+        window.titleContent = new GUIContent("UnityChanアニメーションEnum作成Window");
     }
 
     void OnGUI()
     {
-        if (GUILayout.Button("Enum生成ボタン"))
+        if (GUILayout.Button("UnityChanアニメーションEnum作成ボタン"))
         {
-            Debug.Log("Enum生成");
+            Debug.Log("UnityChanアニメーションEnum作成");
             EnumCreater();
         }
     }
