@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Animations;
 
 /// <summary>
 /// アニメーターからアニメーションクリップEnumを生成するスクリプト
@@ -35,6 +36,8 @@ public class EditorAnimationEnumCreater : EditorWindow
 
     // Enumを挿入するスクリプトの行番号
     int insertLineNumber = 0;
+
+    bool isClipName = true;
 
     void EnumCreater()
     {
@@ -69,24 +72,54 @@ public class EditorAnimationEnumCreater : EditorWindow
         GameObject unitychan = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/unity-chan!/Unity-chan! Model/Prefabs/unitychan.prefab");
         Animator animator = unitychan.gameObject.GetComponent<Animator>();
 
-        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-        int animationClipLength = clips.Length;
-        for (int i = 0; i < animationClipLength; i++)
+        if (isClipName == false)
         {
-            Debug.Log("<color=green>clip.name :" + clips[i].name + "</color>");
-            nameList.Add(clips[i].name);
+            //アニメーションクリップ名を取得
+            AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
+            int animationClipLength = clips.Length;
+            for (int i = 0; i < animationClipLength; i++)
+            {
+                Debug.Log("<color=green>clip.name :" + clips[i].name + "</color>");
+                nameList.Add(clips[i].name);
+            }
+        }
+        else
+        {
+            //アニメーターステート名を取得
+            AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
+            foreach (AnimatorControllerLayer layer in animatorController.layers)
+            {
+                foreach (ChildAnimatorState state in layer.stateMachine.states)
+                {
+                    Debug.Log("<color=green>state.name :" + state.state.name + "</color>");
+                    nameList.Add(state.state.name);
+                }
+            }
         }
 
-        int nameListCount = nameList.Count;
+        List<string> resultList = new List<string>();
+        foreach (string name in nameList)
+        {
+            if (name.Contains("@") == true)
+            {
+
+            }
+            else
+            {
+                resultList.Add(name);
+            }
+        }
+
+        int resultListCount = resultList.Count;
 
         // Enumのメンバーを挿入する
-        for (int i = 0; i < nameListCount; i++)
+        for (int i = 0; i < resultListCount; i++)
         {
-            readedLines.Insert(InsertLineNumber + 2 + i, "\t\t" + nameList[i] + ",");
+            readedLines.Insert(InsertLineNumber + 2 + i, "\t\t" + resultList[i] + ",");
         }
 
         // Enumの閉じカッコを挿入する
-        readedLines.Insert(InsertLineNumber + nameListCount + 2, "\t" + "}");
+        readedLines.Insert(InsertLineNumber + resultListCount + 2, "\t" + "}");
 
         // Enumを挿入した状態のコードをファイルに書き込む
         File.WriteAllLines(insertFilePath, readedLines, Encoding.UTF8);
