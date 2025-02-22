@@ -14,9 +14,22 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader2" //Shader 直後の名前がマ�
       _Name8("Display 8", 3D) = "gray"{}
     }
 
-    SubShader
+    SubShader// SubShader の中には、レンダリングパスを定義します。複数の SubShader を列挙した場合、Unity は上から順番に試行して、実行可能な SubShader を適用します。
     {
-        Pass
+        Tags 
+        {
+            "Queue" = "Geometry"//Queue レンダリング順 (Background | Geometry | AlphaTest | Transparent | Overlay)
+            "RenderType" = "Opaque"//RenderType グループ分類 (Opaque | Transparent | TransparentCutout | Background | Overlay)
+            //DisableBatching バッチングの無効化 (True | False | LODFading)
+            //ForceNoShadowCasting シャドウ投影の無効化 (True | False)
+            //IgnoreProjector プロジェクタ投影の無効化 (True | False)
+            //CanUseSpriteAtlas スプライトアトラスの使用 (True | False)
+            //PreviewType インスペクタプレビュー (Sphere | Plane | Skybox)
+        }
+
+        LOD 200//LOD Level of Detail の閾値
+        
+        Pass// Pass の中には、レンダリング内容を定義します。複数の Pass を列挙した場合、レンダリングを複数回実行します。 そのほか、パスの再利用には UsePass、画面テクスチャの取得には GrabPass が用意されています。
         {
             CGPROGRAM
             #pragma vertex vert
