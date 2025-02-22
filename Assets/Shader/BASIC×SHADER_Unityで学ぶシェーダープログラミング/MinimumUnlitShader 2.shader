@@ -1,5 +1,5 @@
 //最小のシェーダーコードらしい
-Shader "BASIC*SHADER/Unlit/MinimumUnlitShader1" //Shader 直後の名前がマテリアルの「Shader」選択項目に反映されます。
+Shader "BASIC*SHADER/Unlit/MinimumUnlitShader2" //Shader 直後の名前がマテリアルの「Shader」選択項目に反映されます。
 {
     Properties //Properties の中には、Unity エディタからシェーダーコードに渡したい情報を定義します。定義したプロパティは、マテリアルのインスペクタから GUI で編集が可能です。 
     {
