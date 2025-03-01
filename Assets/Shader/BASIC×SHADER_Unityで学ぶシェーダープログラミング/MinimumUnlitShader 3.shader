@@ -49,7 +49,18 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader3" //Shader 直後の名前がマ�
             Blend SrcAlpha OneMinusSrcAlpha//Blend ブレンド係数 (One | Zero | SrcColor | SrcAlpha | DstColor | DstAlpha | OneMinusSrcColor | OneMinusSrcAlpha | OneMinusDstColor | OneMinusDstAlpha)
             BlendOp Add//BlendOp ブレンド操作 (Add | Sub | RevSub | Min | Max)
             //AlphaToMask Alpha to Coverage (On | Off)
-          
+
+            ColorMask RGB//ColorMask カラーチャンネルマスク ([RGBA] | 0)
+
+            Stencil 
+            {
+                Ref 1//Ref 比較値 (0–255)
+                //ReadMask 読込みビットマスク (0–255)
+                //WriteMask 書込みビットマスク (0–255)
+                Comp Always//Comp, CompFront, CompBack 比較関数 (Greater | GEqual | Less | LEqual | Equal | NotEqual | Always | Never)
+                Pass Replace//Pass, PassFront, PassBack Fail, FailFront, FailBack ZFail, ZFailFront, ZFailBack ステンシル操作 (Keep | Zero | Replace | IncrSat | DecrSat | Invert | IncrWrap | DecrWrap)
+            }
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
