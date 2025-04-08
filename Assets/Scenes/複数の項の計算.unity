@@ -164,9 +164,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 107385536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8049926afde792241ae016a4a3be45c0, type: 3}
+  m_Script: {fileID: 11500000, guid: df29ffbda287448498e72d2bfe199938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberCount: 6
+  plusWeight: 50
+  minusWeight: 20
+  multiplyWeight: 20
+  divideWeight: 10
 --- !u!1 &463123197
 GameObject:
   m_ObjectHideFlags: 1
