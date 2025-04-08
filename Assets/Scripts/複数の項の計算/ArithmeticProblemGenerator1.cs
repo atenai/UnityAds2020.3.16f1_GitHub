@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ArithmeticProblemGenerator1 : MonoBehaviour
 {
+	[SerializeField] int loopCount = 5;
 	[SerializeField] int numberCount = 3; // 使用する数値の数（2以上推奨）
 
 	// 四則演算の出現割合（最初の1回目のみ使用）
@@ -19,7 +20,7 @@ public class ArithmeticProblemGenerator1 : MonoBehaviour
 			return;
 		}
 
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < loopCount; i++)
 		{
 			GenerateValidProblem();
 		}

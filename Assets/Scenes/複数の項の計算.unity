@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1017160544c8b934897d12d759f6361c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberCount: 3
+  numberCount: 8
   plusWeight: 20
   minusWeight: 20
   multiplyWeight: 20
