@@ -84,6 +84,7 @@ public class RandomArithmeticGenerator3 : MonoBehaviour
 
 			object evalResult = EvaluateExpression(question);
 
+			//object型をdouble型にする
 			double evalDouble = Convert.ToDouble(evalResult);
 
 			//evalDoubleが0~9の値かつevalDouble ÷ 1 == 0 になるなら中身を実行する
