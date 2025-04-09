@@ -21,7 +21,7 @@ public class ArithmeticProblemGenerator2 : MonoBehaviour
 	{
 		if (項 < 2)
 		{
-			Debug.LogError("数値は最低2個必要です");
+			UnityEngine.Assertions.Assert.IsTrue(false, "項は最低2個必要です");
 			return;
 		}
 
@@ -68,17 +68,17 @@ public class ArithmeticProblemGenerator2 : MonoBehaviour
 		while (isValid == false)
 		{
 			// ランダムな0〜9の整数を生成
-			List<int> numbers = new List<int>();
+			List<int> 問題の数値リスト = new List<int>();
 			for (int i = 0; i < 項; i++)
 			{
-				numbers.Add(UnityEngine.Random.Range(0, 10));
+				問題の数値リスト.Add(UnityEngine.Random.Range(0, 10));
 			}
 
-			int 答え = numbers[0];
+			int 答え = 問題の数値リスト[0];
 			string 問題 = 答え.ToString();
 			isValid = true;
 
-			for (int i = 1; i < numbers.Count; i++)
+			for (int i = 1; i < 問題の数値リスト.Count; i++)
 			{
 				string 四則演算子;
 
@@ -91,11 +91,12 @@ public class ArithmeticProblemGenerator2 : MonoBehaviour
 					四則演算子 = 次の四則演算子リスト[UnityEngine.Random.Range(0, 次の四則演算子リスト.Count)];
 				}
 
-				int 現在の数値 = numbers[i];
+				int 現在の数値 = 問題の数値リスト[i];
 
 				// 割り算チェック（1回目のみ可能）
 				if (四則演算子 == "/" && (現在の数値 == 0 || 答え % 現在の数値 != 0))
 				{
+					// やり直し
 					isValid = false;
 					break;
 				}
@@ -117,10 +118,10 @@ public class ArithmeticProblemGenerator2 : MonoBehaviour
 						break;
 				}
 
-				// 結果が0以下または99以上の場合は無効
+				// 計算結果が0以下または99以上の場合は無効
 				if (計算数値 < 0 || 99 < 計算数値)
 				{
-					//やり直し
+					// やり直し
 					isValid = false;
 					break;
 				}
