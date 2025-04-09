@@ -164,14 +164,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 107385536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1017160544c8b934897d12d759f6361c, type: 3}
+  m_Script: {fileID: 11500000, guid: d6940fe15b1220046864d603214dfff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberCount: 8
-  plusWeight: 20
-  minusWeight: 20
-  multiplyWeight: 20
-  divideWeight: 40
+  "\u30EB\u30FC\u30D7\u56DE\u6570": 5
+  "\u9805": 3
+  "\u6700\u521D\u306E\u8DB3\u3057\u7B97\u91CD\u307F": 50
+  "\u6700\u521D\u306E\u5F15\u304D\u7B97\u91CD\u307F": 20
+  "\u6700\u521D\u306E\u639B\u3051\u7B97\u91CD\u307F": 20
+  "\u6700\u521D\u306E\u5272\u308A\u7B97\u91CD\u307F": 10
+  "\u6B21\u306E\u8DB3\u3057\u7B97\u91CD\u307F": 0
+  "\u6B21\u306E\u5F15\u304D\u7B97\u91CD\u307F": 100
 --- !u!1 &463123197
 GameObject:
   m_ObjectHideFlags: 1
