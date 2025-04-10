@@ -164,17 +164,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 107385536}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6940fe15b1220046864d603214dfff2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e9bb59c96d41fd4cac5d0604e15c136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "\u30EB\u30FC\u30D7\u56DE\u6570": 5
-  "\u9805": 3
-  "\u6700\u521D\u306E\u8DB3\u3057\u7B97\u91CD\u307F": 50
-  "\u6700\u521D\u306E\u5F15\u304D\u7B97\u91CD\u307F": 20
-  "\u6700\u521D\u306E\u639B\u3051\u7B97\u91CD\u307F": 20
-  "\u6700\u521D\u306E\u5272\u308A\u7B97\u91CD\u307F": 10
-  "\u6B21\u306E\u8DB3\u3057\u7B97\u91CD\u307F": 0
-  "\u6B21\u306E\u5F15\u304D\u7B97\u91CD\u307F": 100
+  numberRanges:
+  - min: 7
+    max: 9
+  - min: 2
+    max: 4
+  - min: 3
+    max: 8
+  plusWeight: 50
+  minusWeight: 20
+  multiplyWeight: 20
+  divideWeight: 10
 --- !u!1 &463123197
 GameObject:
   m_ObjectHideFlags: 1
