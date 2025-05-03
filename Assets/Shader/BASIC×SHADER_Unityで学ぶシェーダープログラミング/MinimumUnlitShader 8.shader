@@ -1,5 +1,5 @@
 //最小のシェーダーコードらしい
-Shader "BASIC*SHADER/Unlit/MinimumUnlitShader7" //Shader 直後の名前がマテリアルの「Shader」選択項目に反映されます。
+Shader "BASIC*SHADER/Unlit/MinimumUnlitShader8" //Shader 直後の名前がマテリアルの「Shader」選択項目に反映されます。
 {
     Properties //Properties の中には、Unity エディタからシェーダーコードに渡したい情報を定義します。定義したプロパティは、マテリアルのインスペクタから GUI で編集が可能です。 
     {
@@ -355,8 +355,36 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader7" //Shader 直後の名前がマ�
 			//関数 説明 
 			//tex1D(tex, s[, dsdx][, dsdy]) 1 次元の非射影。 
 			//tex1Dproj(tex, sq) 1 次元の射影。
+			//tex2D(tex, s[, dsdx][, dsdy]) 2 次元の非射影。 
+			//tex2Dproj(tex, sq) 2 次元の射影。 
+			//tex3D(tex, s[, dsdx][, dsdy]) 3 次元の非射影。 
+			//tex3Dproj(tex, sq) 3 次元の射影。 
+			//texCUBE(tex, s[, dsdx][, dsdy]) キューブマップの非射影。 
+			//texCUBEproj(tex, sq) キューブマップの射影。
+			//texRECT(tex, s[, dsdx][, dsdy]) 2 次元レクタングルの非射影。 
+			//texRECTproj(tex, sq) 2 次元レクタングルの射影。
 
-			
+			//導関数
+			//関数 説明 
+			//ddx(a) スクリーン空間の x 座標に対する a の偏微分。 
+			//ddy(a) スクリーン空間の y 座標に対する a の偏微分。
+
+			//その他 
+			//関数 説明 
+			//clip(x) x のいずれかの要素が 0 未満の場合に現在のピクセルを破棄します。
+
+			//ベクトル
+			//float2(x, y);
+
+			//長さ
+			//length(float2(x, y));
+
+			//正規化
+			//normalize(float2(x, y));
+
+			//合成
+			//float2(x1, y1) + float2(x2, y2);
+
 
 
             ENDCG
