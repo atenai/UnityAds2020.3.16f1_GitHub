@@ -1,5 +1,5 @@
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -10,6 +10,19 @@ public class SaveData
 	public PlayerStatus playerStatus = new PlayerStatus();
 	public EnemyStatus enemyStatus = new EnemyStatus();
 	private float playTime = 123.45f;
+
+	// 🔽 追加したセーブデータ構造
+	public List<PlayerStatus> partyMembers = new List<PlayerStatus>()
+	{
+		new PlayerStatus() { playerName = "Alice", hp = 120, mp = 60 },
+		new PlayerStatus() { playerName = "Bob", hp = 90, mp = 40 }
+	};
+
+	public Dictionary<string, EnemyStatus> enemyDictionary = new Dictionary<string, EnemyStatus>()
+	{
+		{ "goblin", new EnemyStatus() { enemyName = "Goblin", hp = 25, mp = 10, level = new Level() { number = 1 } } },
+		{ "boss",   new EnemyStatus() { enemyName = "Dragon", hp = 999, mp = 500, level = new Level() { number = 10 } } }
+	};
 }
 
 [Serializable]

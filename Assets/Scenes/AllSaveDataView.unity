@@ -545,6 +545,8 @@ GameObject:
   - component: {fileID: 682901558}
   - component: {fileID: 682901559}
   - component: {fileID: 682901560}
+  - component: {fileID: 682901561}
+  - component: {fileID: 682901562}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -626,9 +628,39 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682901554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 932fbb35a8fdfe44f86274186585dfb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
+  contentParent: {fileID: 458642596}
+  backButton: {fileID: 2047989399}
+--- !u!114 &682901561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682901554}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24dd1abd946a4334f873333b489f86e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
+  contentParent: {fileID: 458642596}
+  backButton: {fileID: 2047989399}
+--- !u!114 &682901562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682901554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5908a5ca0c96c498419b8d1fc51cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
