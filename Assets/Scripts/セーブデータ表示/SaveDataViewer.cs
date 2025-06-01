@@ -2,22 +2,6 @@ using System;
 using System.Reflection;
 using UnityEngine;
 
-[Serializable]
-public class PlayerStatus
-{
-	public int hp = 100;
-	public int mp = 50;
-}
-
-[Serializable]
-public class SaveData
-{
-	public int level = 10;
-	public string playerName = "勇者";
-	public PlayerStatus status = new PlayerStatus();
-	private float playTime = 123.45f;
-}
-
 public class SaveDataViewer : MonoBehaviour
 {
 	void Start()
