@@ -540,13 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682901556}
-  - component: {fileID: 682901555}
-  - component: {fileID: 682901557}
   - component: {fileID: 682901558}
-  - component: {fileID: 682901559}
-  - component: {fileID: 682901560}
-  - component: {fileID: 682901561}
-  - component: {fileID: 682901562}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -554,18 +548,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &682901555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c40213e360af4e940bfcc8033404fdc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &682901556
 Transform:
   m_ObjectHideFlags: 0
@@ -581,77 +563,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &682901557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21ff5b31c6a54e94790c2ec2987469db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &682901558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 581e29c8dc31f794aa96424b42778b99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
-  contentParent: {fileID: 458642596}
---- !u!114 &682901559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785517df9d96b0f4597fbd1e0d0bbf28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
-  contentParent: {fileID: 458642596}
---- !u!114 &682901560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932fbb35a8fdfe44f86274186585dfb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
-  contentParent: {fileID: 458642596}
-  backButton: {fileID: 2047989399}
---- !u!114 &682901561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901554}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24dd1abd946a4334f873333b489f86e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
-  contentParent: {fileID: 458642596}
-  backButton: {fileID: 2047989399}
---- !u!114 &682901562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -660,7 +572,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 682901554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5908a5ca0c96c498419b8d1fc51cc4, type: 3}
+  m_Script: {fileID: 11500000, guid: 581e29c8dc31f794aa96424b42778b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 2463453657778797587, guid: 970b9ef9e1166eb4395662bb84929df9, type: 3}
@@ -1314,7 +1226,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 682901559}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveDataDisplayUI1, Assembly-CSharp
         m_MethodName: BackToRoot
         m_Mode: 1

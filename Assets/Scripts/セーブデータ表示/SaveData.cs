@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+/// <summary>
+/// セーブデータ
+/// 消すな！！
+/// </summary>
 [Serializable]
 public class SaveData
 {
