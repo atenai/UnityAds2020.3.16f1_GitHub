@@ -74,6 +74,9 @@ public class SaveDataDisplayUI4 : MonoBehaviour
 		// 通常のフィールド/プロパティ
 		foreach (var field in type.GetFields(flags))
 		{
+			// 自動プロパティのバックフィールドを除外
+			if (field.Name.Contains("k__BackingField")) continue;
+
 			object value = field.GetValue(obj);
 			string label = $"{field.FieldType.Name} {field.Name} = {value}";
 			CreateButton(label, value);

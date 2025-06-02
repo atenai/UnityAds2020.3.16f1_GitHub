@@ -23,6 +23,8 @@ public class SaveData
 		{ "goblin", new EnemyStatus() { enemyName = "Goblin", hp = 25, mp = 10, level = new Level() { number = 1 } } },
 		{ "boss",   new EnemyStatus() { enemyName = "Dragon", hp = 999, mp = 500, level = new Level() { number = 10 } } }
 	};
+
+	public int Auto { get; set; } = 5;
 }
 
 [Serializable]
