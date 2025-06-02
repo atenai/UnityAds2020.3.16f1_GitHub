@@ -21,8 +21,8 @@ public class SaveDataDisplayUI : MonoBehaviour
 
 	void Start()
 	{
-		SaveData rootData = new SaveData();
-		ShowObject(rootData, clearHistory: true);
+		SaveData saveData = new SaveData();
+		ShowObject(saveData, clearHistory: true);
 		backButton.onClick.AddListener(GoBack);
 	}
 
@@ -35,7 +35,7 @@ public class SaveDataDisplayUI : MonoBehaviour
 
 		currentObject = obj;
 
-		if (clearHistory)
+		if (clearHistory == true)
 		{
 			historyStack.Clear();
 		}
@@ -132,16 +132,16 @@ public class SaveDataDisplayUI : MonoBehaviour
 			textComponent.text = label;
 		}
 
-		Button btn = buttonObj.GetComponent<Button>();
-		if (btn != null && value != null)
+		Button button = buttonObj.GetComponent<Button>();
+		if (value != null)
 		{
 			Type valType = value.GetType();
 			if (!IsSimpleType(valType))
 			{
-				btn.onClick.AddListener(() =>
+				button.onClick.AddListener(() =>
 				{
 					historyStack.Push(currentObject);
-					ShowObject(value);
+					ShowObject(value, clearHistory: false);
 				});
 			}
 		}
