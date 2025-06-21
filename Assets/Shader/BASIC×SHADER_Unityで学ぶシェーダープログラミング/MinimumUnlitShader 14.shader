@@ -466,6 +466,13 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader14" //Shader 直後の名前がマ�
 			//_LightColor0 を放射照度、_SpecularColor を反射係数として、鏡面反射光を計算します。ハイライトの大きさは _Shininess の値で変化します。
 			//fixed3 specular = _LightColor0.rgb * _SpecularColor.rgb * pow(RdotV, _Shininess);
 
+			//Phong シェーディング
+			// struct v2f 
+			// {
+			// 	float4 pos      : SV_POSITION;
+			// 	float3 normal   : NORMAL;
+			// 	float4 posWorld : TEXCOORD0;
+			// };
 
             ENDCG
         }
