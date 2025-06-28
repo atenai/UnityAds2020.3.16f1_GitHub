@@ -474,6 +474,16 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader14" //Shader 直後の名前がマ�
 			// 	float4 posWorld : TEXCOORD0;
 			// };
 
+			//ハーフベクトル
+			//ハーフベクトルは、光源ベクトルと視線ベクトルの中間に位置するため、ベクトルの合成と正規化で求めます。
+			//float3 halfDir = normalize(lightDir + viewDir);
+
+			//Blinn-Phong 反射
+			//反射強度の計算を、法線とハーフベクトルの内積に置き換えます。
+			//fixed3 specular = _LightColor0.rgb * _SpecularColor.rgb * pow(NdotH, _Shininess);
+
+
+			
             ENDCG
         }
 
