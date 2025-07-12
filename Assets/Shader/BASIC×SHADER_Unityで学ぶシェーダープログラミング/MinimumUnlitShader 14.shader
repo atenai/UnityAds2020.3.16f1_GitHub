@@ -481,6 +481,22 @@ Shader "BASIC*SHADER/Unlit/MinimumUnlitShader14" //Shader 直後の名前がマ�
 
 					//リムライティング
 					//fixed3 rim = _LightColor0.rgb * _RimColor.rgb * pow(1.0 - NdotV, _RimPower);
+
+					//輪郭線
+					// float4 vert(float4 vertex : POSITION, float3 normal : NORMAL) : SV_POSITION
+					// {
+					// 	vertex.xyz += normal * _OutlineWidth;
+					// 	return UnityObjectToClipPos(vertex);
+					// }
+
+					// fixed4 frag() : SV_TARGET
+					// {
+					// 	return _OutlineColor;
+					// }
+
+					//セル塗り
+					//fixed3 toon = lerp(_ToonLightColor.rgb, _ToonDarkColor.rgb, step(NdotL, 0));
+
 					
 					ENDCG
 				}
