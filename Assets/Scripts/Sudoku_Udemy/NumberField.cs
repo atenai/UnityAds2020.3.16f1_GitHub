@@ -38,13 +38,16 @@ public class NumberField : MonoBehaviour
 		}
 	}
 
-	void Start()
+	public void ButtonClick()
 	{
-
+		InputField.instance.ActivateInputField(this);
 	}
 
-	void Update()
+	public void ReceiveInput(int newValue)
 	{
-
+		value = newValue;
+		number.text = value != 0 ? value.ToString() : "";
+		//UPDATE RIDDLE
+		board.SetInputInRiddleGrid(x1, y1, value);
 	}
 }

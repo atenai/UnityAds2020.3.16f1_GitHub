@@ -8,12 +8,25 @@ public class Board : MonoBehaviour
 	string s;
 
 	int[,] riddleGrid = new int[9, 9];
+	//空白の数を設定する
 	int piecesToErase = 35;
 
 	/// 各3x3のセルの位置を取得
 	public Transform A1, A2, A3, B1, B2, B3, C1, C2, C3;
 	/// 各マスのプレハブ
 	public GameObject buttonPrefab;
+
+	//DIFFICULTY
+	public enum Difficulties
+	{
+		DEBUG,
+		EASY,
+		MEDIUM,
+		HARD,
+		INSANE,
+	}
+
+	public Difficulties difficulty;
 
 	void Start()
 	{
@@ -107,7 +120,8 @@ public class Board : MonoBehaviour
 		{
 			int value1 = Random.Range(1, 10);// 1から9のランダムな値を選択
 			int value2 = Random.Range(1, 10);// 1から9のランダムな値を選択
-											 //MIX 2 CELLS
+
+			//MIX 2 CELLS
 			MixTwoGridCells(ref grid, value1, value2);//↑で出した2つの値を入れ替えます
 		}
 		DebugGrid(ref grid);
@@ -176,6 +190,7 @@ public class Board : MonoBehaviour
 		//難易度設定（コメントのみ）
 		//ここは何も処理していませんが、難易度調整のための場所です。
 		//SET DIFFICULTY
+		SetDifficulty();
 
 		//マスを消して問題を作る
 		//piecesToErase回だけ、ランダムな位置を選び、そのマスがまだ消されていなければ（0でなければ）、そのマスを0（空欄）にします。
@@ -266,5 +281,65 @@ public class Board : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	public void SetInputInRiddleGrid(int x, int y, int value)
+	{
+		riddleGrid[x, y] = value;
+	}
+
+	void SetDifficulty()
+	{
+		switch (difficulty)
+		{
+			case Difficulties.DEBUG:
+				piecesToErase = 5; //デバッグ
+				break;
+			case Difficulties.EASY:
+				piecesToErase = 35; //簡単な数独
+				break;
+			case Difficulties.MEDIUM:
+				piecesToErase = 40; //中程度の数独
+				break;
+			case Difficulties.HARD:
+				piecesToErase = 45; //難しい数独
+				break;
+			case Difficulties.INSANE:
+				piecesToErase = 55; //非常に難しい数独
+				break;
+		}
+	}
+
+	public void CheckComplete()
+	{
+		if (CheckIfWon())
+		{
+			Debug.Log("You won!");
+		}
+		else
+		{
+			Debug.Log("Try Again!");
+		}
+	}
+
+	/// <summary>
+	/// 全てのセルが正しい値になっているかをチェックします。
+	/// 完成している場合はtrueを返し、まだ完成していない場合はfalseを返します。
+	/// もし完成していれば、ゲームクリアの処理を行います。
+	/// </summary>
+	/// <returns></returns>
+	bool CheckIfWon()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				if (riddleGrid[i, j] != solvedGrid[i, j])
+				{
+					return false; //もし1つでも違うセルがあれば、まだ完成していない
+				}
+			}
+		}
+		return true; //全てのセルが一致していれば、完成している
 	}
 }
