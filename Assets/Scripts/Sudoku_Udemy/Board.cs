@@ -16,6 +16,8 @@ public class Board : MonoBehaviour
 	/// 各マスのプレハブ
 	public GameObject buttonPrefab;
 
+	List<NumberField> fieldList = new List<NumberField>();
+
 	//DIFFICULTY
 	public enum Difficulties
 	{
@@ -27,6 +29,8 @@ public class Board : MonoBehaviour
 	}
 
 	public Difficulties difficulty;
+
+	int maxHint; //最大ヒント数
 
 	void Start()
 	{
@@ -78,7 +82,7 @@ public class Board : MonoBehaviour
 	}
 
 	/// <summary>
-	/// デバッグログにグリッドを出力します。
+	/// デバッグログにマス情報（グリッド）を出力します。
 	/// </summary>
 	/// <param name="grid"></param>
 	void DebugGrid(ref int[,] grid)
@@ -124,6 +128,7 @@ public class Board : MonoBehaviour
 			//MIX 2 CELLS
 			MixTwoGridCells(ref grid, value1, value2);//↑で出した2つの値を入れ替えます
 		}
+		//すべてのマスの答えをデバッグログに表示
 		DebugGrid(ref grid);
 	}
 
@@ -194,7 +199,7 @@ public class Board : MonoBehaviour
 
 		//マスを消して問題を作る
 		//piecesToErase回だけ、ランダムな位置を選び、そのマスがまだ消されていなければ（0でなければ）、そのマスを0（空欄）にします。
-		//→ これで「空欄のある数独の問題」ができます。
+		//これで「空欄のある数独の問題」ができます。
 		//ERASE FROM RIDDLE GRID
 		for (int i = 0; i < piecesToErase; i++)
 		{
@@ -210,8 +215,7 @@ public class Board : MonoBehaviour
 			riddleGrid[x1, y1] = 0;
 		}
 
-		//デバッグ表示
-		//DebugGrid(ref riddleGrid);で、作成した問題グリッドをデバッグ出力します。
+		//空白部分を0にした全てのマスの情報をデバッグログに表示します。
 		DebugGrid(ref riddleGrid);
 	}
 
@@ -230,6 +234,11 @@ public class Board : MonoBehaviour
 				NumberField numField = newButton.GetComponent<NumberField>();
 				numField.SetValues(i, j, riddleGrid[i, j], i + "," + j, this);
 				newButton.name = i + "," + j;
+
+				if (riddleGrid[i, j] == 0)
+				{
+					fieldList.Add(numField); //空白のマスをリストに追加
+				}
 
 				//PARENT THE BUTTON
 				//A1
@@ -288,28 +297,41 @@ public class Board : MonoBehaviour
 		riddleGrid[x, y] = value;
 	}
 
+	/// <summary>
+	/// 難易度に応じて空白の数を設定します。
+	/// </summary>
 	void SetDifficulty()
 	{
 		switch (difficulty)
 		{
 			case Difficulties.DEBUG:
 				piecesToErase = 5; //デバッグ
+				maxHint = 2; //デバッグ用のヒント数
 				break;
 			case Difficulties.EASY:
 				piecesToErase = 35; //簡単な数独
+				maxHint = 4; //簡単な数独のヒント数
 				break;
 			case Difficulties.MEDIUM:
 				piecesToErase = 40; //中程度の数独
+				maxHint = 6; //中程度の数独のヒント数
 				break;
 			case Difficulties.HARD:
 				piecesToErase = 45; //難しい数独
+				maxHint = 8; //難しい数独のヒント数
 				break;
 			case Difficulties.INSANE:
 				piecesToErase = 55; //非常に難しい数独
+				maxHint = 10; //非常に難しい数独のヒント数
 				break;
 		}
 	}
 
+	/// <summary>
+	/// ゲームのクリア状態をチェックします。
+	/// 全てのセルが正しい値になっているかを確認し、完成している場合はゲームクリアの処理を行います。
+	/// もし完成していれば、"You won!"とデバッグログに表示します
+	/// </summary>
 	public void CheckComplete()
 	{
 		if (CheckIfWon())
@@ -341,5 +363,26 @@ public class Board : MonoBehaviour
 			}
 		}
 		return true; //全てのセルが一致していれば、完成している
+	}
+
+	public void ShowHint()
+	{
+		if (fieldList.Count > 0 && maxHint > 0)
+		{
+			int randIndex = Random.Range(0, fieldList.Count);
+
+			maxHint--;
+			riddleGrid[fieldList[randIndex].GetX(), fieldList[randIndex].GetY()] = solvedGrid[fieldList[randIndex].GetX(), fieldList[randIndex].GetY()];
+
+			//ヒントを表示
+			fieldList[randIndex].SetHint(riddleGrid[fieldList[randIndex].GetX(), fieldList[randIndex].GetY()]);
+
+			fieldList.RemoveAt(randIndex); //ヒントを表示したらリストから削除
+		}
+		else
+		{
+			Debug.Log("No Hints Left");
+		}
+
 	}
 }

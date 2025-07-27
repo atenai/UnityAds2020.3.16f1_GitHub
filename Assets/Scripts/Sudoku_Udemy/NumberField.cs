@@ -50,4 +50,22 @@ public class NumberField : MonoBehaviour
 		//UPDATE RIDDLE
 		board.SetInputInRiddleGrid(x1, y1, value);
 	}
+
+	public int GetX()
+	{
+		return x1;
+	}
+
+	public int GetY()
+	{
+		return y1;
+	}
+
+	public void SetHint(int _value)
+	{
+		value = _value;
+		number.text = value.ToString();
+		number.color = Color.red;
+		GetComponentInParent<Button>().interactable = false; //ヒントを表示したらボタンを押せなくする
+	}
 }
