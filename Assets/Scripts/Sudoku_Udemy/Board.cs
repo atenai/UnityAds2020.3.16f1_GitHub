@@ -27,13 +27,17 @@ public class Board : MonoBehaviour
 		HARD,
 		INSANE,
 	}
+	public GameObject winPanel; //ゲームクリア時に表示するパネル
 
-	public Difficulties difficulty;
-
+	public Difficulties difficulty;//難易度
 	int maxHint; //最大ヒント数
 
 	void Start()
 	{
+		winPanel.SetActive(false); //ゲームクリアパネルを非表示にする
+
+		difficulty = (Board.Difficulties)Settings.difficulty;
+
 		InitGrid(ref solvedGrid);
 		//DebugGrid(ref solvedGrid);
 
@@ -337,6 +341,8 @@ public class Board : MonoBehaviour
 		if (CheckIfWon())
 		{
 			Debug.Log("You won!");
+			//ここにゲームクリアの処理を追加
+			winPanel.SetActive(true); //ゲームクリアパネルを表示
 		}
 		else
 		{
