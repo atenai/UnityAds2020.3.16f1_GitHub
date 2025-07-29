@@ -227,7 +227,8 @@ GameObject:
   - component: {fileID: 1275434852}
   - component: {fileID: 1275434850}
   - component: {fileID: 1275434853}
-  - component: {fileID: 1275434854}
+  - component: {fileID: 1275434855}
+  - component: {fileID: 1275434856}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -274,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8933ce5f7f3834d4984c178963d9d16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
+  difficulty: 4
   backtrackMethod: {fileID: 1275434850}
 --- !u!114 &1275434853
 MonoBehaviour:
@@ -283,13 +284,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275434849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82e8be872279a7e42851baab9a2d0b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 4
---- !u!114 &1275434854
+  difficulty: 3
+--- !u!114 &1275434855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,10 +299,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1275434849}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3ba737efc73803478b162b5b516122b, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ea3d9d0878bacd4ba10a77bc0f388db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 3
+  emptyCellTarget: 55
+  backtrackMethod: {fileID: 1275434850}
+--- !u!114 &1275434856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275434849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63376b1acd4f78244947b6b8b1d90258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyCellTarget: 55
+  backtrackMethod: {fileID: 1275434850}
 --- !u!1 &1279769201
 GameObject:
   m_ObjectHideFlags: 1

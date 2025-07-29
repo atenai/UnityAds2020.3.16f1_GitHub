@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 数独唯一解生成 : MonoBehaviour
+public class 数独ハイブリッド生成 : MonoBehaviour
 {
 	const int NUM = 9;
 	const int BLOCK = 3;
@@ -15,22 +15,25 @@ public class 数独唯一解生成 : MonoBehaviour
 
 	void Start()
 	{
-		// 1. 完全な数独を生成
+		// 1. 完全解を生成
 		GenerateSolvedGrid(ref solvedGrid);
 
-		// 2. 完全解をコピーして問題用にする
+		// 2. 完全解をコピーして問題用に
 		System.Array.Copy(solvedGrid, puzzleGrid, solvedGrid.Length);
 
-		// 3. マスを1つずつ消して唯一解を保つ
-		CreateUniquePuzzle();
+		// 3. ランダムに削除（高速）
+		RandomRemove();
 
-		Debug.Log("<color=green>唯一解の問題を生成しました！</color>");
+		// 4. 微調整フェーズ
+		EnsureUniqueSolution();
+
+		Debug.Log("<color=green>唯一解の問題を生成しました！（ハイブリッド方式）</color>");
 		DebugGrid(ref puzzleGrid);
 
 		backtrackMethod.StartBacktracking(puzzleGrid);
 	}
 
-	// 完全な数独を作成
+	// 完全な数独を生成
 	void GenerateSolvedGrid(ref int[,] grid)
 	{
 		FillGrid(0, 0, ref grid);
@@ -38,7 +41,7 @@ public class 数独唯一解生成 : MonoBehaviour
 
 	bool FillGrid(int row, int col, ref int[,] grid)
 	{
-		if (row == NUM) return true; // 完成
+		if (row == NUM) return true;
 
 		int nextRow = (col == NUM - 1) ? row + 1 : row;
 		int nextCol = (col + 1) % NUM;
@@ -51,45 +54,68 @@ public class 数独唯一解生成 : MonoBehaviour
 			if (IsValid(row, col, num, ref grid))
 			{
 				grid[row, col] = num;
-				if (FillGrid(nextRow, nextCol, ref grid))
-					return true;
+				if (FillGrid(nextRow, nextCol, ref grid)) return true;
 				grid[row, col] = 0;
 			}
 		}
 		return false;
 	}
 
-	void CreateUniquePuzzle()
+	// 高速：ランダム削除
+	void RandomRemove()
 	{
-		List<Vector2Int> cells = new List<Vector2Int>();
-		for (int r = 0; r < NUM; r++)
-			for (int c = 0; c < NUM; c++)
-				cells.Add(new Vector2Int(r, c));
-
-		Shuffle(cells);
-
 		int removed = 0;
-		foreach (var cell in cells)
+		while (removed < emptyCellTarget)
 		{
-			if (removed >= emptyCellTarget) break;
+			int r = Random.Range(0, NUM);
+			int c = Random.Range(0, NUM);
 
-			int backup = puzzleGrid[cell.x, cell.y];
-			puzzleGrid[cell.x, cell.y] = 0;
-
-			int solutions = CountSolutions((int[,])puzzleGrid.Clone());
-
-			if (solutions == 1)
+			if (puzzleGrid[r, c] != 0)
 			{
+				puzzleGrid[r, c] = 0;
 				removed++;
-			}
-			else
-			{
-				// 一意解でない → 元に戻す
-				puzzleGrid[cell.x, cell.y] = backup;
 			}
 		}
 	}
 
+	// 安全：唯一性保証の調整
+	void EnsureUniqueSolution()
+	{
+		bool unique = false;
+
+		while (!unique)
+		{
+			int solutions = CountSolutions((int[,])puzzleGrid.Clone());
+
+			if (solutions == 1)
+			{
+				unique = true;
+			}
+			else
+			{
+				Debug.Log("<color=yellow>調整中…（解：" + solutions + "個）</color>");
+				// ランダムに埋め戻す → 再試行
+				RevertOneCell();
+			}
+		}
+	}
+
+	// ランダムに空欄を1つ復活させる
+	void RevertOneCell()
+	{
+		List<Vector2Int> empties = new List<Vector2Int>();
+		for (int r = 0; r < NUM; r++)
+			for (int c = 0; c < NUM; c++)
+				if (puzzleGrid[r, c] == 0)
+					empties.Add(new Vector2Int(r, c));
+
+		if (empties.Count == 0) return;
+
+		Vector2Int cell = empties[Random.Range(0, empties.Count)];
+		puzzleGrid[cell.x, cell.y] = solvedGrid[cell.x, cell.y];
+	}
+
+	// 解の数を数える
 	int CountSolutions(int[,] board)
 	{
 		int count = 0;
@@ -99,7 +125,7 @@ public class 数独唯一解生成 : MonoBehaviour
 
 	bool Solve(int row, int col, int[,] board, ref int count)
 	{
-		if (count >= 2) return false; // 2個以上見つかったら打ち切り
+		if (count >= 2) return false;
 
 		if (row == NUM)
 		{
@@ -125,6 +151,7 @@ public class 数独唯一解生成 : MonoBehaviour
 		return false;
 	}
 
+	// 妥当性チェック
 	bool IsValid(int row, int col, int num, ref int[,] grid)
 	{
 		for (int i = 0; i < NUM; i++)
@@ -143,6 +170,7 @@ public class 数独唯一解生成 : MonoBehaviour
 		return true;
 	}
 
+	// シャッフル
 	void Shuffle<T>(List<T> list)
 	{
 		for (int i = 0; i < list.Count; i++)
@@ -154,6 +182,7 @@ public class 数独唯一解生成 : MonoBehaviour
 		}
 	}
 
+	// デバッグ表示
 	void DebugGrid(ref int[,] grid)
 	{
 		string s = "";

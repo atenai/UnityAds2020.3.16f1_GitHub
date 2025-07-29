@@ -207,12 +207,12 @@ public class 数独 : MonoBehaviour
 	/// ➃ここで数独の解を元に、難易度に応じて数独の問題を生成します。
 	/// 「完成された数独の解答」から、指定数だけランダムにマスを消して「問題」を作り、その内容をデバッグ表示するメソッドです。
 	/// </summary>
-	void CreateRiddleGrid(ref int[,] qGrid, ref int[,] aGrid)
+	void CreateRiddleGrid(ref int[,] aGrid, ref int[,] qGrid)
 	{
 		//解答グリッドのコピー
 		//まず、solvedGrid（完成された数独の解答）をriddleGrid（問題用グリッド）にコピーします。
 		//これでriddleGridは一旦「完成された状態」になります。
-		System.Array.Copy(qGrid, aGrid, qGrid.Length);
+		System.Array.Copy(aGrid, qGrid, aGrid.Length);
 
 
 		//難易度設定
@@ -226,13 +226,13 @@ public class 数独 : MonoBehaviour
 			int x1 = Random.Range(0, 9);
 			int y1 = Random.Range(0, 9);
 			//REROLL UNTIL WE FIND ONE WITHOUT A 0
-			while (aGrid[x1, y1] == 0)
+			while (qGrid[x1, y1] == 0)
 			{
 				x1 = Random.Range(0, 9);
 				y1 = Random.Range(0, 9);
 			}
 			//ONCE WE FOUND ONE WITH NO 0
-			aGrid[x1, y1] = 0;
+			qGrid[x1, y1] = 0;
 		}
 
 		//空白部分を0にした全てのマスの情報をデバッグログに表示します。
