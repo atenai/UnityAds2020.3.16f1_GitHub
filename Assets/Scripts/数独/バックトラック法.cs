@@ -11,7 +11,7 @@ public class バックトラック法 : MonoBehaviour
 	const int BLOCK = 3;
 
 	/* ボードの初期状態 */
-	// int[,] board = new int[NUM, NUM]
+	// int[,] originalBoard = new int[NUM, NUM]
 	// {
 	// 	{5, 3, 0, 0, 7, 0, 0, 0, 0},
 	// 	{6, 0, 0, 1, 9, 5, 0, 0, 0},
@@ -24,7 +24,7 @@ public class バックトラック法 : MonoBehaviour
 	// 	{0, 0, 0, 0, 8, 0, 0, 7, 9}
 	// };
 
-	int[,] board = new int[NUM, NUM]
+	int[,] originalBoard = new int[NUM, NUM]
 	{
 		{0,2,0,0,7,5,0,1,0},
 		{1,0,0,0,0,4,5,0,8},
@@ -40,8 +40,18 @@ public class バックトラック法 : MonoBehaviour
 	/* 見つかった答えの個数 */
 	int answer = 0;
 
+	int[,] copyBoard = new int[NUM, NUM];
+
 	void Start()
 	{
+		//StartBacktracking(originalBoard);
+	}
+
+	public int StartBacktracking(int[,] originalBoard)
+	{
+		copyBoard = originalBoard;
+		answer = 0;
+
 		for (int n = 1; n <= NUM; n++)
 		{
 			/* (0, 0)座標に数字nを入れてゲーム開始 */
@@ -49,6 +59,8 @@ public class バックトラック法 : MonoBehaviour
 		}
 
 		Debug.Log("回答数：" + answer);
+
+		return answer;
 	}
 
 	bool PutNumber(int i, int j, int number)
@@ -56,12 +68,12 @@ public class バックトラック法 : MonoBehaviour
 		bool fix_flag = false;
 
 		/* 最初から(i, j)座標にnumberが入っているかを確認 */
-		if (board[j, i] != number)
+		if (copyBoard[j, i] != number)
 		{
 			/* 入っているのがnumber以外の場合 */
 
 			/* number以外の数字が入っているかを確認 */
-			if (board[j, i] != 0)
+			if (copyBoard[j, i] != 0)
 			{
 				/* 異なる数字が入っている場合は入れられない */
 				return false;
@@ -75,7 +87,7 @@ public class バックトラック法 : MonoBehaviour
 			}
 
 			/* (i, j)座標にnumberを入れる */
-			board[j, i] = number;
+			copyBoard[j, i] = number;
 		}
 		else
 		{
@@ -125,7 +137,7 @@ public class バックトラック法 : MonoBehaviour
 		if (!fix_flag)
 		{
 			/* 入れた数字を取り除く */
-			board[j, i] = 0;
+			copyBoard[j, i] = 0;
 		}
 
 		return true;
@@ -138,7 +150,7 @@ public class バックトラック法 : MonoBehaviour
 		/* 第j行に同じ数字があるかどうかを判断 */
 		for (int x = 0; x < NUM; x++)
 		{
-			if (board[j, x] == number)
+			if (copyBoard[j, x] == number)
 			{
 				/* あった場合は入れられない */
 				return false;
@@ -148,7 +160,7 @@ public class バックトラック法 : MonoBehaviour
 		/* 第i行に同じ数字があるかどうかを判断 */
 		for (int y = 0; y < NUM; y++)
 		{
-			if (board[y, i] == number)
+			if (copyBoard[y, i] == number)
 			{
 				/* あった場合は入れられない */
 				return false;
@@ -165,7 +177,7 @@ public class バックトラック法 : MonoBehaviour
 		{
 			for (int x = 0; x < BLOCK; x++)
 			{
-				if (board[bj + y, bi + x] == number)
+				if (copyBoard[bj + y, bi + x] == number)
 				{
 					/* あった場合は入れられない */
 					return false;
@@ -188,7 +200,7 @@ public class バックトラック法 : MonoBehaviour
 			s += "|";
 			for (int i = 0; i < NUM; i++)
 			{
-				s += board[j, i].ToString();
+				s += copyBoard[j, i].ToString();
 			}
 			s += "|\n";
 		}

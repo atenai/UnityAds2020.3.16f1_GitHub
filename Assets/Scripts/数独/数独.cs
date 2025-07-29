@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class 数独 : MonoBehaviour
 {
-	int[,] solvedGrid = new int[9, 9];
-	int[,] riddleGrid = new int[9, 9];
+	int[,] questionGrid = new int[9, 9];
+	int[,] answerGrid = new int[9, 9];
 	//空白の数を設定する
-	int piecesToErase = 35;
+	int emptyMathCount = 35;
 
-	//DIFFICULTY
-	public enum Difficulties
+	//難易度
+	enum Difficulties
 	{
 		DEBUG,
 		EASY,
@@ -18,13 +18,17 @@ public class 数独 : MonoBehaviour
 		HARD,
 		INSANE,
 	}
-	public Difficulties difficulty;//難易度
+	[SerializeField] Difficulties difficulty;
+
+	[SerializeField] バックトラック法 backtrackMethod;
 
 	void Start()
 	{
-		CreateBaseGrid(ref solvedGrid);
-		CreateSolveGrid(ref solvedGrid);
-		CreateRiddleGrid(ref solvedGrid, ref riddleGrid);
+		CreateBaseGrid(ref questionGrid);
+		CreateSolveGrid(ref questionGrid);
+		CreateRiddleGrid(ref questionGrid, ref answerGrid);
+
+		backtrackMethod.StartBacktracking(answerGrid);
 	}
 
 	void CreateBaseGrid(ref int[,] grid)
@@ -100,7 +104,7 @@ public class 数独 : MonoBehaviour
 				{
 					x = i;
 					y = j;
-					Debug.Log(x + "," + y);
+					//Debug.Log(x + "," + y);//マスの位置
 					break;
 				}
 			}
@@ -203,39 +207,36 @@ public class 数独 : MonoBehaviour
 	/// ➃ここで数独の解を元に、難易度に応じて数独の問題を生成します。
 	/// 「完成された数独の解答」から、指定数だけランダムにマスを消して「問題」を作り、その内容をデバッグ表示するメソッドです。
 	/// </summary>
-	void CreateRiddleGrid(ref int[,] sGrid, ref int[,] rGrid)
+	void CreateRiddleGrid(ref int[,] qGrid, ref int[,] aGrid)
 	{
 		//解答グリッドのコピー
 		//まず、solvedGrid（完成された数独の解答）をriddleGrid（問題用グリッド）にコピーします。
 		//これでriddleGridは一旦「完成された状態」になります。
-		//COPY THE SOLVED GRID
-		System.Array.Copy(sGrid, rGrid, sGrid.Length);
+		System.Array.Copy(qGrid, aGrid, qGrid.Length);
 
 
 		//難易度設定
-		//SET DIFFICULTY
 		SetDifficulty();
 
 		//マスを消して問題を作る
-		//piecesToErase回だけ、ランダムな位置を選び、そのマスがまだ消されていなければ（0でなければ）、そのマスを0（空欄）にします。
+		//emptyMathCount回だけ、ランダムな位置を選び、そのマスがまだ消されていなければ（0でなければ）、そのマスを0（空欄）にします。
 		//これで「空欄のある数独の問題」ができます。
-		//ERASE FROM RIDDLE GRID
-		for (int i = 0; i < piecesToErase; i++)
+		for (int i = 0; i < emptyMathCount; i++)
 		{
 			int x1 = Random.Range(0, 9);
 			int y1 = Random.Range(0, 9);
 			//REROLL UNTIL WE FIND ONE WITHOUT A 0
-			while (rGrid[x1, y1] == 0)
+			while (aGrid[x1, y1] == 0)
 			{
 				x1 = Random.Range(0, 9);
 				y1 = Random.Range(0, 9);
 			}
 			//ONCE WE FOUND ONE WITH NO 0
-			rGrid[x1, y1] = 0;
+			aGrid[x1, y1] = 0;
 		}
 
 		//空白部分を0にした全てのマスの情報をデバッグログに表示します。
-		DebugGrid(ref riddleGrid);
+		DebugGrid(ref answerGrid);
 	}
 
 	/// <summary>
@@ -277,19 +278,19 @@ public class 数独 : MonoBehaviour
 		switch (difficulty)
 		{
 			case Difficulties.DEBUG:
-				piecesToErase = 5; //デバッグ
+				emptyMathCount = 5; //デバッグ
 				break;
 			case Difficulties.EASY:
-				piecesToErase = 35; //簡単な数独
+				emptyMathCount = 35; //簡単な数独
 				break;
 			case Difficulties.MEDIUM:
-				piecesToErase = 40; //中程度の数独
+				emptyMathCount = 40; //中程度の数独
 				break;
 			case Difficulties.HARD:
-				piecesToErase = 45; //難しい数独
+				emptyMathCount = 45; //難しい数独
 				break;
 			case Difficulties.INSANE:
-				piecesToErase = 55; //非常に難しい数独
+				emptyMathCount = 55; //非常に難しい数独
 				break;
 		}
 	}
