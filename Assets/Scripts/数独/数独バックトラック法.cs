@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class 数独バックトラック法 : MonoBehaviour
 {
-	int[,] questionGrid = new int[9, 9];
 	int[,] answerGrid = new int[9, 9];
+	int[,] questionGrid = new int[9, 9];
+
 	//空白の数を設定する
 	int emptyCellCount = 35;
 
@@ -22,14 +23,14 @@ public class 数独バックトラック法 : MonoBehaviour
 
 	void Start()
 	{
-		CreateBaseGrid(ref questionGrid);
-		CreateQuestionGrid(ref questionGrid);
-		CreateAnswerGrid(ref questionGrid, ref answerGrid);
+		CreateBaseGrid(ref answerGrid);
+		CreateAnswerGrid(ref answerGrid);
+		CreateQuestionGrid(ref answerGrid, ref questionGrid);
 
-		while (StartBacktracking(answerGrid) != 1)
+		while (StartBacktracking(questionGrid) != 1)
 		{
 			Debug.Log("<color=red>問題を再生成します。</color>");
-			CreateAnswerGrid(ref questionGrid, ref answerGrid);
+			CreateQuestionGrid(ref answerGrid, ref questionGrid);
 		}
 
 		Debug.Log("<color=blue>終了</color>");
@@ -87,7 +88,7 @@ public class 数独バックトラック法 : MonoBehaviour
 		return false;
 	}
 
-	bool CreateQuestionGrid(ref int[,] grid)
+	bool CreateAnswerGrid(ref int[,] grid)
 	{
 		DebugGrid(ref grid);
 
@@ -120,7 +121,7 @@ public class 数独バックトラック法 : MonoBehaviour
 			//SET A POSSIBLE VALUE
 			grid[x, y] = possibilities[p];
 			//BACK TRACK
-			if (CreateQuestionGrid(ref grid))
+			if (CreateAnswerGrid(ref grid))
 			{
 				return true; //もし解けたらtrueを返す
 			}
@@ -211,7 +212,7 @@ public class 数独バックトラック法 : MonoBehaviour
 	/// ➃ここで数独の解を元に、難易度に応じて数独の問題を生成します。
 	/// 「完成された数独の解答」から、指定数だけランダムにマスを消して「問題」を作り、その内容をデバッグ表示するメソッドです。
 	/// </summary>
-	void CreateAnswerGrid(ref int[,] qGrid, ref int[,] aGrid)
+	void CreateQuestionGrid(ref int[,] qGrid, ref int[,] aGrid)
 	{
 		//解答グリッドのコピー
 		//まず、solvedGrid（完成された数独の解答）をriddleGrid（問題用グリッド）にコピーします。
@@ -240,7 +241,7 @@ public class 数独バックトラック法 : MonoBehaviour
 		}
 
 		//空白部分を0にした全てのマスの情報をデバッグログに表示します。
-		DebugGrid(ref answerGrid);
+		DebugGrid(ref questionGrid);
 	}
 
 	/// <summary>

@@ -24,11 +24,11 @@ public class 数独 : MonoBehaviour
 
 	void Start()
 	{
-		CreateBaseGrid(ref questionGrid);
-		CreateSolveGrid(ref questionGrid);
-		CreateRiddleGrid(ref questionGrid, ref answerGrid);
+		CreateBaseGrid(ref answerGrid);
+		CreateSolveGrid(ref answerGrid);
+		CreateRiddleGrid(ref answerGrid, ref questionGrid);
 
-		backtrackMethod.StartBacktracking(answerGrid);
+		backtrackMethod.StartBacktracking(questionGrid);
 	}
 
 	void CreateBaseGrid(ref int[,] grid)
@@ -236,7 +236,7 @@ public class 数独 : MonoBehaviour
 		}
 
 		//空白部分を0にした全てのマスの情報をデバッグログに表示します。
-		DebugGrid(ref answerGrid);
+		DebugGrid(ref questionGrid);
 	}
 
 	/// <summary>
