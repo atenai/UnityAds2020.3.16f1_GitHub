@@ -53,8 +53,8 @@ public class 数独唯一解生成1 : MonoBehaviour
 
 		CreateCell();
 		// 縦（行）と横（列）を持つデータの表形式の配列
-		// 型名 変数名[縦（行）][横（列）] = {要素0,0の値, 要素0,1の値, …},
-		//                             {要素1,0の値, 要素1,1の値, …},
+		// 型名 変数名[縦][横] = {要素0,0の値, 要素0,1の値, …},
+		//                      {要素1,0の値, 要素1,1の値, …},
 		PrintGrid(originalBoard);
 		Debug.Log("<color=green>オリジナルボード(3,0) : " + originalBoard[3, 0] + " = 8</color>");
 	}
@@ -278,7 +278,7 @@ public class 数独唯一解生成1 : MonoBehaviour
 
 	// 各マスのプレハブ
 	[SerializeField] GameObject buttonPrefab;
-	[SerializeField] Transform panel;
+	[SerializeField] Transform parrentTransform;
 
 	void CreateCell()
 	{
@@ -287,8 +287,8 @@ public class 数独唯一解生成1 : MonoBehaviour
 			for (int c = 0; c < Cell_Number; c++)
 			{
 				GameObject newButton = Instantiate(buttonPrefab);
-				newButton.transform.SetParent(panel, false);
-				newButton.GetComponent<CellButton>().Initialize(r, c, questionGrid[r, c]);
+				newButton.transform.SetParent(parrentTransform, false);
+				newButton.GetComponent<CellButton>().Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
 			}
 		}
 	}

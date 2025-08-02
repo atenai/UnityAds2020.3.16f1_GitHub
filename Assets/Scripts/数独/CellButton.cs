@@ -13,13 +13,16 @@ public class CellButton : MonoBehaviour
 	public int Row { get => row; set => row = value; }
 	private int col;
 	public int Col { get => col; set => col = value; }
+	private int answerNumber;
+	public int AnswerNumber { get => answerNumber; set => answerNumber = value; }
 	private int questionNumber;
 	public int QuestionNumber { get => questionNumber; set => questionNumber = value; }
 
-	public void Initialize(int row, int col, int questionNumber)
+	public void Initialize(int row, int col, int answerNumber, int questionNumber)
 	{
 		this.row = row;
 		this.col = col;
+		this.answerNumber = answerNumber;
 		this.questionNumber = questionNumber;
 
 		buttonText.text = questionNumber == 0 ? "" : questionNumber.ToString();
@@ -28,7 +31,8 @@ public class CellButton : MonoBehaviour
 
 	private void OnClick()
 	{
-		Debug.Log($"ボタン番号 ({row}, {col}) がクリックされました!");
-		Debug.Log($"質問番号: {questionNumber}");
+		Debug.Log($"ボタン (縦:{row}, 横:{col}) がクリックされました!");
+		Debug.Log($"答え番号: {answerNumber}");
+		Debug.Log($"問題番号: {questionNumber}");
 	}
 }
