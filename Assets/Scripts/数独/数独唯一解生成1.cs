@@ -15,7 +15,7 @@ public class 数独唯一解生成1 : MonoBehaviour
 	/// </summary>
 	int[,] questionGrid = new int[Cell_Number, Cell_Number];
 
-	[SerializeField] int emptyCellTarget = 40; // 難易度に応じた空白数
+	[SerializeField] int emptyCell = 55; // 難易度に応じた空白数
 
 	[SerializeField] バックトラック法 backtrackMethod;
 
@@ -149,13 +149,12 @@ public class 数独唯一解生成1 : MonoBehaviour
 		int removed = 0;
 		foreach (var cell in cells)
 		{
-			if (removed >= emptyCellTarget) { break; }
+			if (emptyCell <= removed) { break; }
 
 			int backup = questionGrid[cell.x, cell.y];
 			questionGrid[cell.x, cell.y] = 0;
 
 			int solutions = CountSolutions((int[,])questionGrid.Clone());
-
 			if (solutions == 1)
 			{
 				removed++;
@@ -171,34 +170,61 @@ public class 数独唯一解生成1 : MonoBehaviour
 	int CountSolutions(int[,] board)
 	{
 		int count = 0;
-		Solve(0, 0, board, ref count);
+		CheckSolutions(0, 0, board, ref count);
 		return count;
 	}
 
-	bool Solve(int row, int col, int[,] board, ref int count)
+	/// <summary>
+	/// 解の数をチェックします。
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	/// <param name="board"></param>
+	/// <param name="count"></param>
+	/// <returns></returns>
+	bool CheckSolutions(int row, int col, int[,] board, ref int count)
 	{
-		if (count >= 2) { return false; } // 2個以上見つかったら打ち切り
+		if (count >= 2)
+		{
+			//解が2個以上見つかったら打ち切り
+			return false;
+		}
 
+		//
 		if (row == Cell_Number)
 		{
+			//解が見つかったら+1
 			count++;
 			return true;
 		}
 
+		//次のセル位置を計算
+		//Rowは（横）（行）
+		//Colは（縦）（列）
+		// (row,col) の進み方
+		// (0,0) → (0,1) → (0,2) ... → (0,8)
+		//  ↓
+		// (1,0) → (1,1) → (1,2) ... → (1,8)
+		//  ↓
+		// (2,0) → ...
+		// colが最後の列なら次の行へ、そうでなければ次の列へ進む
 		int nextRow = (col == Cell_Number - 1) ? row + 1 : row;
+		// 次の列は、現在の列が最後の列なら0に戻り、そうでなければ+1
 		int nextCol = (col + 1) % Cell_Number;
 
+		//既に数字があるならスキップ
 		if (board[row, col] != 0)
 		{
-			return Solve(nextRow, nextCol, board, ref count);
+			return CheckSolutions(nextRow, nextCol, board, ref count);
 		}
 
+		//候補を1～9まで順に試す
 		for (int num = 1; num <= Cell_Number; num++)
 		{
-			if (CheckNumber(row, col, num, ref board))
+			if (CheckNumber(row, col, num, ref board) == true)
 			{
 				board[row, col] = num;
-				Solve(nextRow, nextCol, board, ref count);
+				CheckSolutions(nextRow, nextCol, board, ref count);
 				board[row, col] = 0;
 			}
 		}
