@@ -21,6 +21,19 @@ public class 数独唯一解生成1 : MonoBehaviour
 
 	[SerializeField] バックトラック法 backtrackMethod;
 
+	int[,] originalBoard = new int[9, 9]
+	{
+		{5, 3, 0, 0, 7, 0, 0, 0, 0},
+		{6, 0, 0, 1, 9, 5, 0, 0, 0},
+		{0, 9, 8, 0, 0, 0, 0, 6, 0},
+		{8, 0, 0, 0, 6, 0, 0, 0, 3},
+		{4, 0, 0, 8, 0, 3, 0, 0, 1},
+		{7, 0, 0, 0, 2, 0, 0, 0, 6},
+		{0, 6, 0, 0, 0, 0, 2, 8, 0},
+		{0, 0, 0, 4, 1, 9, 0, 0, 5},
+		{0, 0, 0, 0, 8, 0, 0, 7, 9}
+	};
+
 	void Start()
 	{
 		// 1. 完全な数独を生成
@@ -39,6 +52,11 @@ public class 数独唯一解生成1 : MonoBehaviour
 		backtrackMethod.StartBacktracking(questionGrid);
 
 		CreateCell();
+		// 縦（行）と横（列）を持つデータの表形式の配列
+		// 型名 変数名[縦（行）][横（列）] = {要素0,0の値, 要素0,1の値, …},
+		//                             {要素1,0の値, 要素1,1の値, …},
+		PrintGrid(originalBoard);
+		Debug.Log("<color=green>オリジナルボード(3,0) : " + originalBoard[3, 0] + " = 8</color>");
 	}
 
 	/// <summary>
@@ -270,13 +288,27 @@ public class 数独唯一解生成1 : MonoBehaviour
 			{
 				GameObject newButton = Instantiate(buttonPrefab);
 				newButton.transform.SetParent(panel, false);
-				newButton.GetComponentInChildren<TextMeshProUGUI>().text = questionGrid[r, c] == 0 ? "" : questionGrid[r, c].ToString();
-				newButton.GetComponent<Button>().onClick.AddListener(() =>
-				{
-					// ボタンがクリックされたときの処理
-					Debug.Log($"ボタン番号 (" + r + ", " + c + ") がクリックされました!");
-				});
+				newButton.GetComponent<CellButton>().Initialize(r, c, questionGrid[r, c]);
 			}
 		}
+	}
+
+	// 2次元配列をログ出力する
+	public static void PrintGrid(int[,] grid)
+	{
+		int rows = grid.GetLength(0);
+		int cols = grid.GetLength(1);
+
+		string output = "";
+		for (int r = 0; r < rows; r++)
+		{
+			for (int c = 0; c < cols; c++)
+			{
+				output += grid[r, c] + " ";
+			}
+			output += "\n"; // 行ごとに改行
+		}
+
+		Debug.Log(output);
 	}
 }
