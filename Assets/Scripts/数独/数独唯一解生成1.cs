@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class 数独唯一解生成1 : MonoBehaviour
 {
@@ -35,6 +37,8 @@ public class 数独唯一解生成1 : MonoBehaviour
 		DebugGrid(ref questionGrid);
 
 		backtrackMethod.StartBacktracking(questionGrid);
+
+		CreateCell();
 	}
 
 	/// <summary>
@@ -252,5 +256,27 @@ public class 数独唯一解生成1 : MonoBehaviour
 			s = s + "\n";
 		}
 		Debug.Log(s);
+	}
+
+	// 各マスのプレハブ
+	[SerializeField] GameObject buttonPrefab;
+	[SerializeField] Transform panel;
+
+	void CreateCell()
+	{
+		for (int r = 0; r < Cell_Number; r++)
+		{
+			for (int c = 0; c < Cell_Number; c++)
+			{
+				GameObject newButton = Instantiate(buttonPrefab);
+				newButton.transform.SetParent(panel, false);
+				newButton.GetComponentInChildren<TextMeshProUGUI>().text = questionGrid[r, c] == 0 ? "" : questionGrid[r, c].ToString();
+				newButton.GetComponent<Button>().onClick.AddListener(() =>
+				{
+					// ボタンがクリックされたときの処理
+					Debug.Log($"ボタン番号 (" + r + ", " + c + ") がクリックされました!");
+				});
+			}
+		}
 	}
 }
