@@ -282,15 +282,22 @@ public class 数独唯一解生成1 : MonoBehaviour
 
 	void CreateCell()
 	{
+		CellButton[,] cells = new CellButton[Cell_Number, Cell_Number];
+
 		for (int r = 0; r < Cell_Number; r++)
 		{
 			for (int c = 0; c < Cell_Number; c++)
 			{
 				GameObject newButton = Instantiate(buttonPrefab);
 				newButton.transform.SetParent(parrentTransform, false);
-				newButton.GetComponent<CellButton>().Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
+				//newButton.GetComponent<CellButton>().Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
+				CellButton cellButton = newButton.GetComponent<CellButton>();
+				cellButton.Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
+				cells[r, c] = cellButton;
 			}
 		}
+
+		SudokuGameManager.Instance.RegisterCells(cells);
 	}
 
 	// 2次元配列をログ出力する

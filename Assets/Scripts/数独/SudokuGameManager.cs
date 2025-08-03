@@ -6,9 +6,19 @@ public class SudokuGameManager : MonoBehaviour
 
 	[SerializeField] private CellButton selectedCell;
 
+	// 生成されたセルを管理
+	private CellButton[,] allCells;
+	private int cellCount;
+
 	void Awake()
 	{
 		Instance = this;
+	}
+
+	public void RegisterCells(CellButton[,] cells)
+	{
+		allCells = cells;
+		cellCount = allCells.GetLength(0) * allCells.GetLength(1);
 	}
 
 	public void SelectCell(CellButton cell)
@@ -41,11 +51,30 @@ public class SudokuGameManager : MonoBehaviour
 			Debug.Log($"({cell.Row},{cell.Col}) 正解！");
 			cell.SetColor(Color.green);
 			cell.LockCell(); // 正解したらそのセルをロック
+
+			// クリア判定
+			if (IsGameClear() == true)
+			{
+				Debug.Log("<color=yellow>ゲームクリア！</color>");
+			}
 		}
 		else
 		{
 			Debug.Log($"({cell.Row},{cell.Col}) 不正解！");
 			cell.SetColor(Color.red);
 		}
+	}
+
+	// 全セルがロックされているかチェック
+	private bool IsGameClear()
+	{
+		foreach (var cell in allCells)
+		{
+			if (cell.GetComponent<UnityEngine.UI.Button>().interactable)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }
