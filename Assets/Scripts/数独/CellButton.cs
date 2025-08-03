@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Net.NetworkInformation;
 
 public class CellButton : MonoBehaviour
 {
+	[SerializeField] private Image image;
 	[SerializeField] private Button button;
 	[SerializeField] private TextMeshProUGUI buttonText;
-	[SerializeField] private Image image;
 
 	private int row;
 	public int Row { get => row; set => row = value; }
@@ -19,6 +18,13 @@ public class CellButton : MonoBehaviour
 	private int questionNumber;
 	public int QuestionNumber { get => questionNumber; set => questionNumber = value; }
 
+	/// <summary>
+	/// 初期化処理
+	/// </summary>
+	/// <param name="row"></param>
+	/// <param name="col"></param>
+	/// <param name="answerNumber"></param>
+	/// <param name="questionNumber"></param>
 	public void Initialize(int row, int col, int answerNumber, int questionNumber)
 	{
 		this.row = row;
