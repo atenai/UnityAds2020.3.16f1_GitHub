@@ -85,7 +85,7 @@ public class SudokuGameManager : MonoBehaviour
 		else
 		{
 			//Debug.Log($"({cell.Row},{cell.Col}) 不正解！");
-			Debug.Log("<color=orange>不正解！</color>");
+			Debug.Log("<color=red>不正解！</color>");
 			cell.SetColor(Color.red);
 			missCount++;
 			if (missNumber <= missCount)

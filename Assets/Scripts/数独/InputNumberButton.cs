@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NumberButton : MonoBehaviour
+public class InputNumberButton : MonoBehaviour
 {
 	[SerializeField] private Button button;
 	[SerializeField] int number;
