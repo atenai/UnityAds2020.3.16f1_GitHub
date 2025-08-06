@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MemoButton : MonoBehaviour
 {
 	[SerializeField] Button button;
+	[SerializeField] SudokuGameManager sudokuGameManager;
 
 	void Start()
 	{
@@ -14,7 +15,7 @@ public class MemoButton : MonoBehaviour
 
 	void OnClick()
 	{
-
+		sudokuGameManager.ToggleMemoMode();
 	}
 
 	void Update()

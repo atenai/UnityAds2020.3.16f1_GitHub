@@ -1860,6 +1860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1007265622}
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!1 &1017346344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,6 +2316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedCurrentCell: {fileID: 0}
+  memoMode: 0
 --- !u!1 &1279769201
 GameObject:
   m_ObjectHideFlags: 1

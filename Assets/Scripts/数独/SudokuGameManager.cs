@@ -23,6 +23,11 @@ public class SudokuGameManager : MonoBehaviour
 	private int missCount = 0;
 
 	/// <summary>
+	/// メモモード切替
+	/// </summary>
+	public bool memoMode = false;
+
+	/// <summary>
 	/// マスを登録
 	/// </summary>
 	/// <param name="cells"></param>
@@ -37,8 +42,16 @@ public class SudokuGameManager : MonoBehaviour
 	/// <param name="cell"></param>
 	public void SelectCell(CellButton cell)
 	{
+		// 以前のセルのハイライトを解除
+		if (selectedCurrentCell != null && selectedCurrentCell != cell)
+		{
+			selectedCurrentCell.Highlight(false);
+		}
+
+		// 新しく選んだセルを選択状態に
 		selectedCurrentCell = cell;
-		cell.SetColor(Color.blue);
+		//cell.SetColor(Color.blue);
+		selectedCurrentCell.Highlight(true); // ✅ 選択セルをハイライト
 		Debug.Log($"ボタン (縦:{selectedCurrentCell.Row}, 横:{selectedCurrentCell.Col}) がクリックされました!");
 		Debug.Log($"答え番号: {selectedCurrentCell.AnswerNumber}");
 		Debug.Log($"問題番号: {selectedCurrentCell.QuestionNumber}");
@@ -53,10 +66,26 @@ public class SudokuGameManager : MonoBehaviour
 	{
 		if (selectedCurrentCell != null)
 		{
+			if (memoMode)
+			{
+				selectedCurrentCell.ToggleMemo(number); // メモを切り替え
+			}
+			else
+			{
+				selectedCurrentCell.SetNumber(number);  // 本数字入力
+			}
+
 			//4
 			selectedCurrentCell.SetNumber(number);
+			selectedCurrentCell.Highlight(false); // ✅ 入力後ハイライト解除
 			selectedCurrentCell = null;
 		}
+	}
+
+	public void ToggleMemoMode()
+	{
+		memoMode = !memoMode;
+		Debug.Log("メモモード: " + (memoMode ? "ON" : "OFF"));
 	}
 
 	//7
@@ -67,6 +96,7 @@ public class SudokuGameManager : MonoBehaviour
 	/// <param name="number"></param>
 	public void CheckAnswer(CellButton cell, int number)
 	{
+		if (memoMode) return; // メモ入力時は判定しない
 		if (number == 0) return; // 入力を消した場合は判定しない
 
 		if (cell.AnswerNumber == number)
