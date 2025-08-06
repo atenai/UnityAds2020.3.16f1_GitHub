@@ -18,6 +18,8 @@ public class CellButton : MonoBehaviour
 	private int questionNumber;
 	public int QuestionNumber { get => questionNumber; set => questionNumber = value; }
 
+	private SudokuGameManager sudokuGameManager;
+
 	/// <summary>
 	/// 初期化処理
 	/// </summary>
@@ -25,12 +27,13 @@ public class CellButton : MonoBehaviour
 	/// <param name="col"></param>
 	/// <param name="answerNumber"></param>
 	/// <param name="questionNumber"></param>
-	public void Initialize(int row, int col, int answerNumber, int questionNumber)
+	public void Initialize(int row, int col, int answerNumber, int questionNumber, SudokuGameManager sudokuGameManager)
 	{
 		this.row = row;
 		this.col = col;
 		this.answerNumber = answerNumber;
 		this.questionNumber = questionNumber;
+		this.sudokuGameManager = sudokuGameManager;
 
 		buttonText.text = questionNumber == 0 ? "" : questionNumber.ToString();
 		button.onClick.AddListener(OnClick);
@@ -45,10 +48,14 @@ public class CellButton : MonoBehaviour
 		Debug.Log($"答え番号: {answerNumber}");
 		Debug.Log($"問題番号: {questionNumber}");
 
-		SudokuGameManager.Instance.SelectCell(this);
+		sudokuGameManager.SelectCell(this);
 	}
 
 	//5
+	/// <summary>
+	/// 入力番号
+	/// </summary>
+	/// <param name="number"></param>
 	public void SetNumber(int number)
 	{
 		Debug.Log("<color=green>入力番号 : " + number + "</color>");
@@ -56,10 +63,13 @@ public class CellButton : MonoBehaviour
 
 		//6
 		// 入力ごとに判定する
-		SudokuGameManager.Instance.CheckAnswer(this, number);
+		sudokuGameManager.CheckAnswer(this, number);
 	}
 
-	// 背景色を変更する（正解・不正解）
+	/// <summary>
+	/// セルの背景色を変更する（正解・不正解・選択状態）
+	/// </summary>
+	/// <param name="color"></param>
 	public void SetColor(Color color)
 	{
 		if (image != null)
@@ -68,7 +78,9 @@ public class CellButton : MonoBehaviour
 		}
 	}
 
-	// 正解時にセルを固定
+	/// <summary>
+	/// 正解時にセルを固定
+	/// </summary>
 	public void LockCell()
 	{
 		button.interactable = false;

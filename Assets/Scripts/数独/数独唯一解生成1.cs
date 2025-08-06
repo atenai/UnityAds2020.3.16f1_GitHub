@@ -52,11 +52,12 @@ public class 数独唯一解生成1 : MonoBehaviour
 		backtrackMethod.StartBacktracking(questionGrid);
 
 		CreateCell();
+
 		// 縦（行）と横（列）を持つデータの表形式の配列
 		// 型名 変数名[縦][横] = {要素0,0の値, 要素0,1の値, …},
 		//                      {要素1,0の値, 要素1,1の値, …},
-		PrintGrid(originalBoard);
-		Debug.Log("<color=green>オリジナルボード(3,0) : " + originalBoard[3, 0] + " = 8</color>");
+		//PrintGrid(originalBoard);
+		//Debug.Log("<color=green>オリジナルボード(3,0) : " + originalBoard[3, 0] + " = 8</color>");
 	}
 
 	/// <summary>
@@ -189,6 +190,11 @@ public class 数独唯一解生成1 : MonoBehaviour
 		}
 	}
 
+	/// <summary>
+	/// 解の数
+	/// </summary>
+	/// <param name="board"></param>
+	/// <returns></returns>
 	int CountSolutions(int[,] board)
 	{
 		int count = 0;
@@ -279,6 +285,7 @@ public class 数独唯一解生成1 : MonoBehaviour
 	// 各マスのプレハブ
 	[SerializeField] GameObject buttonPrefab;
 	[SerializeField] Transform parrentTransform;
+	[SerializeField] SudokuGameManager sudokuGameManager;
 
 	void CreateCell()
 	{
@@ -290,14 +297,13 @@ public class 数独唯一解生成1 : MonoBehaviour
 			{
 				GameObject newButton = Instantiate(buttonPrefab);
 				newButton.transform.SetParent(parrentTransform, false);
-				//newButton.GetComponent<CellButton>().Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
 				CellButton cellButton = newButton.GetComponent<CellButton>();
-				cellButton.Initialize(r, c, answerGrid[r, c], questionGrid[r, c]);
+				cellButton.Initialize(r, c, answerGrid[r, c], questionGrid[r, c], sudokuGameManager);
 				cells[r, c] = cellButton;
 			}
 		}
 
-		SudokuGameManager.Instance.RegisterCells(cells);
+		sudokuGameManager.RegisterCells(cells);
 	}
 
 	// 2次元配列をログ出力する

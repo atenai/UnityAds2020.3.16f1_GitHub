@@ -269,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 114845554}
   number: 2
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &114845554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 467345694}
   number: 7
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &467345694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,6 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 698482036}
   number: 1
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &698482036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,6 +1193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 733709613}
   number: 3
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &733709613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,6 +1330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 882742559}
   number: 8
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &882742559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,6 +1669,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1063595150}
   number: 6
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &1063595150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,10 +1952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce03f95200879da4781f0c5d531482ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyCell: 55
+  emptyCell: 5
   backtrackMethod: {fileID: 1275434850}
   buttonPrefab: {fileID: 1006129044220685062, guid: 8d05f4575a1e1b640a1d57fdbd7c7423, type: 3}
   parrentTransform: {fileID: 1017346345}
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &1275434859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,6 +2069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1295115459}
   number: 9
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &1295115459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2332,6 +2340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1386048566}
   number: 5
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &1386048566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2736,6 +2745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1621519797}
   number: 4
+  sudokuGameManager: {fileID: 1275434859}
 --- !u!114 &1621519797
 MonoBehaviour:
   m_ObjectHideFlags: 0

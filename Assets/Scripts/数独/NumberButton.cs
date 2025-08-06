@@ -5,6 +5,7 @@ public class NumberButton : MonoBehaviour
 {
 	[SerializeField] private Button button;
 	[SerializeField] int number;
+	[SerializeField] SudokuGameManager sudokuGameManager;
 
 	void Start()
 	{
@@ -12,9 +13,9 @@ public class NumberButton : MonoBehaviour
 	}
 
 	//1
-	public void OnClick()
+	private void OnClick()
 	{
 		//2
-		SudokuGameManager.Instance.InputNumber(number);
+		sudokuGameManager.InputNumber(number);
 	}
 }
