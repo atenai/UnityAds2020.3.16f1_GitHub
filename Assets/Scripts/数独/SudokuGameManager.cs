@@ -66,17 +66,17 @@ public class SudokuGameManager : MonoBehaviour
 	{
 		if (selectedCurrentCell != null)
 		{
-			if (memoMode)
+			if (memoMode && number != 0)
 			{
 				selectedCurrentCell.ToggleMemo(number); // メモを切り替え
 			}
 			else
 			{
+				//4
 				selectedCurrentCell.SetNumber(number);  // 本数字入力
 			}
 
-			//4
-			selectedCurrentCell.SetNumber(number);
+
 			selectedCurrentCell.Highlight(false); // ✅ 入力後ハイライト解除
 			selectedCurrentCell = null;
 		}
