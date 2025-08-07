@@ -94,18 +94,6 @@ public class CellButton : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// セルの背景色を変更する（正解・不正解・選択状態）
-	/// </summary>
-	/// <param name="color"></param>
-	public void SetColor(Color color)
-	{
-		if (image != null)
-		{
-			image.color = color;
-		}
-	}
-
 	public void Highlight(bool isSelected)
 	{
 		if (isSelected)
@@ -115,6 +103,18 @@ public class CellButton : MonoBehaviour
 		else
 		{
 			SetColor(Color.white); // ✅ 通常時は白
+		}
+	}
+
+	/// <summary>
+	/// セルの背景色を変更する（正解・不正解・選択状態）
+	/// </summary>
+	/// <param name="color"></param>
+	public void SetColor(Color color)
+	{
+		if (image != null)
+		{
+			image.color = color;
 		}
 	}
 

@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 704575540}
   - component: {fileID: 704575542}
   m_Layer: 5
-  m_Name: Image_InputNumber
+  m_Name: Image_Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2023,10 +2023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b970e2a9b4278b4eab0b1c2da631da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1007265622}
   sudokuGameManager: {fileID: 1275434859}
-  buttonLabel: {fileID: 390474129}
-  buttonImage: {fileID: 1007265623}
+  image: {fileID: 1007265623}
+  button: {fileID: 1007265622}
+  text: {fileID: 390474129}
 --- !u!1 &1017346344
 GameObject:
   m_ObjectHideFlags: 0

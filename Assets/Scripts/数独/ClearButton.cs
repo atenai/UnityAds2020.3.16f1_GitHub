@@ -16,4 +16,3 @@ public class ClearButton : MonoBehaviour
 		sudokuGameManager.InputNumber(0); // ✅ number=0で選択セルをクリア
 	}
 }
-
