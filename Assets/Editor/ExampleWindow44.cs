@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// ModifierKeysChangedイベントのサンプル
+/// </summary>
 public class ExampleWindow44 : EditorWindow
 {
 	[MenuItem("Kashiwabara/Example44")]

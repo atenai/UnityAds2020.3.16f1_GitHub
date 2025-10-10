@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// 時間制御クラスのサンプル
+/// </summary>
 public class ExampleWindow45 : EditorWindow
 {
 	TimeControl timeControl;

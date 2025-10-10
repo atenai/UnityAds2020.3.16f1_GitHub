@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// 新しいAnimationClipアセットを作成する
+/// </summary>
 public class ExampleWindow46 : EditorWindow
 {
 	[MenuItem("Kashiwabara/Example46")]
