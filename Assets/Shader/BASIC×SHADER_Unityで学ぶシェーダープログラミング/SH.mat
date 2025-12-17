@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cook-Torrance
-  m_Shader: {fileID: 4800000, guid: cdb7867b8e3709d4ea1cad7570ee9a28, type: 3}
+  m_Name: SH
+  m_Shader: {fileID: 4800000, guid: f0895da98977f2444826168356258c67, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

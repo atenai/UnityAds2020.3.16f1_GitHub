@@ -1,4 +1,4 @@
-Shader "BASICxSHADER/Lighting/Cook-Torrance"
+Shader "BASICxSHADER/Lighting/SH"
 {
 	Properties
 	{
@@ -119,8 +119,24 @@ Shader "BASICxSHADER/Lighting/Cook-Torrance"
 				half F = _Metallic + (1.0 - _Metallic) * pow(1.0 - LdotH, 5.0);
 				fixed3 specular = saturate((D * G * F) / (4.0 * NdotV)) * PI * _LightColor0.rgb;
 
+				//SH
+				half3 sh;
+				half4 nSHA = half4(normal, 1.0);
+				sh.r = dot(unity_SHAr, nSHA);
+				sh.g = dot(unity_SHAg, nSHA);
+				sh.b = dot(unity_SHAb, nSHA);
+				half4 nSHB = normal.xyzz * normal.yzzx;
+				sh.r += dot(unity_SHBr, nSHB);
+				sh.g += dot(unity_SHBg, nSHB);
+				sh.b += dot(unity_SHBb, nSHB);
+				half nSHC = normal.x * normal.x - normal.y * normal.y;
+				sh += unity_SHC.rgb * nSHC;
+				#if defined(UNITY_COLORSPACE_GAMMA)
+					sh = pow(sh, 1.0 / 2.2);
+				#endif
+				fixed3 ambient = sh * _Albedo.rgb;
+
 				//Color
-				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.rgb * _Albedo.rgb;
 				fixed4 color = fixed4(ambient + lerp(diffuse, specular, _Metallic), 1.0);
 
 				//環境光
