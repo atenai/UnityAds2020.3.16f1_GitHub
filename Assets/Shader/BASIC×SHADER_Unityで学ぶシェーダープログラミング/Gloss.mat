@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Color
-  m_Shader: {fileID: 4800000, guid: 1a2add4b159ecbe4d9316aa3c75c6453, type: 3}
+  m_Name: Gloss
+  m_Shader: {fileID: 4800000, guid: fc9c3828d7d3ef04aaf36bdb14cf7213, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -71,6 +71,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecTex:
+        m_Texture: {fileID: 2800000, guid: b52633f41d322a34780eaac9ece900b0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -87,6 +91,7 @@ Material:
     - _Name3: 0.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Shininess: 20
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
