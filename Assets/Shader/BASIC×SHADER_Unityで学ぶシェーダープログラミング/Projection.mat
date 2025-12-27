@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Reflection
-  m_Shader: {fileID: 4800000, guid: a50498359922e4246b11d363eeccf1a4, type: 3}
+  m_Name: Projection
+  m_Shader: {fileID: 4800000, guid: 2e7083f9ddbd4eb4db3f9cb84c8308e8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -96,6 +96,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Intensity: 0.5
     - _Metallic: 0
     - _Mode: 0
     - _Name1: 1
