@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: monoTone
+  m_Name: MonoTone
   m_Shader: {fileID: 4800000, guid: 1163167996372e345862ffb729a50304, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

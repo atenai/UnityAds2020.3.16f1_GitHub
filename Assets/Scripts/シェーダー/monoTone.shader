@@ -1,4 +1,4 @@
-Shader "Custom/monoTone"
+Shader "Custom/MonoTone"
 {
 	// ===== インスペクターから設定できる値 =====
 	Properties
