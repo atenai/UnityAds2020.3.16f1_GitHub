@@ -1,24 +1,22 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 public class NewBehaviourScript1
 {
-    [MenuItem("Assets/CreateExampleAssetsMaterial1")]
-    static void CreateExampleAssets()
-    {
-        var material = new Material(Shader.Find("Standard"));
+	[MenuItem("Assets/CreateExampleAssetsMaterial1")]
+	static void CreateExampleAssets()
+	{
+		var material = new Material(Shader.Find("Standard"));
 
-        var instanceID = material.GetInstanceID();
+		var instanceID = material.GetInstanceID();
 
-        //マテリアルのアイコンを取得
-        var icon = AssetPreview.GetMiniThumbnail(material);
+		//マテリアルのアイコンを取得
+		var icon = AssetPreview.GetMiniThumbnail(material);
 
-        var endNameEditAction = ScriptableObject.CreateInstance<DoCreateMaterialAsset>();
+		var endNameEditAction = ScriptableObject.CreateInstance<DoCreateMaterialAsset>();
 
-        ProjectWindowUtil.StartNameEditingIfProjectWindowExists(instanceID, endNameEditAction, "New Material.mat", icon, "");
-    }
+		ProjectWindowUtil.StartNameEditingIfProjectWindowExists(instanceID, endNameEditAction, "New Material.mat", icon, "");
+	}
 }
 #endif
