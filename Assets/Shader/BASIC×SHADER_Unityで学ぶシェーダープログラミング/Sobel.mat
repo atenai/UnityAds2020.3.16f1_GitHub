@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sobel
-  m_Shader: {fileID: 4800000, guid: d44a9517f9351c94a8f6ae5ff0919a65, type: 3}
+  m_Shader: {fileID: 4800000, guid: 088e873c7cf3b6a40a246bdfec2874a5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
