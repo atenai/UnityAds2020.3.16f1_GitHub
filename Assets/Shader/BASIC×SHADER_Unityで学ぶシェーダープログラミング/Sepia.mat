@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Original
-  m_Shader: {fileID: 4800000, guid: e8177beada5beff43ad6f7f4ca464821, type: 3}
+  m_Name: Sepia
+  m_Shader: {fileID: 4800000, guid: 016955953616e394d9686f1b9d643d72, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

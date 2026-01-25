@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Original
-  m_Shader: {fileID: 4800000, guid: e8177beada5beff43ad6f7f4ca464821, type: 3}
+  m_Name: Mosaic
+  m_Shader: {fileID: 4800000, guid: 688dd41d15a0881478a65a6e6e299130, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -110,6 +110,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Threshold: 0.5
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
