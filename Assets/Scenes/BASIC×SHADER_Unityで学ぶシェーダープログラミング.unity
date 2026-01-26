@@ -202,8 +202,9 @@ GameObject:
   - component: {fileID: 172370793}
   - component: {fileID: 172370792}
   - component: {fileID: 172370791}
+  - component: {fileID: 172370795}
   m_Layer: 0
-  m_Name: Sphere_Default
+  m_Name: Sphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,6 +296,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172370795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172370790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7fc774e4ed8264cb9ad915cbab58a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  changeInterval: 1.5
 --- !u!1 &177033811
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +325,7 @@ GameObject:
   - component: {fileID: 177033816}
   - component: {fileID: 177033817}
   - component: {fileID: 177033818}
+  - component: {fileID: 177033819}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -438,12 +454,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177033811}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: add664681892ac8478072cdb0f8add40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 12a8fe0a4228080468b7f806c4fd8bdc, type: 2}
+  material: {fileID: 2100000, guid: 7311d6872c6d0884695d11a04142b292, type: 2}
+--- !u!114 &177033819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177033811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd182cd736c88af4d8ee83587d325ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 9f6dd993f9c451b409784281671e73b3, type: 2}
 --- !u!1 &334922865
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +831,7 @@ GameObject:
   - component: {fileID: 1404025605}
   - component: {fileID: 1404025604}
   m_Layer: 0
-  m_Name: Sphere (2)
+  m_Name: Sphere4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1056,8 +1085,9 @@ GameObject:
   - component: {fileID: 1925125320}
   - component: {fileID: 1925125319}
   - component: {fileID: 1925125318}
+  - component: {fileID: 1925125322}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Sphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,6 +1179,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925125322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925125317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7fc774e4ed8264cb9ad915cbab58a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  changeInterval: 1.5
 --- !u!1 &1937557050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,8 +1205,9 @@ GameObject:
   - component: {fileID: 1937557053}
   - component: {fileID: 1937557052}
   - component: {fileID: 1937557051}
+  - component: {fileID: 1937557055}
   m_Layer: 0
-  m_Name: Sphere (1)
+  m_Name: Sphere3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1254,6 +1299,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1937557055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937557050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7fc774e4ed8264cb9ad915cbab58a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  changeInterval: 1.5
 --- !u!1 &2006919454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,9 +1519,9 @@ SceneRoots:
   - {fileID: 172370794}
   - {fileID: 563671933}
   - {fileID: 1925125321}
-  - {fileID: 686041976}
   - {fileID: 1937557054}
   - {fileID: 1404025607}
+  - {fileID: 686041976}
   - {fileID: 2070235348}
   - {fileID: 114895585}
   - {fileID: 334922869}
