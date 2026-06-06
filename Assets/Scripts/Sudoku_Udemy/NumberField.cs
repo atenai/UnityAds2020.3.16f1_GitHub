@@ -40,7 +40,7 @@ public class NumberField : MonoBehaviour
 
 	public void ButtonClick()
 	{
-		InputField.instance.ActivateInputField(this);
+		Sudoku_Udemy.InputField.instance.ActivateInputField(this);
 	}
 
 	public void ReceiveInput(int newValue)
