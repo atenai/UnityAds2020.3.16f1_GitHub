@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ラムダ式1 : MonoBehaviour
+public class ラムダ式 : MonoBehaviour
 {
     [SerializeField] Button button1;
     [SerializeField] Button button1_5;
