@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Objects_ラムダ式;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +17,15 @@ public class ラムダ式2 : MonoBehaviour
     [SerializeField] Button button4;
     [SerializeField] Button button5;
     [SerializeField] Button button6;
+    [SerializeField] Button button7;
+    [SerializeField] Button button8;
+    [SerializeField] Button button9;
+    [SerializeField] Button button10;
+    [SerializeField] Button button11;
+    [SerializeField] Button button12;
+    [SerializeField] Button button13;
+    [SerializeField] Button button14;
+    [SerializeField] Button button15;
 
     void Start()
     {
@@ -24,6 +35,15 @@ public class ラムダ式2 : MonoBehaviour
         button4.onClick.AddListener(Button4_Click);
         button5.onClick.AddListener(Button5_Click);
         button6.onClick.AddListener(Button6_Click);
+        button7.onClick.AddListener(Button7_Click);
+        button8.onClick.AddListener(Button8_Click);
+        button9.onClick.AddListener(Button9_Click);
+        button10.onClick.AddListener(Button10_Click);
+        button11.onClick.AddListener(Button11_Click);
+        button12.onClick.AddListener(Button12_Click);
+        button13.onClick.AddListener(Button13_Click);
+        button14.onClick.AddListener(Button14_Click);
+        button15.onClick.AddListener(Button15_Click);
     }
 
     void Button1_Click()
@@ -328,5 +348,282 @@ public class ラムダ式2 : MonoBehaviour
                 Debug.Log($"result1 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
             }
         }
+    }
+
+    void Button7_Click()
+    {
+        var sales = new List<Sale>();
+        sales.Add(new Sale(10, 1, 100, Convert.ToDateTime("2020/12/12 12:12:12")));
+        sales.Add(new Sale(11, 1, 100, Convert.ToDateTime("2020/12/13 12:12:12")));
+        sales.Add(new Sale(12, 1, 101, Convert.ToDateTime("2020/12/12 12:12:12")));
+
+        var saleItems = new List<SaleItem>();
+        saleItems.Add(new SaleItem(10, 1, 1, 2));
+        saleItems.Add(new SaleItem(10, 1, 2, 3));
+        saleItems.Add(new SaleItem(11, 1, 1, 5));
+        saleItems.Add(new SaleItem(12, 1, 1, 4));
+        saleItems.Add(new SaleItem(12, 1, 3, 1));
+
+        var result1 = from a in sales
+                      join b in saleItems
+                      on a.SaleId equals b.SaleId
+                      select new
+                      {
+                          a.SaleId,
+                          a.CustomerId,
+                          a.SaleDataTime,
+                          b.ProductId,
+                          b.SaleCount,
+                      };
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 {val}");
+        }
+
+        Debug.Log("---------------------------------");
+        var result2 = from a in sales
+                      join b in saleItems
+                      on a.SaleId equals b.SaleId
+                      where a.SaleId >= 11
+                      orderby b.SaleCount descending
+                      select new
+                      {
+                          a.SaleId,
+                          a.CustomerId,
+                          a.SaleDataTime,
+                          b.ProductId,
+                          b.SaleCount,
+                      };
+        foreach (var val in result2)
+        {
+            Debug.Log($"result2 {val}");
+        }
+    }
+
+    void Button8_Click()
+    {
+        var sales = new List<Sale>();
+        sales.Add(new Sale(10, 1, 100, Convert.ToDateTime("2020/12/12 12:12:12")));
+        sales.Add(new Sale(11, 1, 100, Convert.ToDateTime("2020/12/13 12:12:12")));
+        sales.Add(new Sale(12, 1, 101, Convert.ToDateTime("2020/12/12 12:12:12")));
+
+        var saleItems = new List<SaleItem>();
+        saleItems.Add(new SaleItem(10, 1, 1, 2));
+        saleItems.Add(new SaleItem(10, 99, 2, 3));
+        saleItems.Add(new SaleItem(11, 1, 1, 5));
+        saleItems.Add(new SaleItem(12, 1, 1, 4));
+        saleItems.Add(new SaleItem(12, 1, 3, 1));
+
+        var result1 = from a in sales
+                      join b in saleItems
+                      on new { a.SaleId, a.No }
+                      equals new { b.SaleId, b.No }
+                      select new
+                      {
+                          a.SaleId,
+                          a.CustomerId,
+                          a.SaleDataTime,
+                          b.ProductId,
+                          b.SaleCount,
+                      };
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 {val}");
+        }
+    }
+
+    void Button9_Click()
+    {
+        var sales = new List<Sale>();
+        sales.Add(new Sale(10, 1, 100, Convert.ToDateTime("2020/12/12 12:12:12")));
+        sales.Add(new Sale(11, 1, 100, Convert.ToDateTime("2020/12/13 12:12:12")));
+        sales.Add(new Sale(12, 1, 101, Convert.ToDateTime("2020/12/12 12:12:12")));
+
+        var saleItems = new List<SaleItem>();
+        saleItems.Add(new SaleItem(10, 1, 1, 2));
+        saleItems.Add(new SaleItem(10, 1, 2, 3));
+        //saleItems.Add(new SaleItem(11, 1, 1, 5));
+        saleItems.Add(new SaleItem(12, 1, 1, 4));
+        saleItems.Add(new SaleItem(12, 1, 3, 1));
+
+        var result1 = from a in sales
+                      join b in saleItems
+                      on a.SaleId equals b.SaleId into bb
+                      from b in bb.DefaultIfEmpty()
+                      select new
+                      {
+                          a.SaleId,
+                          a.CustomerId,
+                          a.SaleDataTime,
+                          ProductId = b?.ProductId ?? -1,
+                          SaleCount = b?.SaleCount ?? 0,
+                      };
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 {val}");
+        }
+    }
+
+    void Button10_Click()
+    {
+        var nums = new List<int> { 1, 4, 8, 5, 10, 3, 2 };
+
+        var result1 = nums.Where(x => x >= 5);
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        var result2 = nums.Where(x => x >= 5);
+        var result2_1 = result2.Where(x => x < 10);
+        Debug.Log("result2 = " + string.Join(",", result2_1));
+
+        //平均
+        var result3 = nums.Average();
+        Debug.Log("result3 = " + string.Join(",", result3));
+
+        //最大、最小、合計
+        var result4 = nums.Max();
+        Debug.Log("result4 = " + string.Join(",", result4));
+        var result5 = nums.Min();
+        Debug.Log("result5 = " + string.Join(",", result5));
+        var result6 = nums.Sum();
+        Debug.Log("result6 = " + string.Join(",", result6));
+    }
+
+    void Button11_Click()
+    {
+        string[] values = { "A", "BB", "CCC", "DDDD", "EEEEE", "ABC" };
+
+        //文字数の平均
+        var result1 = values.Average(x => x.Length);
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        var result2 = values.Max(x => x.Length);
+        Debug.Log("result2 = " + string.Join(",", result2));
+
+        var result3 = values.Min(x => x.Length);
+        Debug.Log("result3 = " + string.Join(",", result3));
+
+        var result4 = values.Sum(x => x.Length);
+        Debug.Log("result4 = " + string.Join(",", result4));
+    }
+
+    void Button12_Click()
+    {
+        var ints = new List<int> { 10, 20 };
+        object[] objects = { 1, 2, "AA", "BB", ints };
+
+        var result1 = objects.OfType<int>();
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        var result2 = objects.OfType<string>();
+        Debug.Log("result2 = " + string.Join(",", result2));
+
+        var result3 = objects.OfType<List<int>>();
+        foreach (var val in result3)
+        {
+            Debug.Log("result3 = " + string.Join(",", val));
+        }
+
+        var result4 = objects.OfType<int>().Where(x => x >= 2);
+        Debug.Log("result4 = " + string.Join(",", result4));
+    }
+
+    void Button13_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        // var i = from p in products
+        //         where p.Price == 200
+        //         select p;
+
+        var result1 = products.Where(x => x.Price == 200);
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+
+        // var i = from p in products
+        //         where p.Price == 200
+        //         select p.ProductId;
+
+        var result2 = products.Where(x => x.Price == 200)
+                                .Select(p => p.ProductId);
+        foreach (var val in result2)
+        {
+            Debug.Log($"result2 id ={val}");
+        }
+
+        var result3 = products.Where(x => x.Price == 200)
+                                .Select(p => new { p.ProductId, p.ProductName });
+        foreach (var val in result3)
+        {
+            Debug.Log($"result3 id ={val}");
+        }
+    }
+
+    void Button14_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        var result1 = products.Where(x => x.Price == 200).ToList();
+        //foreach（次の2つは同じ意味）
+        //書き方1
+        result1.ForEach(p => Debug.Log($"result1 id ={p.ProductId} name ={p.ProductName} price ={p.Price}"));
+        //書き方2
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+
+        var dtos = new List<ProductDto>();
+        //foreach（次の2つは同じ意味）
+        //書き方1
+        result1.ForEach(x => dtos.Add(new ProductDto(x)));
+        //書き方2
+        foreach (var val in result1)
+        {
+            dtos.Add(new ProductDto(val));
+        }
+    }
+
+    void Button15_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        //配列に変換
+        var arry = products.Where(x => x.Price == 200).ToArray();
+        //リストに変換
+        var list = products.Where(x => x.Price == 200).ToList();
+        //任意の型に変換
+        var dtos = products.ConvertAll(x => new ProductDto(x));
+
+        //クエリ式からListに変換
+        var result1 = (from p in products
+                       where p.Price == 200
+                       select p).ToList();
+
+        var nums = new int[] { 1, 3, 5 };
+        var strings = nums.ToList().ConvertAll(x => x.ToString());
+
+        //intのリストをstringのリストに変換
+        var nums2 = new List<int> { 1, 3, 4 };
+        var strings2 = nums2.ConvertAll(x => x.ToString());
+
+        var result2 = (from n in nums
+                       select n.ToString()).ToList();
     }
 }

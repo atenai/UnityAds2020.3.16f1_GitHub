@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,5 +51,35 @@ namespace Objects_ラムダ式
         {
             return $"entity productId={ProductId} productName={ProductName}";
         }
+    }
+
+    public sealed class Sale
+    {
+        public Sale(int saleId, int no, int customerId, DateTime saleDataTime)
+        {
+            SaleId = saleId;
+            CustomerId = customerId;
+            SaleDataTime = saleDataTime;
+            No = no;
+        }
+        public int SaleId { get; }
+        public int No { get; }
+        public int CustomerId { get; }
+        public DateTime SaleDataTime { get; }
+    }
+
+    public sealed class SaleItem
+    {
+        public SaleItem(int saleId, int no, int productId, int saleCount)
+        {
+            SaleId = saleId;
+            No = no;
+            ProductId = productId;
+            SaleCount = saleCount;
+        }
+        public int SaleId { get; }
+        public int No { get; }
+        public int ProductId { get; }
+        public int SaleCount { get; }
     }
 }
