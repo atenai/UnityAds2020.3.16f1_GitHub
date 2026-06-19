@@ -82,7 +82,7 @@ public class ラムダ式2 : MonoBehaviour
     void Button3_Click()
     {
         var products = new List<Objects_ラムダ式.Product>();
-        products.Add(new Objects_ラムダ式.Product(10, "p10A", 200));
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
         products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
         products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
         products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
@@ -93,6 +93,84 @@ public class ラムダ式2 : MonoBehaviour
         foreach (var val in result1)
         {
             Debug.Log($"result1 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //大文字小文字関係なし　小文字化
+        var result2 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      select p;
+        foreach (var val in result2)
+        {
+            Debug.Log($"result2 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //昇順
+        var result3 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price
+                      select p;
+        foreach (var val in result3)
+        {
+            Debug.Log($"result3 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //降順
+        var result4 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending
+                      select p;
+        foreach (var val in result4)
+        {
+            Debug.Log($"result4 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //並び替え複数
+        var result5 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending, p.ProductId descending
+                      select p;
+        foreach (var val in result5)
+        {
+            Debug.Log($"result5 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //必要な項目だけ取得
+        var result6 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending, p.ProductId descending
+                      select p.ProductName;
+        foreach (var val in result6)
+        {
+            Debug.Log($"result6 name={val}");
+        }
+
+        //必要な項目だけ取得　複数パターン
+        var result7 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending, p.ProductId descending
+                      select new { p.ProductName, p.Price };
+        foreach (var val in result7)
+        {
+            Debug.Log($"result7 name={val.ProductName} price={val.Price}");
+        }
+
+        //別名を付ける(新しく作成した変数に入れる)
+        var result8 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending, p.ProductId
+                      select new { p.ProductName, AAA = p.Price };
+        foreach (var val in result8)
+        {
+            Debug.Log($"result8 name={val.ProductName} price={val.AAA}");
+        }
+
+        var result9 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      orderby p.Price descending, p.ProductId
+                      select new { p.ProductName, Price = p.Price + "円" };
+        foreach (var val in result9)
+        {
+            Debug.Log($"result9 name={val.ProductName} price={val.Price}");
         }
     }
 }
