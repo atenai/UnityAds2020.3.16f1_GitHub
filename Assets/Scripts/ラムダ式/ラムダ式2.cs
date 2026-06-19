@@ -4,17 +4,26 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// クエリ構文とラムダ式
+/// </summary>
 public class ラムダ式2 : MonoBehaviour
 {
     [SerializeField] Button button1;
     [SerializeField] Button button2;
     [SerializeField] Button button3;
+    [SerializeField] Button button4;
+    [SerializeField] Button button5;
+    [SerializeField] Button button6;
 
     void Start()
     {
         button1.onClick.AddListener(Button1_Click);
         button2.onClick.AddListener(Button2_Click);
         button3.onClick.AddListener(Button3_Click);
+        button4.onClick.AddListener(Button4_Click);
+        button5.onClick.AddListener(Button5_Click);
+        button6.onClick.AddListener(Button6_Click);
     }
 
     void Button1_Click()
@@ -171,6 +180,153 @@ public class ラムダ式2 : MonoBehaviour
         foreach (var val in result9)
         {
             Debug.Log($"result9 name={val.ProductName} price={val.Price}");
+        }
+
+        //別のクラスに置き換える
+        var result10 = from p in products
+                       where p.ProductName.ToLower()[0] == 'p'
+                       orderby p.Price descending, p.ProductId
+                       select new Objects_ラムダ式.ProductDto(p.ProductId.ToString(), p.ProductName);
+        foreach (var val in result10)
+        {
+            Debug.Log($"result10 {val}");
+        }
+
+        var result11 = from p in products
+                       where p.ProductName.ToLower()[0] == 'p'
+                       orderby p.Price descending, p.ProductId
+                       select new Objects_ラムダ式.ProductDto(p);
+        foreach (var val in result11)
+        {
+            Debug.Log($"result11 {val}");
+        }
+
+        var result12 = from p in products
+                       where p.ProductName.ToLower()[0] == 'p'
+                       orderby p.Price descending, p.ProductId
+                       select new Objects_ラムダ式.ProductEntity
+                       {
+                           ProductId = p.ProductId.ToString(),
+                           ProductName = p.ProductName,
+                       };
+        foreach (var val in result12)
+        {
+            Debug.Log($"result12 {val}");
+        }
+    }
+
+    void Button4_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+
+        //大文字小文字関係なし　小文字化
+        var result2 = from p in products
+                      where p.ProductName.ToLower()[0] == 'p'
+                      select p;
+        foreach (var val in result2)
+        {
+            Debug.Log($"result2 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        //大文字小文字関係なし　小文字化
+        var result3 = from p in products
+                          //ややこしい条件式を一度letキーワードで変数に格納し退避できる
+                      let wk = p.ProductName.ToLower()
+                      where wk[0] == 'p'
+                      select p;
+        foreach (var val in result3)
+        {
+            Debug.Log($"result3 id={val.ProductId} name={val.ProductName} price={val.Price}");
+        }
+
+        var result4 = from p in products
+                      //ややこしい条件式を一度letキーワードで変数に格納し退避できる
+                      let wk = p.ProductName.ToLower()
+                      where wk[0] == 'p'
+                      //ややこしい条件式を一度letキーワードで変数に格納し退避できる
+                      let MyPrice = (p.Price / 2 * 1.08)
+                      select new { p.ProductName, MyPrice };
+        foreach (var val in result4)
+        {
+            Debug.Log($"result4 name={val.ProductName} price={val.MyPrice}");
+        }
+
+        List<string> csvs = new List<string>();
+        csvs.Add("AAA,BBB,CCC");
+        csvs.Add("DDD,EEE,FFF");
+        csvs.Add("111,222,333");
+        var result5 = from csv in csvs
+                      let items = csv.Split(',')
+                      from item in items
+                      select item;
+        foreach (var val in result5)
+        {
+            Debug.Log($"result5 {val}");
+        }
+    }
+
+    void Button5_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        var result1 = from p in products
+                      group p by p.Price;
+        foreach (var group in result1)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result1 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
+        }
+
+        Debug.Log("---------------------------------");
+        var result2 = from p in products
+                      where p.Price > 250
+                      orderby p.Price descending
+                      group p by p.Price;
+        foreach (var group in result2)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result2 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
+        }
+    }
+
+    void Button6_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p200", 200));
+        products.Add(new Objects_ラムダ式.Product(20, "p200", 200));
+        products.Add(new Objects_ラムダ式.Product(30, "p200", 220));
+        products.Add(new Objects_ラムダ式.Product(40, "p200", 220));
+        products.Add(new Objects_ラムダ式.Product(50, "p200", 300));
+        products.Add(new Objects_ラムダ式.Product(60, "p300", 320));
+        products.Add(new Objects_ラムダ式.Product(70, "p400", 320));
+
+        var result1 = from p in products
+                      group p by new { p.ProductName, p.Price };
+        foreach (var group in result1)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result1 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
         }
     }
 }
