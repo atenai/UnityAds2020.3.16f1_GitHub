@@ -26,6 +26,7 @@ public class ラムダ式2 : MonoBehaviour
     [SerializeField] Button button13;
     [SerializeField] Button button14;
     [SerializeField] Button button15;
+    [SerializeField] Button button16;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class ラムダ式2 : MonoBehaviour
         button13.onClick.AddListener(Button13_Click);
         button14.onClick.AddListener(Button14_Click);
         button15.onClick.AddListener(Button15_Click);
+        button16.onClick.AddListener(Button16_Click);
     }
 
     void Button1_Click()
@@ -625,5 +627,42 @@ public class ラムダ式2 : MonoBehaviour
 
         var result2 = (from n in nums
                        select n.ToString()).ToList();
+    }
+
+    void Button16_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        var result1 = products.OrderBy(x => x.Price);
+        foreach (var val in result1)
+        {
+            Debug.Log($"result1 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+
+        Debug.Log("---------------------------------");
+        var result2 = products.OrderByDescending(x => x.Price);
+        foreach (var val in result2)
+        {
+            Debug.Log($"result2 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+
+        Debug.Log("---------------------------------");
+        var result3 = products.OrderBy(x => x.Price).ThenBy(x => x.ProductId);
+        foreach (var val in result3)
+        {
+            Debug.Log($"result3 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+
+        Debug.Log("---------------------------------");
+        var result4 = products.OrderBy(x => x.Price).ThenByDescending(x => x.ProductId);
+        foreach (var val in result4)
+        {
+            Debug.Log($"result4 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
     }
 }
