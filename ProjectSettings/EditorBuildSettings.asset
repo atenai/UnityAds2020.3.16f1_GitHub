@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sudoku_Udemy/Sudoku_Udemy_GameScene.unity
     guid: aaf3a6f4f5517e042a49aa81569ae9a5
+  - enabled: 1
+    path: Assets/Scenes/TargetShooting/TargetShooting.unity
+    guid: 6d4b3185751f49d093f5ac6b2fb409a4
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 69c3df5562b025f44bfdb55959c6ab5e, type: 2}
