@@ -31,6 +31,9 @@ public class ラムダ式2 : MonoBehaviour
     [SerializeField] Button button18;
     [SerializeField] Button button19;
     [SerializeField] Button button20;
+    [SerializeField] Button button21;
+    [SerializeField] Button button22;
+    [SerializeField] Button button23;
 
     void Start()
     {
@@ -54,6 +57,9 @@ public class ラムダ式2 : MonoBehaviour
         button18.onClick.AddListener(Button18_Click);
         button19.onClick.AddListener(Button19_Click);
         button20.onClick.AddListener(Button20_Click);
+        button21.onClick.AddListener(Button21_Click);
+        button22.onClick.AddListener(Button22_Click);
+        button23.onClick.AddListener(Button23_Click);
     }
 
     void Button1_Click()
@@ -791,5 +797,83 @@ public class ラムダ式2 : MonoBehaviour
         var a = new Product(1, "", 1);
         var b = new Product(1, "", 1);
         Debug.Log("a.Equals(b) " + a.Equals(b));
+    }
+
+    void Button21_Click()
+    {
+        var nums1 = new int[] { 1, 2, 3, 4, 9, 5, 2, 4, 6 };
+        var nums2 = new int[] { 3, 4, 2, 99, 2 };
+
+        //重複をなくす
+        var result1 = nums1.Distinct();
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        //両方にあるもの
+        var result2 = nums1.Intersect(nums2);
+        Debug.Log("result2 = " + string.Join(",", result2));
+
+        //どちらかにあればとる
+        var result3 = nums1.Union(nums2);
+        Debug.Log("result3 = " + string.Join(",", result3));
+
+        //nums1にだけある
+        var result4 = nums1.Except(nums2);
+        Debug.Log("result4 = " + string.Join(",", result4));
+
+        //nums2にだけある
+        var result5 = nums2.Except(nums1);
+        Debug.Log("result5 = " + string.Join(",", result5));
+    }
+
+    void Button22_Click()
+    {
+        var nums = new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 2 };
+
+        //5個スキップしたあとすべて取る
+        var result1 = nums.Skip(5);
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        //最初から3個取る
+        var result2 = nums.Take(3);
+        Debug.Log("result2 = " + string.Join(",", result2));
+
+        //4個スキップして3個取る
+        var result3 = nums.Skip(4).Take(3);
+        Debug.Log("result3 = " + string.Join(",", result3));
+
+        //数字の大きい順に並べ変えてそこから最初の3個を取得する
+        var result4 = nums.OrderByDescending(x => x).Take(3);
+        Debug.Log("result4 = " + string.Join(",", result4));
+
+        //重複数字を排除して数字の大きい順に並べ変えてそこから最初の3個を取得する
+        var result5 = nums.Distinct().OrderByDescending(x => x).Take(3);
+        Debug.Log("result5 = " + string.Join(",", result5));
+
+        //引数の条件にぶち当たるまではスキップして残りを全て取る
+        var result6 = nums.SkipWhile(x => x < 3);
+        Debug.Log("result6 = " + string.Join(",", result6));
+
+        //引数の条件にぶち当たるまでは取得する
+        var result7 = nums.TakeWhile(x => x < 5);
+        Debug.Log("result7 = " + string.Join(",", result7));
+    }
+
+    void Button23_Click()
+    {
+        var nums = new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 4, 6, 2 };
+
+        //引数の条件をすべて満たしている場合はtrue
+        var result1 = nums.All(x => x >= 1);
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        var result2 = nums.All(x => x >= 2);
+        Debug.Log("result2 = " + string.Join(",", result2));
+
+        //条件に当てはまるものがあればtrue
+        var result3 = nums.Any(x => x == 2);
+        Debug.Log("result3 = " + string.Join(",", result3));
+
+        var result4 = nums.Any(x => x == 99);
+        Debug.Log("result4 = " + string.Join(",", result4));
     }
 }
