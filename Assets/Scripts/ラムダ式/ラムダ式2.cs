@@ -29,6 +29,8 @@ public class ラムダ式2 : MonoBehaviour
     [SerializeField] Button button16;
     [SerializeField] Button button17;
     [SerializeField] Button button18;
+    [SerializeField] Button button19;
+    [SerializeField] Button button20;
 
     void Start()
     {
@@ -50,6 +52,8 @@ public class ラムダ式2 : MonoBehaviour
         button16.onClick.AddListener(Button16_Click);
         button17.onClick.AddListener(Button17_Click);
         button18.onClick.AddListener(Button18_Click);
+        button19.onClick.AddListener(Button19_Click);
+        button20.onClick.AddListener(Button20_Click);
     }
 
     void Button1_Click()
@@ -740,5 +744,52 @@ public class ラムダ式2 : MonoBehaviour
                 Debug.Log($"result2 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
             }
         }
+    }
+
+    void Button19_Click()
+    {
+        //5を10回返却する
+        var result1 = Enumerable.Repeat(5, 10);
+        Debug.Log("result1 = " + string.Join(",", result1));
+
+        //文字でもOK
+        var result2 = Enumerable.Repeat("AAA", 10);
+        Debug.Log("result1 = " + string.Join(",", result2));
+
+        //34から7個の整数を返す
+        var result3 = Enumerable.Range(34, 7);
+        Debug.Log("result1 = " + string.Join(",", result3));
+
+        //偶数のみを返す
+        var result4 = Enumerable.Range(1, 10).Where(x => x % 2 == 0);
+        Debug.Log("result1 = " + string.Join(",", result4));
+
+        //10倍にして返す
+        var result5 = Enumerable.Range(1, 10).Select(x => x * 10);
+        Debug.Log("result1 = " + string.Join(",", result5));
+    }
+
+    void Button20_Click()
+    {
+        string[] h1 = new string[] { "AAA", "BBB" };
+        string[] h2 = new string[] { "AAA", "BBB" };
+
+        Debug.Log(h1 == h2);
+        Debug.Log(h1.Equals(h2));
+        Debug.Log(h1.SequenceEqual(h2));
+
+        var product1 = new List<Product>();
+        product1.Add(new Product(10, "10", 200));
+        product1.Add(new Product(20, "20", 300));
+
+        var product2 = new List<Product>();
+        product2.Add(new Product(10, "10", 200));
+        product2.Add(new Product(20, "20", 300));
+        Debug.Log("product1.SequenceEqual(product2)" + product1.SequenceEqual(product2));
+        Debug.Log("product1.Equals(product2)" + product1.Equals(product2));
+
+        var a = new Product(1, "", 1);
+        var b = new Product(1, "", 1);
+        Debug.Log("a.Equals(b) " + a.Equals(b));
     }
 }
