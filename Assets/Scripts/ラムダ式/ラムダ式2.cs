@@ -27,6 +27,8 @@ public class ラムダ式2 : MonoBehaviour
     [SerializeField] Button button14;
     [SerializeField] Button button15;
     [SerializeField] Button button16;
+    [SerializeField] Button button17;
+    [SerializeField] Button button18;
 
     void Start()
     {
@@ -46,6 +48,8 @@ public class ラムダ式2 : MonoBehaviour
         button14.onClick.AddListener(Button14_Click);
         button15.onClick.AddListener(Button15_Click);
         button16.onClick.AddListener(Button16_Click);
+        button17.onClick.AddListener(Button17_Click);
+        button18.onClick.AddListener(Button18_Click);
     }
 
     void Button1_Click()
@@ -663,6 +667,78 @@ public class ラムダ式2 : MonoBehaviour
         foreach (var val in result4)
         {
             Debug.Log($"result4 id ={val.ProductId} name ={val.ProductName} price ={val.Price}");
+        }
+    }
+
+    void Button17_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p10A", 300));
+        products.Add(new Objects_ラムダ式.Product(20, "p20", 300));
+        products.Add(new Objects_ラムダ式.Product(30, "x301A", 200));
+        products.Add(new Objects_ラムダ式.Product(40, "P40", 500));
+        products.Add(new Objects_ラムダ式.Product(50, "P50", 200));
+
+        var result1 = from p in products
+                      group p by p.Price;
+        foreach (var group in result1)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result1 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
+        }
+
+        Debug.Log("---------------------------------");
+
+        var result2 = products.GroupBy(x => x.Price);
+        foreach (var group in result2)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result2 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
+        }
+    }
+
+    void Button18_Click()
+    {
+        var products = new List<Objects_ラムダ式.Product>();
+        products.Add(new Objects_ラムダ式.Product(10, "p200", 200));
+        products.Add(new Objects_ラムダ式.Product(20, "p200", 200));
+        products.Add(new Objects_ラムダ式.Product(30, "p200", 220));
+        products.Add(new Objects_ラムダ式.Product(40, "p200", 220));
+        products.Add(new Objects_ラムダ式.Product(50, "p200", 300));
+        products.Add(new Objects_ラムダ式.Product(60, "p300", 320));
+        products.Add(new Objects_ラムダ式.Product(70, "p400", 320));
+
+        var result1 = from p in products
+                      group p by new { p.ProductName, p.Price };
+        foreach (var group in result1)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result1 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
+        }
+
+        Debug.Log("---------------------------------");
+
+        var result2 = products.GroupBy(x => new { x.ProductName, x.Price });
+        foreach (var group in result2)
+        {
+            //ここはグループごとにループする
+            Debug.Log("group key = " + group.Key);
+            foreach (var row in group)
+            {
+                Debug.Log($"result2 id ={row.ProductId} name ={row.ProductName} price ={row.Price}");
+            }
         }
     }
 }
