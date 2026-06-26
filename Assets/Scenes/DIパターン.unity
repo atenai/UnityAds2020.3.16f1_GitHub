@@ -237,9 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c640b0d04cefc4da577e1764d1b592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  form1:
-    button1: {fileID: 1179282183}
-    saveButton: {fileID: 421811843}
 --- !u!1 &421811841
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +508,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1179282184}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 23944073}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1179282184
 MonoBehaviour:
   m_ObjectHideFlags: 0
