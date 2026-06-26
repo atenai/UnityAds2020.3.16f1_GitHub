@@ -9,7 +9,7 @@ namespace MVPパターン
 
         public void Save(string value)
         {
-            //Save
+            UnityEngine.Debug.Log(value);
         }
     }
 }
