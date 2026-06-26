@@ -1,10 +1,10 @@
-namespace DIパターン
+namespace MVPパターン
 {
-    public sealed class ProductFake : IProduct
+    public sealed class ProductSqlServer : IProduct
     {
         public string GetData()
         {
-            return "XXX Fake";
+            return "AAA sql server";
         }
 
         public void Save(string value)

@@ -134,8 +134,10 @@ GameObject:
   - component: {fileID: 23944076}
   - component: {fileID: 23944075}
   - component: {fileID: 23944074}
-  - component: {fileID: 23944078}
   - component: {fileID: 23944079}
+  - component: {fileID: 23944078}
+  - component: {fileID: 23944081}
+  - component: {fileID: 23944080}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -245,11 +247,38 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23944073}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 485a5f17e1952f54b9297bcb2da30fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &23944080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23944073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9fb39282573784893e9c5ebf7af8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button1: {fileID: 1179282183}
+  saveButton: {fileID: 421811843}
+--- !u!114 &23944081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23944073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5704f519200b1234f9067d2fe5683a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  form1View: {fileID: 23944080}
 --- !u!1 &421811841
 GameObject:
   m_ObjectHideFlags: 0

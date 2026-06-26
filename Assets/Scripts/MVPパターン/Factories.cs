@@ -1,4 +1,4 @@
-namespace DIパターン
+namespace MVPパターン
 {
     public static class Factories
     {
