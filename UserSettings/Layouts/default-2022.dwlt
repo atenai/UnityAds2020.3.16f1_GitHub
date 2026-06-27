@@ -229,7 +229,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 44
+  controlID: 67
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -332,8 +332,8 @@ MonoBehaviour:
     y: 0
     width: 430
     height: 883
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 28}
   m_Panes:
   - {fileID: 28}
@@ -1355,9 +1355,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8a700000
-      m_LastClickedID: 28810
-      m_ExpandedIDs: ced1ffff2cfbffffe266000022670000
+      m_SelectedIDs: b86a0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: d4f9ffffd8faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1426,7 +1426,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - "Assets/Scripts/\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u6307\u5411/\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30A4\u30B9\u5206\u96E2\u306E\u539F\u5247/\u30D1\u30BF\u30FC\u30F32"
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1434,16 +1434,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - "Assets/Scripts/\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\u6307\u5411/\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30A4\u30B9\u5206\u96E2\u306E\u539F\u5247/\u30D1\u30BF\u30FC\u30F32"
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\alfam\Documents\UnityAds2020.3.16f1_Git
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 428.99963}
-    m_SelectedIDs: 5c690000
-    m_LastClickedID: 26972
-    m_ExpandedIDs: 000000001e6900002069000022690000246900002669000028690000
+    scrollPos: {x: 0, y: 858.99963}
+    m_SelectedIDs: 706a0000
+    m_LastClickedID: 27248
+    m_ExpandedIDs: 0000000036690000386900003a6900003c6900003e6900004069000074690000a0690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1471,7 +1471,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 58faffff
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001e6900002069000022690000246900002669000028690000
+    m_ExpandedIDs: 0000000036690000386900003a6900003c6900003e69000040690000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1502,18 +1502,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000f2610100f6820100e8eb00004eeb0000b0ae000020e90000f86e0000026f0000eed200006e730100069c0000669f0000849400003ead00001ebc00003c78000082810000be8400005489000006900000688f0000f25100005c640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: "MVP\u30D1\u30BF\u30FC\u30F3"
-      m_OriginalName: "MVP\u30D1\u30BF\u30FC\u30F3"
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 28414
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 143.5}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 231
