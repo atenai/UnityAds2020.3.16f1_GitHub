@@ -6,21 +6,22 @@ using UnityEngine.UI;
 
 namespace MVPパターン
 {
-    public class Form1Presenter : MonoBehaviour
+    public class Form1Presenter
     {
-        [SerializeField] Form1View form1View;
-        Form1Model _m;
+        Form1Model form1Model;
+        Form1View form1View;
 
-        void Start()
+        public Form1Presenter(Form1Model form1Model, Form1View form1View)
         {
-            _m = new Form1Model(Factories.CreateProduct());
+            this.form1Model = form1Model;
+            this.form1View = form1View;
 
             form1View.Button1.onClick.AddListener(() =>
             {
-                _m.Button1_Click();
-                form1View.Button1.GetComponentInChildren<Text>().text = _m.ButtonText;
+                form1Model.Button1_Click();
+                form1View.Button1.GetComponentInChildren<Text>().text = form1Model.ButtonText;
             });
-            form1View.SaveButton.onClick.AddListener(_m.SaveButton_Click);
+            form1View.SaveButton.onClick.AddListener(form1Model.SaveButton_Click);
         }
     }
 }
