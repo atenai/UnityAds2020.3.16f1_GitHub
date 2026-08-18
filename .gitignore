@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+# Unity CLI Loop の生成物（スクリーンショット・階層ダンプなど）
+/.uloop/
