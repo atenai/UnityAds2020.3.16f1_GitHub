@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fccaf0e8e6e82db4db97b870e07ea4d8, type: 3}
+  m_Name: TaskCatalog
+  m_EditorClassIdentifier: 
+  tasks:
+  - id: pointincome_login
+    serviceName: "\u30DD\u30A4\u30F3\u30C8\u30A4\u30F3\u30AB\u30E0"
+    title: "\u30ED\u30B0\u30A4\u30F3\u30DC\u30FC\u30CA\u30B9"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://pointi.jp/
+    enabled: 1
+  - id: pointtown_login
+    serviceName: "\u30DD\u30A4\u30F3\u30C8\u30BF\u30A6\u30F3"
+    title: "\u30ED\u30B0\u30A4\u30F3\u30DC\u30FC\u30CA\u30B9\u3092\u53D7\u3051\u53D6\u308B"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://www.pointtown.com/
+    enabled: 1
+  - id: warau_login
+    serviceName: "\u30EF\u30E9\u30A6"
+    title: "\u30ED\u30B0\u30A4\u30F3\u30DC\u30FC\u30CA\u30B9(\u5C02\u7528URL\u304B\u3089)"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://www.warau.jp/?loginbonus=on
+    enabled: 1
+  - id: rakuten_pointclub
+    serviceName: "\u697D\u5929PointClub"
+    title: "\u6BCE\u65E5\u30DD\u30A4\u30F3\u30C8\u3092\u53D7\u3051\u53D6\u308B"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://pointclub.rakuten.co.jp/
+    enabled: 1
+  - id: moppy_daily
+    serviceName: "\u30E2\u30C3\u30D4\u30FC"
+    title: "\u6BCE\u65E5\u30AC\u30C1\u30E3\u30FB\u30B2\u30FC\u30E0"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 2
+    url: https://pc.moppy.jp/
+    enabled: 1
+  - id: hapitas_daily
+    serviceName: "\u30CF\u30D4\u30BF\u30B9"
+    title: "\u30ED\u30B0\u30A4\u30F3\u30FB\u6BCE\u65E5\u30B3\u30F3\u30C6\u30F3\u30C4"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://hapitas.jp/
+    enabled: 1
+  - id: dpoint_stamp
+    serviceName: "d\u30DD\u30A4\u30F3\u30C8\u30AF\u30E9\u30D6"
+    title: "\u30B9\u30BF\u30F3\u30D7\u3092\u305F\u3081\u308B"
+    resetType: 0
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 1
+    estimatedMinutes: 1
+    url: https://dpoint.docomo.ne.jp/
+    enabled: 1
+  - id: vpoint_weekly
+    serviceName: "V\u30DD\u30A4\u30F3\u30C8"
+    title: "\u9031\u66FF\u308F\u308A\u30AF\u30FC\u30DD\u30F3\u3092\u53D6\u5F97"
+    resetType: 1
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 10
+    estimatedMinutes: 3
+    url: https://www.vpoint.jp/
+    enabled: 1
+  - id: rakuten_marathon
+    serviceName: "\u697D\u5929\u5E02\u5834"
+    title: "\u304A\u8CB7\u3044\u7269\u30DE\u30E9\u30BD\u30F3\u306B\u30A8\u30F3\u30C8\u30EA\u30FC"
+    resetType: 2
+    resetHour: 0
+    resetDayOfWeek: 1
+    resetDayOfMonth: 1
+    expectedPoints: 0
+    estimatedMinutes: 1
+    url: https://event.rakuten.co.jp/
+    enabled: 1
