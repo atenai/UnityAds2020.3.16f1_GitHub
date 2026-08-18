@@ -11,7 +11,7 @@ namespace 人物検索
         void Start()
         {
             PersonTableModel model = new PersonTableModel(Factories.CreateSearchService());
-            _presenter = new PersonTablePresenter(model, personTableView);
+            _presenter = new PersonTablePresenter(model, personTableView, Factories.CreateImageLoader(personTableView));
         }
     }
 }

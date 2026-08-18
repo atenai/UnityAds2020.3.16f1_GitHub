@@ -12,6 +12,13 @@ namespace 人物検索
     {
         public WikipediaQuery query;
         public WikipediaError error;
+        public WikipediaContinue @continue; // JSON上のキーは "continue"
+    }
+
+    [Serializable]
+    public class WikipediaContinue
+    {
+        public int gsroffset;
     }
 
     [Serializable]
@@ -29,6 +36,15 @@ namespace 人物検索
         public string description;
         public string extract;
         public WikipediaPageProps pageprops;
+        public WikipediaThumbnail thumbnail;
+    }
+
+    [Serializable]
+    public class WikipediaThumbnail
+    {
+        public string source;
+        public int width;
+        public int height;
     }
 
     [Serializable]

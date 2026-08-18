@@ -1,36 +1,46 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
 namespace 人物検索
 {
     /// <summary>
-    /// 日本語版Wikipediaで検索し、Wikidataで「人間(P31=Q5)」のものだけに絞り込む。
-    /// Wikipedia側の検索には人物で絞る機能が無いので、2段構えにしている。
+    /// 指定されたWikipediaを全文検索し、Wikidataで種類を絞り込んで人物を集める。
+    /// Wikipedia側の検索には種類で絞る機能が無いので2段構えにしている。
+    /// 1ページの取得数はAPIの制限(extractsは20件まで)に合わせ、目標件数に届くまでページを送る。
     /// </summary>
     public sealed class WikipediaPersonSearchService : IPersonSearchService
     {
-        const string WikipediaEndpoint = "https://ja.wikipedia.org/w/api.php";
         const string SparqlEndpoint = "https://query.wikidata.org/sparql";
-        const string ArticleUrl = "https://ja.wikipedia.org/?curid=";
         const string UserAgent = "UnityPersonTableSample/1.0 (Unity learning project)";
-        const int Limit = 20;
+        const int PageSize = 20;     // extracts の上限
+        const int MaxPages = 4;      // 候補は最大80件まで見る
+        const int TargetCount = 30;  // 表に出す人数
         const int SummaryLength = 110;
 
         class Candidate
         {
             public int Index;
             public int PageId;
+            public string Host;
             public string Title;
             public string Description;
             public string Extract;
             public string EntityId;
+            public string ImageUrl;
         }
 
-        public void SearchAsync(string keyword, Action<PersonSearchResult> onCompleted)
+        public void SearchAsync(PersonSource source, string keyword, Action<PersonSearchResult> onCompleted)
         {
-            Get(BuildWikipediaUrl(keyword), (success, body, error) =>
+            FetchPage(source, keyword, 0, 0, new List<Candidate>(), onCompleted);
+        }
+
+        void FetchPage(PersonSource source, string keyword, int offset, int page, List<Candidate> collected,
+            Action<PersonSearchResult> onCompleted)
+        {
+            Get(BuildWikipediaUrl(source, keyword, offset), (success, body, error) =>
             {
                 if (!success)
                 {
@@ -38,66 +48,80 @@ namespace 人物検索
                     return;
                 }
 
-                List<Candidate> candidates;
+                int nextOffset;
                 string parseError;
-                if (!TryParseWikipedia(body, out candidates, out parseError))
+                if (!TryParseWikipedia(body, source, offset, collected, out nextOffset, out parseError))
                 {
                     onCompleted(PersonSearchResult.Failure(parseError));
                     return;
                 }
-                if (candidates.Count == 0)
+
+                if (nextOffset > 0 && page + 1 < MaxPages)
+                {
+                    FetchPage(source, keyword, nextOffset, page + 1, collected, onCompleted);
+                    return;
+                }
+
+                if (collected.Count == 0)
                 {
                     onCompleted(PersonSearchResult.Ok(new List<PersonEntry>()));
                     return;
                 }
-
-                FilterToPeople(candidates, onCompleted);
+                FilterByEntityType(source, collected, onCompleted);
             });
         }
 
-        void FilterToPeople(List<Candidate> candidates, Action<PersonSearchResult> onCompleted)
+        void FilterByEntityType(PersonSource source, List<Candidate> candidates, Action<PersonSearchResult> onCompleted)
         {
-            Get(BuildSparqlUrl(candidates), (success, body, error) =>
+            Get(BuildSparqlUrl(source, candidates), (success, body, error) =>
             {
                 if (!success)
                 {
                     // Wikidataが応えないときは絞り込みを諦めるが、黙って混ぜずに断り書きを出す。
-                    onCompleted(PersonSearchResult.Ok(ToEntries(candidates), "※人物かどうかの判定はできませんでした（Wikidataに接続できず）"));
+                    onCompleted(PersonSearchResult.Ok(ToEntries(candidates), "※種類の判定はできませんでした(Wikidataに接続できず)"));
                     return;
                 }
 
-                HashSet<string> people = ParseHumanIds(body);
-                List<Candidate> filtered = candidates.FindAll(candidate => people.Contains(candidate.EntityId));
-                onCompleted(PersonSearchResult.Ok(ToEntries(filtered)));
+                HashSet<string> matched = ParseMatchedIds(body);
+                List<Candidate> filtered = candidates.FindAll(candidate => matched.Contains(candidate.EntityId));
+
+                // 目標に届かなかったときは、どれだけ探した結果なのかを伝える。
+                string note = filtered.Count >= TargetCount
+                    ? null
+                    : "候補" + candidates.Count + "件を調べて該当は" + filtered.Count + "件でした";
+                onCompleted(PersonSearchResult.Ok(ToEntries(filtered), note));
             });
         }
 
-        static string BuildWikipediaUrl(string keyword)
+        static string BuildWikipediaUrl(PersonSource source, string keyword, int offset)
         {
-            return WikipediaEndpoint
+            return "https://" + source.Host + "/w/api.php"
                 + "?action=query&format=json&formatversion=2&generator=search"
                 + "&gsrsearch=" + UnityWebRequest.EscapeURL(keyword)
-                + "&gsrlimit=" + Limit
-                + "&prop=pageprops%7Cdescription%7Cextracts&ppprop=wikibase_item"
-                + "&exintro=1&explaintext=1&exsentences=2&exlimit=" + Limit
+                + "&gsrlimit=" + PageSize
+                + "&gsroffset=" + offset
+                + "&prop=pageprops%7Cdescription%7Cextracts%7Cpageimages&ppprop=wikibase_item"
+                + "&piprop=thumbnail&pithumbsize=160"
+                + "&exintro=1&explaintext=1&exsentences=2&exlimit=" + PageSize
                 + "&origin=*";
         }
 
-        static string BuildSparqlUrl(List<Candidate> candidates)
+        static string BuildSparqlUrl(PersonSource source, List<Candidate> candidates)
         {
-            System.Text.StringBuilder values = new System.Text.StringBuilder();
+            StringBuilder values = new StringBuilder();
             foreach (Candidate candidate in candidates)
             {
                 values.Append("wd:").Append(candidate.EntityId).Append(' ');
             }
 
-            string query = "SELECT ?item WHERE { VALUES ?item { " + values + "} ?item wdt:P31 wd:Q5 }";
+            string query = "SELECT DISTINCT ?item WHERE { VALUES ?item { " + values + "} " + source.EntityFilter + " }";
             return SparqlEndpoint + "?format=json&query=" + UnityWebRequest.EscapeURL(query);
         }
 
-        static bool TryParseWikipedia(string json, out List<Candidate> candidates, out string error)
+        static bool TryParseWikipedia(string json, PersonSource source, int offset, List<Candidate> collected,
+            out int nextOffset, out string error)
         {
-            candidates = new List<Candidate>();
+            nextOffset = 0;
             error = null;
 
             WikipediaResponse response = JsonUtility.FromJson<WikipediaResponse>(json);
@@ -112,26 +136,30 @@ namespace 人物検索
                 error = "Wikipedia: " + response.error.info;
                 return false;
             }
+            if (response.@continue != null) nextOffset = response.@continue.gsroffset;
             if (response.query == null || response.query.pages == null) return true;
 
             foreach (WikipediaPage page in response.query.pages)
             {
                 if (page.pageprops == null || string.IsNullOrEmpty(page.pageprops.wikibase_item)) continue;
 
-                candidates.Add(new Candidate
+                collected.Add(new Candidate
                 {
-                    Index = page.index,
+                    // pages の配列順は不定で、関連度は index が持っている。ページ送りのぶんを足して通し順位にする。
+                    Index = offset + page.index,
                     PageId = page.pageid,
+                    Host = source.Host,
                     Title = page.title,
                     Description = page.description,
                     Extract = page.extract,
                     EntityId = page.pageprops.wikibase_item,
+                    ImageUrl = page.thumbnail == null ? null : page.thumbnail.source,
                 });
             }
             return true;
         }
 
-        static HashSet<string> ParseHumanIds(string json)
+        static HashSet<string> ParseMatchedIds(string json)
         {
             HashSet<string> ids = new HashSet<string>();
             SparqlResponse response = JsonUtility.FromJson<SparqlResponse>(json);
@@ -150,15 +178,19 @@ namespace 人物検索
         static List<PersonEntry> ToEntries(List<Candidate> candidates)
         {
             candidates.Sort((left, right) => left.Index.CompareTo(right.Index)); // APIの並び順＝検索の関連度順
+
             List<PersonEntry> entries = new List<PersonEntry>();
             foreach (Candidate candidate in candidates)
             {
+                if (entries.Count >= TargetCount) break;
+
                 entries.Add(new PersonEntry(
-                    candidate.Index,
+                    entries.Count + 1,
                     candidate.Title,
                     string.IsNullOrEmpty(candidate.Description) ? "-" : candidate.Description,
                     Shorten(candidate.Extract),
-                    ArticleUrl + candidate.PageId));
+                    "https://" + candidate.Host + "/?curid=" + candidate.PageId,
+                    candidate.ImageUrl));
             }
             return entries;
         }

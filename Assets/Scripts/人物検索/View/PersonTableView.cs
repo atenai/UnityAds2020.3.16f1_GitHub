@@ -8,6 +8,9 @@ namespace 人物検索
     {
         [SerializeField] InputField searchField;
         [SerializeField] Button searchButton;
+        [SerializeField] Button sourcePrevButton;
+        [SerializeField] Button sourceNextButton;
+        [SerializeField] Text sourceLabel;
         [SerializeField] Button nameSortButton;
         [SerializeField] Button descriptionSortButton;
         [SerializeField] Text nameHeaderText;
@@ -20,6 +23,8 @@ namespace 人物検索
 
         public InputField SearchField => searchField;
         public Button SearchButton => searchButton;
+        public Button SourcePrevButton => sourcePrevButton;
+        public Button SourceNextButton => sourceNextButton;
         public Button NameSortButton => nameSortButton;
         public Button DescriptionSortButton => descriptionSortButton;
 
@@ -49,6 +54,11 @@ namespace 人物検索
             statusText.text = message;
         }
 
+        public void SetSourceLabel(string label)
+        {
+            sourceLabel.text = label;
+        }
+
         public void SetHeaderLabels(string name, string description)
         {
             nameHeaderText.text = name;
@@ -59,6 +69,8 @@ namespace 人物検索
         {
             searchButton.interactable = interactable;
             searchField.interactable = interactable;
+            sourcePrevButton.interactable = interactable;
+            sourceNextButton.interactable = interactable;
         }
 
         // 組み込みフォントだと日本語が豆腐になるので、OSのフォントに差し替える。

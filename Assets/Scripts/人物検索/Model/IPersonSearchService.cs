@@ -4,6 +4,6 @@ namespace 人物検索
 {
     public interface IPersonSearchService
     {
-        void SearchAsync(string keyword, Action<PersonSearchResult> onCompleted);
+        void SearchAsync(PersonSource source, string keyword, Action<PersonSearchResult> onCompleted);
     }
 }

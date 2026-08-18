@@ -6,13 +6,14 @@ namespace 人物検索
     /// <summary>ネットに繋がずに表示を確認するための差し替え用。</summary>
     public sealed class FakePersonSearchService : IPersonSearchService
     {
-        public void SearchAsync(string keyword, Action<PersonSearchResult> onCompleted)
+        public void SearchAsync(PersonSource source, string keyword, Action<PersonSearchResult> onCompleted)
         {
-            List<PersonEntry> people = new List<PersonEntry>
+            List<PersonEntry> people = new List<PersonEntry>();
+            for (int i = 1; i <= 30; i++)
             {
-                new PersonEntry(1, "テスト太郎", "サンプルの人物", "オフライン確認用のダミーデータです。", ""),
-                new PersonEntry(2, "テスト花子", "サンプルの人物", "検索ワード「" + keyword + "」に対する2件目のダミーです。", ""),
-            };
+                people.Add(new PersonEntry(i, "テスト" + i + "号", source.DisplayName,
+                    "検索ワード「" + keyword + "」に対するダミーの" + i + "件目です。", "", ""));
+            }
             onCompleted(PersonSearchResult.Ok(people));
         }
     }
