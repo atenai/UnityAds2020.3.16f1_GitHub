@@ -12,6 +12,9 @@ namespace 商品券
         public DateTime PublishedAt { get; }
         public string FeedName { get; }
 
+        /// <summary>使える範囲の推定。見出しからの推定なので確実ではない。</summary>
+        public Region Region { get; }
+
         /// <summary>前回の取得時には無かった項目。</summary>
         public bool IsNew { get; set; }
 
@@ -23,6 +26,8 @@ namespace 商品券
             Url = url;
             PublishedAt = publishedAt;
             FeedName = feedName;
+            // 媒体名にも手がかりがある（例: 静岡新聞 → 静岡県のローカル施策）。
+            Region = RegionClassifier.Classify(title + " " + publisher);
         }
     }
 }

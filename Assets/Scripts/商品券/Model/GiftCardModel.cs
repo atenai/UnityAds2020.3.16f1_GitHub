@@ -8,21 +8,28 @@ namespace 商品券
     public class GiftCardModel
     {
         const string AutoRefreshKey = "giftcard_auto_refresh";
+        const string RelevantOnlyKey = "giftcard_relevant_only";
 
         readonly FeedCatalog _catalog;
         readonly IFeedService _service;
         readonly ISeenRepository _seenRepository;
-        readonly List<GiftCardItem> _items = new List<GiftCardItem>();
+        readonly List<GiftCardItem> _all = new List<GiftCardItem>();
+        readonly List<GiftCardItem> _visible = new List<GiftCardItem>();
 
         SeenStore _seen;
         bool _suppressNextNotify;
 
-        public IReadOnlyList<GiftCardItem> Items => _items;
+        public IReadOnlyList<GiftCardItem> Items => _visible;
+        public int TotalCount => _all.Count;
+        public int HiddenCount => _all.Count - _visible.Count;
         public bool IsFetching { get; private set; }
         public string ErrorMessage { get; private set; }
         public DateTime? LastFetchedAt { get; private set; }
         public int NewCount { get; private set; }
         public bool AutoRefreshEnabled { get; private set; }
+
+        /// <summary>他県限定のものを隠すかどうか。</summary>
+        public bool RelevantOnly { get; private set; }
 
         public event Action OnStateChanged;
         public event Action<List<GiftCardItem>> OnNewItems;
@@ -40,6 +47,7 @@ namespace 商品券
             // 初回起動は全部が「新着」になってしまうので、そのときだけ通知を出さない。
             _suppressNextNotify = _seen.Count == 0;
             AutoRefreshEnabled = PlayerPrefs.GetInt(AutoRefreshKey, 0) == 1;
+            RelevantOnly = PlayerPrefs.GetInt(RelevantOnlyKey, 1) == 1;
             OnStateChanged?.Invoke();
         }
 
@@ -50,6 +58,17 @@ namespace 商品券
             AutoRefreshEnabled = enabled;
             PlayerPrefs.SetInt(AutoRefreshKey, enabled ? 1 : 0);
             PlayerPrefs.Save();
+            OnStateChanged?.Invoke();
+        }
+
+        public void SetRelevantOnly(bool enabled)
+        {
+            if (RelevantOnly == enabled) return;
+
+            RelevantOnly = enabled;
+            PlayerPrefs.SetInt(RelevantOnlyKey, enabled ? 1 : 0);
+            PlayerPrefs.Save();
+            RebuildVisible();
             OnStateChanged?.Invoke();
         }
 
@@ -77,19 +96,36 @@ namespace 商品券
                 {
                     bool unseen = !_seen.Contains(item.Id);
                     item.IsNew = unseen && !suppress;
-                    if (unseen) fresh.Add(item);
+                    // 隠す対象のものは新着として数えない。通知が他県の話で埋まらないように。
+                    if (unseen && IsRelevant(item)) fresh.Add(item);
                     _seen.Add(item.Id);
                 }
                 _seenRepository.Save(_seen);
 
-                _items.Clear();
-                _items.AddRange(unique);
+                _all.Clear();
+                _all.AddRange(unique);
+                RebuildVisible();
+
                 NewCount = suppress ? 0 : fresh.Count;
                 ErrorMessage = errors.Count == 0 ? null : string.Join(" / ", errors.ToArray());
 
                 OnStateChanged?.Invoke();
                 if (!suppress && fresh.Count > 0) OnNewItems?.Invoke(fresh);
             });
+        }
+
+        bool IsRelevant(GiftCardItem item)
+        {
+            return !RelevantOnly || item.Region != Region.OtherLocal;
+        }
+
+        void RebuildVisible()
+        {
+            _visible.Clear();
+            foreach (GiftCardItem item in _all)
+            {
+                if (IsRelevant(item)) _visible.Add(item);
+            }
         }
 
         /// <summary>同じ記事が複数のフィードに載るので、IDとURLで重複を落とす。</summary>

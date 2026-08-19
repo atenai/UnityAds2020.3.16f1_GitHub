@@ -30,6 +30,7 @@ namespace 商品券
                 _model.Refresh();
             });
             _view.AutoRefreshToggle.onValueChanged.AddListener(_model.SetAutoRefresh);
+            _view.RelevantOnlyToggle.onValueChanged.AddListener(_model.SetRelevantOnly);
 
             _model.Initialize();
             _model.Refresh();
@@ -58,6 +59,7 @@ namespace 商品券
         {
             _view.SetInteractable(!_model.IsFetching);
             _view.SetAutoRefresh(_model.AutoRefreshEnabled);
+            _view.SetRelevantOnly(_model.RelevantOnly);
             _view.SetStatus(BuildStatus(), _model.NewCount > 0 ? "新着 " + _model.NewCount + "件" : "");
 
             IReadOnlyList<ItemRowView> rows = _view.CreateRows(_model.Items.Count);
@@ -67,7 +69,7 @@ namespace 商品券
                 string url = item.Url;
 
                 rows[i].Bind(item.Title, item.Publisher + " ・ " + item.FeedName, FormatDate(item.PublishedAt),
-                    item.IsNew, !string.IsNullOrEmpty(url), () => Application.OpenURL(url));
+                    item.Region, item.IsNew, !string.IsNullOrEmpty(url), () => Application.OpenURL(url));
             }
         }
 
@@ -76,6 +78,7 @@ namespace 商品券
             if (_model.IsFetching) return "取得中…";
 
             string status = _model.Items.Count + "件";
+            if (_model.HiddenCount > 0) status += "（他県限定 " + _model.HiddenCount + "件を非表示）";
             if (_model.LastFetchedAt != null) status += " ・ 最終更新 " + _model.LastFetchedAt.Value.ToString("HH:mm");
             if (_model.AutoRefreshEnabled) status += " ・ " + AutoRefreshMinutes + "分ごとに自動更新";
             if (!string.IsNullOrEmpty(_model.ErrorMessage)) status += "\n" + _model.ErrorMessage;

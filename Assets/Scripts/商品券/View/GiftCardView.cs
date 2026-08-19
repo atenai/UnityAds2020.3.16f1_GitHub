@@ -12,6 +12,7 @@ namespace 商品券
         [SerializeField] Text newCountText;
         [SerializeField] Button refreshButton;
         [SerializeField] Toggle autoRefreshToggle;
+        [SerializeField] Toggle relevantOnlyToggle;
         [SerializeField] RectTransform rowParent;
         [SerializeField] ItemRowView rowTemplate;
         [SerializeField] GameObject banner;
@@ -21,6 +22,7 @@ namespace 商品券
 
         public Button RefreshButton => refreshButton;
         public Toggle AutoRefreshToggle => autoRefreshToggle;
+        public Toggle RelevantOnlyToggle => relevantOnlyToggle;
 
         /// <summary>1分ごとに発火する。Presenterが自動更新の判定に使う。</summary>
         public event Action OnMinuteTick;
@@ -59,6 +61,11 @@ namespace 商品券
         public void SetAutoRefresh(bool enabled)
         {
             autoRefreshToggle.isOn = enabled;
+        }
+
+        public void SetRelevantOnly(bool enabled)
+        {
+            relevantOnlyToggle.isOn = enabled;
         }
 
         public void SetInteractable(bool interactable)
