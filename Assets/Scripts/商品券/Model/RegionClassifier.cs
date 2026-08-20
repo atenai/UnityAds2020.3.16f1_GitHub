@@ -1,7 +1,7 @@
 namespace 商品券
 {
     /// <summary>
-    /// タイトルなどの文言から、その商品券が使える範囲を推定する。
+    /// タイトルと媒体名から、その商品券が使える範囲を推定する。
     /// 見出しだけが手がかりなので確実ではない。判定できないものは Unknown にして残す。
     /// </summary>
     public static class RegionClassifier
@@ -26,6 +26,28 @@ namespace 商品券
             "町田市", "小金井市", "小平市", "日野市", "東村山市", "国分寺市", "国立市",
             "福生市", "狛江市", "東大和市", "清瀬市", "東久留米市", "武蔵村山市", "多摩市",
             "稲城市", "羽村市", "あきる野市", "西東京市",
+            // 地域紙などはひらがな表記が多い（例: すみだ経済新聞）。
+            // 「きた」「みなと」「なかの」のような一般語になるものは、
+            // 誤判定が多いので入れていない。
+            "すみだ", "しんじゅく", "いたばし", "ねりま", "せたがや", "しながわ",
+            "あだち", "かつしか", "えどがわ", "ちよだ", "ぶんきょう", "としま",
+            "あらかわ", "めぐろ", "しぶや", "すぎなみ", "はちおうじ", "むさしの",
+        };
+
+        // 自治体サイトのドメイン。東京は city.○○.tokyo.jp や metro.tokyo.lg.jp の形。
+        static readonly string[] TokyoDomains = { ".tokyo.jp", ".tokyo.lg.jp", "metro.tokyo" };
+
+        // 他県の自治体ドメイン。city.ota.gunma.jp のように県名が入るので、そこで拾う。
+        static readonly string[] OtherPrefectureDomains =
+        {
+            ".hokkaido.jp", ".aomori.jp", ".iwate.jp", ".miyagi.jp", ".akita.jp", ".yamagata.jp", ".fukushima.jp",
+            ".ibaraki.jp", ".tochigi.jp", ".gunma.jp", ".saitama.jp", ".chiba.jp", ".kanagawa.jp",
+            ".niigata.jp", ".toyama.jp", ".ishikawa.jp", ".fukui.jp", ".yamanashi.jp", ".nagano.jp",
+            ".gifu.jp", ".shizuoka.jp", ".aichi.jp", ".mie.jp", ".shiga.jp", ".kyoto.jp", ".osaka.jp",
+            ".hyogo.jp", ".nara.jp", ".wakayama.jp", ".tottori.jp", ".shimane.jp", ".okayama.jp",
+            ".hiroshima.jp", ".yamaguchi.jp", ".tokushima.jp", ".kagawa.jp", ".ehime.jp", ".kochi.jp",
+            ".fukuoka.jp", ".saga.jp", ".nagasaki.jp", ".kumamoto.jp", ".oita.jp", ".miyazaki.jp",
+            ".kagoshima.jp", ".okinawa.jp",
         };
 
         // 東京以外の都道府県名。市町村名まで並べるときりが無いので県名で拾う。
@@ -44,9 +66,17 @@ namespace 商品券
         {
             if (string.IsNullOrEmpty(text)) return Region.Unknown;
 
+            string lower = text.ToLowerInvariant();
+
             // 券種が全国共通なら、記事の発信元が地方紙でも全国扱いでよい。
             if (ContainsAny(text, NationwideWords)) return Region.Nationwide;
-            if (ContainsAny(text, TokyoWords)) return Region.Tokyo;
+            if (ContainsAny(text, TokyoWords) || ContainsAny(lower, TokyoDomains)) return Region.Tokyo;
+            if (ContainsAny(lower, OtherPrefectureDomains)) return Region.OtherLocal;
+
+            // ここまでで東京と判定されていない自治体サイトは他県のものとみなす。
+            // 例: city.sakai.lg.jp（堺市）はローマ字なので県名では拾えない。
+            if (lower.Contains(".lg.jp")) return Region.OtherLocal;
+
             if (ContainsAny(text, OtherPrefectures)) return Region.OtherLocal;
 
             // 東京の地名が出ていないのに市区町村の話なら、他県のローカル施策とみなす。
