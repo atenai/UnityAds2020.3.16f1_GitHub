@@ -2,23 +2,12 @@ namespace 探偵
 {
     /// <summary>
     /// エージェントに渡す依頼文。調べ方や答えの書き方はエージェントの設定ファイル
-    /// （StreamingAssets/TanteiAgent/*.md）に書いてあるので、ここでは推測するものと手掛かりだけを渡す。
+    /// （StreamingAssets/TanteiAgent/tantei-investigator.md）に書いてあるので、ここでは推測するものと手掛かりだけを渡す。
     /// </summary>
     public static class ResearchPromptBuilder
     {
         public static string Build(string clue, GuessTarget target, PhoneMask mask)
         {
-            if (target == GuessTarget.Person)
-            {
-                return "次の名前の人物について調べ、候補を複数提示してください。\n" +
-                       "\n" +
-                       "# 推測するもの\n" +
-                       "人物\n" +
-                       "\n" +
-                       "# 人物の名前\n" +
-                       clue + "\n";
-            }
-
             string name = GuessTargetNames.Of(target);
             string prompt = "次の手掛かりを出発点に、ネット上に隠されたヒントをたどって、ゲーム内の" + name + "の候補を複数推測してください。\n" +
                             "\n" +

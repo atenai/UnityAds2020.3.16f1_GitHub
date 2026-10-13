@@ -12,7 +12,6 @@ namespace 探偵
     {
         [SerializeField] Button passwordTargetButton;
         [SerializeField] Button phoneTargetButton;
-        [SerializeField] Button personTargetButton;
         [SerializeField] InputField clueInput;
         [SerializeField] Button searchButton;
         [SerializeField] Button cancelButton;
@@ -32,7 +31,6 @@ namespace 探偵
 
         public Button PasswordTargetButton => passwordTargetButton;
         public Button PhoneTargetButton => phoneTargetButton;
-        public Button PersonTargetButton => personTargetButton;
         public Button SearchButton => searchButton;
         public Button CancelButton => cancelButton;
         public string ClueText => clueInput.text;
@@ -65,7 +63,6 @@ namespace 探偵
             clueInput.interactable = !isBusy;
             passwordTargetButton.interactable = !isBusy;
             phoneTargetButton.interactable = !isBusy;
-            personTargetButton.interactable = !isBusy;
             searchButton.gameObject.SetActive(!isBusy);
             cancelButton.gameObject.SetActive(isBusy);
         }
@@ -80,7 +77,6 @@ namespace 探偵
         {
             PaintTarget(passwordTargetButton, target == GuessTarget.Password);
             PaintTarget(phoneTargetButton, target == GuessTarget.PhoneNumber);
-            PaintTarget(personTargetButton, target == GuessTarget.Person);
         }
 
         static void PaintTarget(Button button, bool isSelected)
