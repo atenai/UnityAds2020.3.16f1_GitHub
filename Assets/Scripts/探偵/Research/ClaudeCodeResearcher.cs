@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -10,6 +11,7 @@ namespace 探偵
 {
     /// <summary>
     /// このPCのClaude Codeを裏で起動して、ゲーム専用エージェントに手掛かりを調べさせる。
+    /// 推測するものによってエージェントを使い分ける（隠しヒント探し／人物の特定）。
     /// Claudeのプランの範囲で動くので追加料金はかからない。
     /// エージェントの設定ファイルは調査のたびに読み直すので、書き換えれば次の調査から反映される。
     /// 作業フォルダはプロジェクトの外の空フォルダにして、使えるツールもWeb検索とページ取得だけに絞る。
@@ -31,20 +33,26 @@ namespace 探偵
         };
 
         readonly string _workingDirectory;
-        readonly string _agentPath;
+        readonly IReadOnlyDictionary<GuessTarget, string> _agentPaths;
         readonly object _lock = new object();
         Process _running; // 中止とゲーム終了のときに止めるため、動いているプロセスを覚えておく
         bool _cancelled;
 
-        public ClaudeCodeResearcher(string workingDirectory, string agentPath)
+        /// <param name="agentPaths">推測するものごとの、エージェント設定ファイルの場所</param>
+        public ClaudeCodeResearcher(string workingDirectory, IReadOnlyDictionary<GuessTarget, string> agentPaths)
         {
             _workingDirectory = workingDirectory;
-            _agentPath = agentPath;
+            _agentPaths = agentPaths;
         }
 
-        public void ResearchAsync(string request, Action<ResearchResult> onCompleted)
+        public void ResearchAsync(GuessTarget target, string request, Action<ResearchResult> onCompleted)
         {
-            if (!AgentDefinition.TryLoad(_agentPath, out AgentDefinition agent, out string agentError))
+            if (!_agentPaths.TryGetValue(target, out string agentPath))
+            {
+                onCompleted(ResearchResult.Failure(GuessTargetNames.Of(target) + "を調べるエージェントが設定されていません。"));
+                return;
+            }
+            if (!AgentDefinition.TryLoad(agentPath, out AgentDefinition agent, out string agentError))
             {
                 onCompleted(ResearchResult.Failure(agentError));
                 return;

@@ -9,13 +9,18 @@ namespace 探偵
     public class ResearchReport
     {
         // AIに返させるJSONの形。ここを変えたら、このクラスとエージェントの設定ファイルの説明も合わせる。
+        // subtitle・imageUrl・details は人物のときだけ使うので必須にしない。
         public const string JsonSchema =
             "{\"type\":\"object\",\"properties\":{" +
             "\"summary\":{\"type\":\"string\"}," +
             "\"answers\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{" +
             "\"title\":{\"type\":\"string\"}," +
+            "\"subtitle\":{\"type\":\"string\"}," +
             "\"confidence\":{\"type\":\"string\",\"enum\":[\"high\",\"medium\",\"low\"]}," +
             "\"reasoning\":{\"type\":\"string\"}," +
+            "\"imageUrl\":{\"type\":\"string\"}," +
+            "\"details\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{" +
+            "\"label\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"}},\"required\":[\"label\",\"value\"]}}," +
             "\"sources\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{" +
             "\"title\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"required\":[\"title\",\"url\"]}}}," +
             "\"required\":[\"title\",\"confidence\",\"reasoning\",\"sources\"]}}}," +

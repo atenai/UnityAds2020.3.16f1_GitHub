@@ -40,7 +40,10 @@ namespace 探偵
         public string Validate(string clue)
         {
             string trimmed = (clue ?? "").Trim();
-            if (trimmed.Length == 0) return "手掛かりを入力してください。";
+            if (trimmed.Length == 0)
+            {
+                return SelectedTarget == GuessTarget.Person ? "調べたい人物のフルネームを入力してください。" : "手掛かりを入力してください。";
+            }
             if (trimmed.Length > MaxClueLength) return "手掛かりは" + MaxClueLength + "文字以内で入力してください。";
             if (SelectedTarget == GuessTarget.PhoneNumber && !PhoneMask.TryExtract(trimmed, out _))
             {
@@ -74,7 +77,7 @@ namespace 探偵
             int requestId = ++_requestId;
             OnStarted?.Invoke();
 
-            _researcher.ResearchAsync(ResearchPromptBuilder.Build(CurrentClue, CurrentTarget, CurrentMask), result =>
+            _researcher.ResearchAsync(CurrentTarget, ResearchPromptBuilder.Build(CurrentClue, CurrentTarget, CurrentMask), result =>
             {
                 if (requestId != _requestId) return;
 

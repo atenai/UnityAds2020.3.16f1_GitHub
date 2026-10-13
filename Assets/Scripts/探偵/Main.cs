@@ -15,7 +15,8 @@ namespace 探偵
         {
             _researcher = Factories.CreateResearcher(useFakeResearcher);
             ClueResearchModel model = new ClueResearchModel(_researcher);
-            _presenter = new ClueResearchPresenter(model, clueResearchView, Factories.CreateLinkOpener());
+            _presenter = new ClueResearchPresenter(model, clueResearchView, Factories.CreateLinkOpener(),
+                Factories.CreateImageLoader());
         }
 
         void OnDestroy()

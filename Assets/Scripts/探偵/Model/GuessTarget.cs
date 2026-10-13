@@ -4,14 +4,23 @@ namespace 探偵
     public enum GuessTarget
     {
         Password,
-        PhoneNumber
+        PhoneNumber,
+        Person
     }
 
     public static class GuessTargetNames
     {
         public static string Of(GuessTarget target)
         {
-            return target == GuessTarget.PhoneNumber ? "電話番号" : "パスワード";
+            switch (target)
+            {
+                case GuessTarget.PhoneNumber:
+                    return "電話番号";
+                case GuessTarget.Person:
+                    return "人物";
+                default:
+                    return "パスワード";
+            }
         }
     }
 }

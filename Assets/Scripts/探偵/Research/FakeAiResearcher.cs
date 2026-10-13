@@ -11,7 +11,7 @@ namespace 探偵
 
         CancellationTokenSource _cancellation;
 
-        public void ResearchAsync(string request, Action<ResearchResult> onCompleted)
+        public void ResearchAsync(GuessTarget target, string request, Action<ResearchResult> onCompleted)
         {
             SynchronizationContext mainThread = SynchronizationContext.Current;
             _cancellation = new CancellationTokenSource();
@@ -19,8 +19,7 @@ namespace 探偵
 
             Task.Delay(DelayMilliseconds, token).ContinueWith(task =>
             {
-                ResearchResult result = task.IsCanceled ? ResearchResult.Failure("調査を中止しました。")
-                    : PhoneMask.TryExtract(request, out PhoneMask mask) ? CreatePhoneResult(mask) : CreateResult();
+                ResearchResult result = task.IsCanceled ? ResearchResult.Failure("調査を中止しました。") : CreateResult(target, request);
                 if (mainThread != null) mainThread.Post(_ => onCompleted(result), null);
                 else onCompleted(result);
             });
@@ -31,7 +30,48 @@ namespace 探偵
             _cancellation?.Cancel();
         }
 
-        // 依頼文に電話番号の形があれば、黒丸を埋めた番号を返す。形に合わない候補も1つ混ぜて、除外の動きも確かめられるようにする
+        static ResearchResult CreateResult(GuessTarget target, string request)
+        {
+            switch (target)
+            {
+                case GuessTarget.Person:
+                    return CreatePersonResult();
+                case GuessTarget.PhoneNumber:
+                    return PhoneMask.TryExtract(request, out PhoneMask mask) ? CreatePhoneResult(mask) : CreatePasswordResult();
+                default:
+                    return CreatePasswordResult();
+            }
+        }
+
+        // 画像の読み込み（成功・失敗・画像なし）を確かめられるように3パターン返す
+        static ResearchResult CreatePersonResult()
+        {
+            AnswerCandidate[] answers =
+            {
+                new AnswerCandidate("テスト人物A", "テスト用の作品『サンプル』の登場人物", AnswerCandidate.High,
+                    "これはテスト用の説明です。実際のAIは、この人物がどんな人物かをここに書きます。",
+                    "https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg",
+                    new[]
+                    {
+                        new DetailItem("作品", "サンプル"),
+                        new DetailItem("声優", "テスト声優"),
+                        new DetailItem("誕生日", "1月1日")
+                    },
+                    new[] { new SourceLink("テスト用の出典A", "https://example.com/source/a") }),
+                new AnswerCandidate("テスト人物A", "同じ名前のテスト用の俳優", AnswerCandidate.Medium,
+                    "同じ名前の別の人物の例です。画像のURLが壊れているときの表示を確かめます。",
+                    "https://example.com/no-such-image.jpg",
+                    new[] { new DetailItem("職業", "俳優"), new DetailItem("代表作", "テストドラマ") },
+                    new[] { new SourceLink("テスト用の出典B", "https://example.com/source/b") }),
+                new AnswerCandidate("テスト人物A", "画像のないテスト用の人物", AnswerCandidate.Low,
+                    "画像が見つからなかったときの表示を確かめます。", "",
+                    new[] { new DetailItem("職業", "歌手") },
+                    new[] { new SourceLink("テスト用の出典C", "https://example.com/source/c") })
+            };
+            return ResearchResult.Ok(new ResearchReport("これはテスト用の調査の概要です。", answers));
+        }
+
+        // 黒丸を埋めた番号を返す。形に合わない候補も1つ混ぜて、除外の動きも確かめられるようにする
         static ResearchResult CreatePhoneResult(PhoneMask mask)
         {
             AnswerCandidate[] answers =
@@ -59,7 +99,7 @@ namespace 探偵
             return new string(digits);
         }
 
-        static ResearchResult CreateResult()
+        static ResearchResult CreatePasswordResult()
         {
             AnswerCandidate[] answers =
             {
