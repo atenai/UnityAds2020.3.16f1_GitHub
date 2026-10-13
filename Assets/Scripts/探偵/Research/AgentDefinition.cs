@@ -8,7 +8,7 @@ namespace 探偵
     /// <summary>
     /// ゲーム専用エージェントの設定（StreamingAssets/TanteiAgent/*.md）。
     /// 先頭の --- で囲んだ部分に名前・モデル・ツール・制限時間を書き、残りの本文がエージェントへの指示になる。
-    /// Claude Code には --agents にJSONで渡す。
+    /// Claude Code には、本文をシステムプロンプトとして、モデルとツールはオプションとして渡す。
     /// </summary>
     public sealed class AgentDefinition
     {
@@ -103,56 +103,6 @@ namespace 探偵
             }
             if (tools.Count == 0) tools.AddRange(AllowedTools);
             return tools;
-        }
-
-        /// <summary>claude --agents に渡すJSON。{"名前":{"description":..,"prompt":..,"tools":[..],"model":..}}</summary>
-        public string ToAgentsJson()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.Append('{').Append(Quote(Name)).Append(":{");
-            builder.Append("\"description\":").Append(Quote(Description)).Append(',');
-            builder.Append("\"prompt\":").Append(Quote(Prompt)).Append(',');
-            builder.Append("\"tools\":[");
-            for (int i = 0; i < Tools.Count; i++)
-            {
-                if (i > 0) builder.Append(',');
-                builder.Append(Quote(Tools[i]));
-            }
-            builder.Append("],\"model\":").Append(Quote(Model));
-            builder.Append("}}");
-            return builder.ToString();
-        }
-
-        static string Quote(string value)
-        {
-            StringBuilder builder = new StringBuilder("\"");
-            foreach (char c in value ?? "")
-            {
-                switch (c)
-                {
-                    case '"':
-                        builder.Append("\\\"");
-                        break;
-                    case '\\':
-                        builder.Append("\\\\");
-                        break;
-                    case '\n':
-                        builder.Append("\\n");
-                        break;
-                    case '\r':
-                        builder.Append("\\r");
-                        break;
-                    case '\t':
-                        builder.Append("\\t");
-                        break;
-                    default:
-                        if (c < 0x20) builder.Append("\\u").Append(((int)c).ToString("x4"));
-                        else builder.Append(c);
-                        break;
-                }
-            }
-            builder.Append('"');
-            return builder.ToString();
         }
     }
 }

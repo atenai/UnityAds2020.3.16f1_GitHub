@@ -13,10 +13,13 @@ namespace 探偵
     /// Claudeのプランの範囲で動くので追加料金はかからない。
     /// エージェントの設定ファイルは調査のたびに読み直すので、書き換えれば次の調査から反映される。
     /// 作業フォルダはプロジェクトの外の空フォルダにして、使えるツールもWeb検索とページ取得だけに絞る。
+    /// エージェントの指示はシステムプロンプトとして渡す。--agent で渡すと --json-schema（答えの形の指定）が効かず、
+    /// 自由な文章で返ってきてしまうため。
     /// </summary>
     public sealed class ClaudeCodeResearcher : IAiResearcher
     {
-        const string AgentsFileName = "agents.json";
+        const string PromptFileName = "agent-prompt.md";
+        const string LastResponseFileName = "last-response.json"; // 読み取れなかったときに中身を確かめられるよう、直前の返事を残す
 
         // AIの動作に要らない通信（利用状況の統計・エラー報告・フィードバック送信・アンケート・自動更新など）を止める。
         // 手掛かりやページの内容はAIが考えるのに必要なので、Anthropicのサーバーへの送信自体は止められない。
@@ -90,10 +93,11 @@ namespace 探偵
         ResearchResult Run(string executable, AgentDefinition agent, string request)
         {
             Directory.CreateDirectory(_workingDirectory);
-            string agentsPath = Path.Combine(_workingDirectory, AgentsFileName);
-            File.WriteAllText(agentsPath, agent.ToAgentsJson(), new UTF8Encoding(false));
+            string promptPath = Path.Combine(_workingDirectory, PromptFileName);
+            string lastResponsePath = Path.Combine(_workingDirectory, LastResponseFileName);
+            File.WriteAllText(promptPath, agent.Prompt, new UTF8Encoding(false));
 
-            ProcessStartInfo info = new ProcessStartInfo(executable, BuildArguments(agent, agentsPath))
+            ProcessStartInfo info = new ProcessStartInfo(executable, BuildArguments(agent, promptPath))
             {
                 WorkingDirectory = _workingDirectory,
                 UseShellExecute = false,
@@ -137,7 +141,8 @@ namespace 探偵
                     {
                         if (_cancelled) return ResearchResult.Failure("調査を中止しました。");
                     }
-                    return Parse(stdout.Result, stderr.Result);
+                    File.WriteAllText(lastResponsePath, stdout.Result ?? "", new UTF8Encoding(false));
+                    return Parse(stdout.Result, stderr.Result, lastResponsePath);
                 }
                 finally
                 {
@@ -149,14 +154,13 @@ namespace 探偵
             }
         }
 
-        static string BuildArguments(AgentDefinition agent, string agentsPath)
+        static string BuildArguments(AgentDefinition agent, string promptPath)
         {
             string tools = string.Join(",", agent.Tools);
             return "-p"
                 + " --output-format json"
                 + " --json-schema " + Quote(ResearchReport.JsonSchema)
-                + " --agents " + Quote(agentsPath)
-                + " --agent " + Quote(agent.Name)
+                + " --append-system-prompt-file " + Quote(promptPath)
                 + " --model " + Quote(agent.Model)
                 + " --tools " + tools
                 + " --allowedTools " + tools
@@ -168,7 +172,7 @@ namespace 探偵
                 + " --permission-prompts none";
         }
 
-        static ResearchResult Parse(string stdout, string stderr)
+        static ResearchResult Parse(string stdout, string stderr, string lastResponsePath)
         {
             string json = ExtractJsonObject(stdout);
             if (json == null)
@@ -200,24 +204,60 @@ namespace 探偵
             // JsonUtilityは無い項目も空のインスタンスで埋めるので、中身が入っているかで見る
             ResearchReport report = output.structured_output;
             if (report == null || report.IsEmpty) report = ParseReportText(output.result);
-            if (report == null || report.IsEmpty) return ResearchResult.Failure("AIの返事が想定した形になっていませんでした。");
+            if (report == null || report.IsEmpty)
+            {
+                return ResearchResult.Failure("AIの返事が想定した形になっていませんでした。返事の中身は次のファイルで確認できます：" + lastResponsePath);
+            }
 
             return ResearchResult.Ok(report);
         }
 
-        // structured_output が無い版のClaude Codeでも動くように、本文にJSONで書かれていれば拾う
+        // 答えの形の指定が効かず文章で返ってきたときの保険。
+        // ```json で囲まれていたり前後に説明文が付いていたりしても、文章中の { から始まるJSONを順に試して拾う
         static ResearchReport ParseReportText(string text)
         {
-            string json = ExtractJsonObject(text);
-            if (json == null) return null;
-            try
+            if (string.IsNullOrEmpty(text)) return null;
+
+            for (int start = text.IndexOf('{'); start >= 0; start = text.IndexOf('{', start + 1))
             {
-                return JsonUtility.FromJson<ResearchReport>(json);
+                int end = FindClosingBrace(text, start);
+                if (end < 0) continue;
+
+                try
+                {
+                    ResearchReport report = JsonUtility.FromJson<ResearchReport>(text.Substring(start, end - start + 1));
+                    if (report != null && !report.IsEmpty) return report;
+                }
+                catch (ArgumentException)
+                {
+                    // JSONとして読めない部分だったので、次の { から試す
+                }
             }
-            catch (ArgumentException)
+            return null;
+        }
+
+        /// <summary>start の { に対応する } の位置。文字列の中の括弧は数えない。見つからなければ -1。</summary>
+        static int FindClosingBrace(string text, int start)
+        {
+            int depth = 0;
+            bool inString = false;
+            bool escaped = false;
+            for (int i = start; i < text.Length; i++)
             {
-                return null;
+                char c = text[i];
+                if (inString)
+                {
+                    if (escaped) escaped = false;
+                    else if (c == '\\') escaped = true;
+                    else if (c == '"') inString = false;
+                    continue;
+                }
+
+                if (c == '"') inString = true;
+                else if (c == '{') depth++;
+                else if (c == '}' && --depth == 0) return i;
             }
+            return -1;
         }
 
         static string ExtractJsonObject(string text)
