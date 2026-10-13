@@ -18,6 +18,18 @@ namespace 探偵
     {
         const string AgentsFileName = "agents.json";
 
+        // AIの動作に要らない通信（利用状況の統計・エラー報告・フィードバック送信・アンケート・自動更新など）を止める。
+        // 手掛かりやページの内容はAIが考えるのに必要なので、Anthropicのサーバーへの送信自体は止められない。
+        // WebFetchが開く前にドメイン名だけを照会する安全チェックは、危険なサイトを避けるために残している。
+        static readonly string[] PrivacyEnvironmentVariables =
+        {
+            "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC",
+            "DISABLE_TELEMETRY",
+            "DISABLE_ERROR_REPORTING",
+            "DISABLE_FEEDBACK_COMMAND",
+            "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY"
+        };
+
         readonly string _workingDirectory;
         readonly string _agentPath;
         readonly object _lock = new object();
@@ -92,6 +104,10 @@ namespace 探偵
                 StandardOutputEncoding = Encoding.UTF8,
                 StandardErrorEncoding = Encoding.UTF8
             };
+            foreach (string name in PrivacyEnvironmentVariables)
+            {
+                info.EnvironmentVariables[name] = "1";
+            }
 
             using (Process process = Process.Start(info))
             {
@@ -144,6 +160,9 @@ namespace 探偵
                 + " --model " + Quote(agent.Model)
                 + " --tools " + tools
                 + " --allowedTools " + tools
+                // ユーザー全体の設定（~/.claude のフックやプラグインなど）は読まない。
+                // 作業フォルダには設定が無いので、実質どの設定も効かない
+                + " --setting-sources project"
                 + " --no-session-persistence"
                 + " --strict-mcp-config"
                 + " --permission-prompts none";
