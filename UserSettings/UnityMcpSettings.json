@@ -1,7 +1,7 @@
 {
-    "customPort": 8708,
+    "customPort": 8709,
     "projectRootPath": "C:\\Users\\alfam\\Documents\\UnityAds2020.3.16f1_Git",
-    "serverSessionId": "",
+    "serverSessionId": "df8ab7bea30e4f95b5093cbf486d1795",
     "showDeveloperTools": false,
     "enableMcpLogs": false,
     "enableCommunicationLogs": false,
@@ -13,7 +13,7 @@
     "showToolSettings": true,
     "addRepositoryRoot": false,
     "installSkillsFlat": true,
-    "isServerRunning": false,
+    "isServerRunning": true,
     "isAfterCompile": false,
     "isDomainReloadInProgress": false,
     "isReconnecting": false,
